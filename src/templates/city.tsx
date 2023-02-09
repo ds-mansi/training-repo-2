@@ -288,7 +288,7 @@ const City: Template<TemplateRenderProps> = ({
   });
   const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
 
-  const childrenDivs = dm_directoryChildren.map((entity: any) => {
+  const childrenDivs = dm_directoryChildren?.map((entity: any) => {
     var origin: any = null;
     if (entity.address.city) {
       origin = entity.address.city;
