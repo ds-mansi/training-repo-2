@@ -279,7 +279,7 @@ const City: Template<TemplateRenderProps> = ({
   var sortedChildren = dm_directoryChildren?.sort(function (a: any, b: any) {
     var a = a.name;
     var b = b.name;
-    return a < b ? -1 : a > b ? 1 : 0;
+    return a < b ? -1 : (a > b ? 1 : 0);
   });
 
   let slugString = "";
