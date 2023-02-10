@@ -650,8 +650,8 @@ const City: Template<TemplateRenderProps> = ({
         template={"city"}
       /> */}
       <h1 className="sec_heading mt-12" style={{ textAlign: "center" }}>
-        Available Stores in {name}, {document.dm_directoryParents[2].name},{" "}
-        {document.dm_directoryParents[1].name}{" "}
+        Available Stores in {name}, {document.dm_directoryParents && document.dm_directoryParents[2].name},{" "}
+        {document.dm_directoryParents && document.dm_directoryParents[1].name}{" "}
       </h1>
       <div className="directory-country nearby-sec">
         <div className="container">
