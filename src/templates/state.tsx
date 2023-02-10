@@ -86,12 +86,12 @@ export const config: TemplateConfig = {
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   let url = "";
   document.dm_directoryParents.map((i: any) => {
-    if (i.meta.entityType.id == 'Vodafone_country') {
-      url += i.slug + ".html";
+    if (i.meta.entityType.id == 'ce_country') {
+      url +=  i.slug+"/";
     }
   });
   url += document.slug.toString();
-
+ 
   return url + ".html";
 };
 
@@ -251,6 +251,7 @@ const State: Template<TemplateRenderProps> = ({
     c_metaTitle,
     _site,
     __meta,
+    slug,
   } = document;
 
   var sortedChildren = dm_directoryChildren.sort(function (a: any, b: any) {
@@ -258,7 +259,7 @@ const State: Template<TemplateRenderProps> = ({
     var b = b.name;
     return a < b ? -1 : a > b ? 1 : 0;
   });
-
+  
   let slugString = "/";
   document.dm_directoryParents.forEach((e: any) => {
     slugString = e.slug + "/";
@@ -275,12 +276,19 @@ const State: Template<TemplateRenderProps> = ({
         if (
           entity.dm_directoryChildren &&
           entity.dm_directoryChildren[0].id
+          
         ) {
+
+          // console.log("testhere"+entity.slug);
+          var detlslug = document.slug + "/" + entity.slug+"/"+ entity?.dm_directoryChildren[0]?.slug + ".html";
+          // var detlslug = +entity.slug + ".html";
+          // console.log(detlslug,"url")
+          
           return (
-            <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4">
+            <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4 step1">
               <Link
                 key={entity.slug}
-                href={"/" + entity.dm_directoryChildren[0].id }
+                href={detlslug}
                 className="hover:text-red"
                 eventName={entity.name}
               >
@@ -289,7 +297,8 @@ const State: Template<TemplateRenderProps> = ({
             </div>
           );
         }
-         else {
+
+          else {
           let name: any = entity.dm_directoryChildren[0].name.toLowerCase();
           let string: any = name.toString();
           let removeSpecialCharacters = string.replace(
@@ -300,7 +309,7 @@ const State: Template<TemplateRenderProps> = ({
           let finalString: any = result.replaceAll(" ", "-");
           url = `${entity.dm_directoryChildren[0].id}-${finalString}.html`;
           return (
-            <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4">
+            <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4 step2">
               <Link key={entity.slug} href={"/" + url} className="hover:text-red" rel="noopener noreferrer" eventName={`LocationName`}>
                 {entity.name} ({entity.dm_directoryChildrenCount})
               </Link>
@@ -310,7 +319,7 @@ const State: Template<TemplateRenderProps> = ({
       } 
       else {
         return (
-          <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4">
+          <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4 step3">
             <Link
               key={entity.slug}
               href={entity.slug + ".html"}

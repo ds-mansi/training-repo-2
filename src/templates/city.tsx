@@ -100,16 +100,21 @@ let slugString = "";
 //   return slugString + document.slug + ".html";
 // };
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  // var url: any = ""
-  // document.dm_directoryParents.map((i: any) => {
-  //   if (i.meta.entityType.id == 'Vodafone_country') {
-  //     url = `${i.slug}`
-  //   }
-  //   else if (i.meta.entityType.id == 'Vodafone_region') {
-  //     url = `${url}/${i.slug}/${document.slug.toString()}.html`
-  //   }
-  // })
-  return `${document.slug.toString()}.html`;
+  if (document.dm_directoryParents) {
+    document?.dm_directoryParents?.map((i: any) => {
+      if (i.meta.entityType.id == "ce_country") {
+        currentUrl = `${i.slug}/${document.slug.toString()}.html`;
+      } else if (i.meta.entityType.id == "ce_region") {
+        let url = `${document.dm_directoryParents[1].slug}/${
+          i.slug
+        }/${document.slug.toString()}.html`;
+        currentUrl = url;
+      }
+    });
+    return `/${currentUrl}`;
+  } else {
+    return `/${document.slug.toString()}.html`;
+  }
 };
 
 
@@ -279,7 +284,7 @@ const City: Template<TemplateRenderProps> = ({
   var sortedChildren = dm_directoryChildren?.sort(function (a: any, b: any) {
     var a = a.name;
     var b = b.name;
-    return a < b ? -1 : (a > b ? 1 : 0);
+    return a < b ? -1 : a > b ? 1 : 0;
   });
 
   let slugString = "";
@@ -288,7 +293,8 @@ const City: Template<TemplateRenderProps> = ({
   });
   const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
 
-  const childrenDivs = dm_directoryChildren?.map((entity: any) => {
+  const childrenDivs =  dm_directoryChildren &&
+  dm_directoryChildren?.map((entity: any) => {
     var origin: any = null;
     if (entity.address.city) {
       origin = entity.address.city;
@@ -306,7 +312,7 @@ const City: Template<TemplateRenderProps> = ({
       "");
     let result: any = removeSpecialCharacters.replaceAll(" ", "-");
     if(!entity.slug || entity.slug == "undefined"){
-      detailPageUrl = `${entity.id}-${result}.html`
+      detailPageUrl = `${entity.slug}-${result}.html`
     }
     else{
       detailPageUrl = `${entity.slug.toString()}.`

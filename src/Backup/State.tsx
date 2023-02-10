@@ -50,11 +50,11 @@ export const config: TemplateConfig = {
     // Defines the scope of entities that qualify for this stream.
     filter: {
       entityTypes: ["ce_region"],
-      savedFilterIds: ["dm_matalan-stores-directory_address_region"]
+      savedFilterIds: ["dm_stores-directory_address_region"]
     },
     // The entity language profiles that documents will be generated for.
     localization: {
-      locales: ["en_GB"],
+      locales: ["en"],
       primary: false,
     },
   },
@@ -84,11 +84,14 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   path,
   document,
 }): HeadConfig => {
-  var canonical="";
-  document.dm_directoryParents.map((entity: any) => {
+
+  let metaDescription = document._site ? document._site : "Find your nearest Club-mate Restro and which services are available." + document.name;
+  let metaTitle = `Club-mate Restro in ${document.name} | Find a Local Store`;
+  // var canonical="";
+  // document.dm_directoryParents.map((entity: any) => {
     
-      canonical=entity.slug.toLowerCase();
-    })
+  //     canonical=entity.slug.toLowerCase();
+  //   })
    
    
   return {
@@ -144,11 +147,11 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           type: "link",
           attributes: {
             rel: "canonical",
-            href: `${
-             stagingBaseurl
-                 ? stagingBaseurl+ canonical + "/" + document.slug + ".html"
-                 : "/" + document.slug + ".html"
-            }`,
+            // href: `${
+            //  stagingBaseurl
+            //      ? stagingBaseurl+ canonical + "/" + document.slug + ".html"
+            //      : "/" + document.slug + ".html"
+            // }`,
           },
         },
       //   // /og tags
@@ -157,12 +160,12 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           type: "meta",
           attributes: {
             property: "og:url",
-            content:`${
-              stagingBaseurl
-                  ? stagingBaseurl+ canonical + "/" + document.slug + ".html"
-                  : "/" + document.slug + ".html"
-             }`,
-          },
+          //   content:`${
+          //     stagingBaseurl
+          //         ? stagingBaseurl+ canonical + "/" + document.slug + ".html"
+          //         : "/" + document.slug + ".html"
+          //    }`,
+          // },
         },
         {
           type: "meta",
@@ -219,13 +222,17 @@ const region: Template<TemplateRenderProps> = ({
 }) => {
   const {
     name,
-    _site,
-    slug,
-    address,
-    c_banner_image,
-    c_bannerHeading,
+    description,
+    c_globalData,
     dm_directoryParents,
-    dm_directoryChildren
+    dm_directoryChildren,
+    c_addressRegionDisplayName,
+    //seo section
+    c_canonical,
+    c_metaDescription,
+    c_metaTitle,
+    _site,
+    __meta,
   } = document;
   const childrenDivs = dm_directoryChildren ? dm_directoryChildren.map((entity: any) => {
     let detlslug;

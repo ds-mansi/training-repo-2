@@ -231,18 +231,23 @@ const Country: Template<TemplateRenderProps> = ({
     __meta,
   } = document;
   
-  const childrenDivs = dm_directoryChildren.map((entity: any) => (
+  const childrenDivs = dm_directoryChildren &&
+  dm_directoryChildren.map((entity: any) => (
     <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4">
       <Link 
         eventName="Region"
         key={entity.slug}
-        href={"/"+ entity.slug + ".html"}
+        href={slug +"/"+ entity.slug + ".html"}
         className="hover:text-red"
       >
         {entity.name} ({entity.dm_directoryChildrenCount})
       </Link>
     </div>
   ));
+  
+
+
+
   let templateData = { document: document, __meta: __meta };
   let breadcrumbScheme = [];
 
