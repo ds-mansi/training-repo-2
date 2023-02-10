@@ -293,8 +293,7 @@ const City: Template<TemplateRenderProps> = ({
   });
   const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
 
-  const childrenDivs =  dm_directoryChildren &&
-  dm_directoryChildren?.map((entity: any) => {
+  const childrenDivs =  dm_directoryChildren && dm_directoryChildren?.map((entity: any) => {
     var origin: any = null;
     if (entity.address.city) {
       origin = entity.address.city;
@@ -303,7 +302,7 @@ const City: Template<TemplateRenderProps> = ({
     } else {
       origin = entity.address.country;
     }
-    let key: any = Object.keys(entity.hours)[0];
+    // let key: any = Object.keys(entity.hours)&&(entity.hours)[0];
     let detailPageUrl = '';
     var name: any = entity.name.toLowerCase();
     var string: any = name.toString();
@@ -576,30 +575,30 @@ const City: Template<TemplateRenderProps> = ({
   //       });
   //     }
   //   });
-  breadcrumbScheme.push({
-    "@type": "ListItem",
-    position: 1,
-    item: {
-      "@id": `${stagingBaseurl}${dm_directoryParents[1].slug}.html`,
-      name: dm_directoryParents[1].name,
-    },
-  });
-  breadcrumbScheme.push({
-    "@type": "ListItem",
-    position: 2,
-    item: {
-      "@id": `${stagingBaseurl}${dm_directoryParents[1].slug}/${dm_directoryParents[2].slug}.html`,
-      name: dm_directoryParents[2].name,
-    },
-  });
-  breadcrumbScheme.push({
-    "@type": "ListItem",
-    position: 3,
-    item: {
-      "@id": `${stagingBaseurl}${dm_directoryParents[1].slug}/${dm_directoryParents[2].slug}/${document.slug.toString()}.html`,
-      name: document.name,
-    },
-  });
+  // breadcrumbScheme.push({
+  //   "@type": "ListItem",
+  //   position: 1,
+  //   item: {
+  //     "@id": `${stagingBaseurl}${dm_directoryParents[1].slug}.html`,
+  //     name: dm_directoryParents[1].name,
+  //   },
+  // });
+  // breadcrumbScheme.push({
+  //   "@type": "ListItem",
+  //   position: 2,
+  //   item: {
+  //     "@id": `${stagingBaseurl}${dm_directoryParents[1].slug}/${dm_directoryParents[2].slug}.html`,
+  //     name: dm_directoryParents[2].name,
+  //   },
+  // });
+  // breadcrumbScheme.push({
+  //   "@type": "ListItem",
+  //   position: 3,
+  //   item: {
+  //     "@id": `${stagingBaseurl}${dm_directoryParents[1].slug}/${dm_directoryParents[2].slug}/${document.slug.toString()}.html`,
+  //     name: document.name,
+  //   },
+  // });
   return (
     <>
     <JsonLd<Organization>
@@ -615,14 +614,14 @@ const City: Template<TemplateRenderProps> = ({
           ],
         }}
       />
-      <JsonLd<BreadcrumbList>
+      {/* <JsonLd<BreadcrumbList>
         item={{
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
 
           itemListElement: breadcrumbScheme,
         }}
-      />
+      /> */}
      <AnalyticsProvider
         templateData={templateData}
         enableDebugging={AnalyticsEnableDebugging}

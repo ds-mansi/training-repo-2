@@ -280,9 +280,9 @@ const State: Template<TemplateRenderProps> = ({
         ) {
 
           // console.log("testhere"+entity.slug);
-          var detlslug = document.slug + "/" + entity.slug+"/"+ entity?.dm_directoryChildren[0]?.slug + ".html";
+          var detlslug = document.slug + "/" + entity.slug+"/"+ entity?.dm_directoryChildren[0]?.slug+".html";
           // var detlslug = +entity.slug + ".html";
-          // console.log(detlslug,"url")
+          console.log(detlslug,"url")
           
           return (
             <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4 step1">
@@ -308,6 +308,7 @@ const State: Template<TemplateRenderProps> = ({
           let result: any = removeSpecialCharacters.replaceAll("  ", "-");
           let finalString: any = result.replaceAll(" ", "-");
           url = `${entity.dm_directoryChildren[0].id}-${finalString}.html`;
+          console.log(url,"url")
           return (
             <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4 step2">
               <Link key={entity.slug} href={"/" + url} className="hover:text-red" rel="noopener noreferrer" eventName={`LocationName`}>
