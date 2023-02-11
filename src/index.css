@@ -492,7 +492,14 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 .faq-tab  .faq-tab-label{ @apply flex justify-between items-center relative font-normal cursor-pointer border-b border-faq-border }
 .faq-tab-content{@apply px-4  text-lg text-black py-3 bg-opacity-25 my-3 }
 .faq-tab-label.active{ @apply justify-start }
-.view-more{  @apply text-center mt-5}
+.view-more{  @apply text-center mt-5;
+  margin-top: 20px;
+  text-align: center;
+  background-color: #9d743d;
+  margin-left: 45px;
+  padding: 11px;
+  color:white;
+  }
 
 /* near by */
 .nearby-sec{@apply bg-transparent md:bg-light-grey w-full pt-7 pb-0 md:py-[3.75rem] }

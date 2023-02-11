@@ -308,7 +308,7 @@ const State: Template<TemplateRenderProps> = ({
           let result: any = removeSpecialCharacters.replaceAll("  ", "-");
           let finalString: any = result.replaceAll(" ", "-");
           url = `${entity.dm_directoryChildren[0].id}-${finalString}.html`;
-          console.log(url,"url")
+          // console.log(url,"url")
           return (
             <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4 step2">
               <Link key={entity.slug} href={"/" + url} className="hover:text-red" rel="noopener noreferrer" eventName={`LocationName`}>

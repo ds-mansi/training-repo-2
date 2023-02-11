@@ -10,16 +10,24 @@ interface viewMoreProps {
 export default function ViewMore(props: viewMoreProps): JSX.Element | null {
   const { className, idName, buttonLabel } = props;  
   const searchAction = useSearchActions();
+
   const offset = useSearchState(state => state.vertical.offset) || 0;
   const limit = useSearchState(state => state.vertical.limit) || 10;
-  const numResults = useSearchState(state => state.vertical.resultsCount) || 0;
-  // console.log(numResults,"no")s
-   
+
+  let numResults =
+  useSearchState((state) => state.vertical.resultsCount) || 0;
+  const allResultsCountForVertical = useSearchState(state => state.vertical?.noResults?.allResultsForVertical.resultsCount) || 0;
   const executeSearchWithNewOffset = (newOffset: number) => {
     searchAction.setOffset(newOffset);
     searchAction.executeVerticalQuery();
-    
+  };
+  if (numResults == 0) {
+    numResults = allResultsCountForVertical;
   }
+ 
+  // console.log(numResults,"no")s
+   
+  
 
   const maxPageCount = Math.ceil(numResults / limit);
   if (maxPageCount <= 1) {

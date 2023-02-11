@@ -59,26 +59,26 @@ const loading = useSearchState(s=>s.searchStatus.isLoading);
 
   const FirstLoad = () => {
     setCheck(true);
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        function (position) {
-          const params: any = {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          };
-          params1 = params;
-          SetNewparam(params1);
-          mapzoom = 3;
-          searchActions.setUserLocation(params1);
-          searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
-          searchActions.executeVerticalQuery();
-        },
-        function (error) {
-          if (error.code == error.PERMISSION_DENIED) {
-          }
-        }
-      );
-    }
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(
+    //     function (position) {
+    //       const params: any = {
+    //         latitude: position.coords.latitude,
+    //         longitude: position.coords.longitude,
+    //       };
+    //       params1 = params;
+    //       SetNewparam(params1);
+    //       mapzoom = 3;
+    //       searchActions.setUserLocation(params1);
+    //       searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
+    //       searchActions.executeVerticalQuery();
+    //     },
+    //     function (error) {
+    //       if (error.code == error.PERMISSION_DENIED) {
+    //       }
+    //     }
+    //   );
+    // }
     params1 = {
       latitude: 54.9191,
       longitude: -1.3692,
@@ -339,34 +339,28 @@ const loading = useSearchState(s=>s.searchStatus.isLoading);
 
         <div className="left-listing">
 
-          <PerfectScrollbar >
-
-            <div>
-             
-                <VerticalResults
-                  displayAllOnNoResults={false}
-                  CardComponent={LocationCard}
-                  locationResults={locationinbuit}
-                  customCssClasses={{
-                    container:
-                      "result-list flex flex-col scroll-smooth  overflow-auto",
-
-                  }}
-                  // CardComponent={LocationCard}
-                />
-             
-      
-              {locationinbuit && locationinbuit.length <= 0 ?
-               <div className="browse-dir">
-               <a className="underline " href='/gb.html'>Use the search above or <span className="font-second-main-font"> browse our directory</span></a> 
-               </div>:''}
-                <div className="button-bx">
-               <ViewMore  className={" btn notHighlight lg:!w-[132%] !mb-2 button view-more"} idName={"view-more-button"} buttonLabel={"View More"} />
-               </div>
+          <PerfectScrollbar className="result-list">
+            {locationResults&&locationResults.length>0 &&(
+              <div className="scrollbar-custom">
+              <VerticalResults
+                displayAllOnNoResults={false}
+                CardComponent={LocationCard}
+                locationResults={locationResults}
+              />
             </div>
+            )}
           </PerfectScrollbar>
-        </div>
-  </div>
+          {locationResults && locationResults.length > 0 && (
+              <ViewMore
+                className={"button view-more before-icon"}
+                idName={"listing-view-more-button"}
+                buttonLabel={"View More Location"}
+              />
+            )}
+          </div>
+
+
+      </div>
 
 
     </>
