@@ -243,6 +243,11 @@ const loading = useSearchState(s=>s.searchStatus.isLoading);
         <div className="search-bx">
           <div className="location-with-filter">
             <h1 className="">{StaticData.FindLocationtext}</h1>
+            <button className="useMyLocation" title="Search with your current location!" id="useLocation" onClick={onClick}>
+              <span className="icon" dangerouslySetInnerHTML={{ __html: UseMylocationsvg }} />
+
+             <span className="underline hover:no-underline"> {StaticData.Usemylocation}</span>
+            </button>
           </div>
 
           <div className="search-field">
@@ -293,7 +298,7 @@ const loading = useSearchState(s=>s.searchStatus.isLoading);
                 ]}
                 
                 handleInputValue={handleInputValue}  
-                handleSetUserShareLocation={handleSetUserShareLocation}
+                //handleSetUserShareLocation={handleSetUserShareLocation}
             />
 
             <button
@@ -304,7 +309,7 @@ const loading = useSearchState(s=>s.searchStatus.isLoading);
                 </button>
           </div>
 
-<div className="fliter-sec">
+        <div className="fliter-sec">
           <button className="useMyLocation" title="Search using your current location!" id="useLocation" onClick={onClick}>
               <span className="icon" dangerouslySetInnerHTML={{ __html: UseMylocationsvg }} />
 
