@@ -216,7 +216,7 @@ const country: Template<TemplateRenderProps> = ({
     if (typeof entity.dm_directoryChildren != "undefined") {
       if (entity.dm_directoryChildrenCount == 1) {
         entity.dm_directoryChildren.map((res: any) => {
-
+ 
           let detlslug1 = "";
 
           if (!res.slug) {
