@@ -63,8 +63,21 @@ export const config: TemplateConfig = {
       "dm_directoryChildren.address",
       "dm_directoryChildren.hours",
       "dm_directoryChildren.mainPhone",
-        "dm_directoryChildren.yextDisplayCoordinate"
-    
+      // "dm_directoryChildren.what3WordsAddress",
+      "dm_directoryChildren.yextDisplayCoordinate"
+      // "c_globalData.c_headerLinks1",
+      // "c_globalData.c_footerLinks",
+      // "c_globalData.facebookPageUrl",
+      // "c_globalData.twitterHandle",
+      // "c_globalData.instagramHandle",
+      // "c_globalData.address",
+      // "c_globalData.c_phoneNumber",
+      // "c_globalData.c_companyrn",
+      // "c_globalData.c_tikTok",
+      //seo section
+      // "c_canonical",
+      // "c_metaDescription",
+      // "c_metaTitle",
     ],
     localization: {
       locales: ["en"],
@@ -92,7 +105,7 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
       if (i.meta.entityType.id == "ce_country") {
         currentUrl = `${i.slug}/${document.slug.toString()}.html`;
       } else if (i.meta.entityType.id == "ce_region") {
-        currentUrl = `${document.dm_directoryParents[1].slug}/${
+        let url = `${document.dm_directoryParents[1].slug}/${
           i.slug
         }/${document.slug.toString()}.html`;
         currentUrl = url;
