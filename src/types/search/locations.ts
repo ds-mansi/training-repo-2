@@ -38,6 +38,7 @@ export enum PickupAndDeliveryServices {
 }
 
 export interface Address {
+  country: any;
 	line1?: string,
 	line2?: string,
 	line3?: string,

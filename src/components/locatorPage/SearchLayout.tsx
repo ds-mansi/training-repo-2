@@ -366,9 +366,7 @@ const loading = useSearchState(s=>s.searchStatus.isLoading);
             </div>
           </PerfectScrollbar>
         </div>
-
-
-      </div>
+  </div>
 
 
     </>

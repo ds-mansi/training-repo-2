@@ -13,10 +13,12 @@ export default function ViewMore(props: viewMoreProps): JSX.Element | null {
   const offset = useSearchState(state => state.vertical.offset) || 0;
   const limit = useSearchState(state => state.vertical.limit) || 10;
   const numResults = useSearchState(state => state.vertical.resultsCount) || 0;
- 
+  // console.log(numResults,"no")s
+   
   const executeSearchWithNewOffset = (newOffset: number) => {
     searchAction.setOffset(newOffset);
     searchAction.executeVerticalQuery();
+    
   }
 
   const maxPageCount = Math.ceil(numResults / limit);
@@ -24,7 +26,7 @@ export default function ViewMore(props: viewMoreProps): JSX.Element | null {
     return null;
   }
   const pageNumber = (offset / limit) + 1;
-  
+  // console.log(pageNumber,)
   return (
     <>
     <div>

@@ -39,7 +39,7 @@ function opentime(e: any) {
     const { address } = result.rawData;
     var name: any = result.rawData.name?.toLowerCase();
     var country: any = result.rawData.address.countryCode?.toLowerCase();
-  var region: any = result.rawData.address.region?.toLowerCase();
+  var region: any = result.rawData.address.region?.toLowerCase().replaceAll(" ", "-");
   var initialregion: any = region.toString();
   var finalregion: any = initialregion.replaceAll(" ", "-");
   var city: any = result.rawData.address.city?.toLowerCase();
