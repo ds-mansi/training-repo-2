@@ -59,26 +59,26 @@ const loading = useSearchState(s=>s.searchStatus.isLoading);
 
   const FirstLoad = () => {
     setCheck(true);
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        function (position) {
-          const params: any = {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          };
-          params1 = params;
-          SetNewparam(params1);
-          mapzoom = 3;
-          searchActions.setUserLocation(params1);
-          searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
-          searchActions.executeVerticalQuery();
-        },
-        function (error) {
-          if (error.code == error.PERMISSION_DENIED) {
-          }
-        }
-      );
-    }
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(
+    //     function (position) {
+    //       const params: any = {
+    //         latitude: position.coords.latitude,
+    //         longitude: position.coords.longitude,
+    //       };
+    //       params1 = params;
+    //       SetNewparam(params1);
+    //       mapzoom = 3;
+    //       searchActions.setUserLocation(params1);
+    //       searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
+    //       searchActions.executeVerticalQuery();
+    //     },
+    //     function (error) {
+    //       if (error.code == error.PERMISSION_DENIED) {
+    //       }
+    //     }
+    //   );
+    // }
     params1 = {
       latitude: 54.9191,
       longitude: -1.3692,

@@ -499,6 +499,7 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
   margin-left: 45px;
   padding: 11px;
   color:white;
+  font-size: 20px;
   }
 
 /* near by */
@@ -525,7 +526,9 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 .newsletter-inner{@apply  max-w-[25.75rem] mx-auto px-4  }
 .newsletter-section p{@apply text-white text-sm md:text-lg text-center md:text-left }
 .search-field-bx{@apply flex mt-6 }
-.search-field-bx input{@apply bg-white text-gray-dark w-full px-3 py-3 text-sm outline-none flex-[1_1_auto] }
+.search-field-bx input{@apply bg-white text-gray-dark w-full px-3 py-3 text-sm outline-none flex-[1_1_auto];
+  padding-right: 4rem;
+}
 .search-field-bx button{@apply bg-red hover:bg-Dark-red text-white py-3 px-4 text-sm flex-[1_1_auto] whitespace-nowrap }
 .newsletter-logo{@apply    mx-auto w-full mb-6 }
 .newsletter-logo img{@apply mx-auto  }
