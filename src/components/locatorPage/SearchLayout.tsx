@@ -59,26 +59,26 @@ const loading = useSearchState(s=>s.searchStatus.isLoading);
 
   const FirstLoad = () => {
     setCheck(true);
-    // if (navigator.geolocation) {
-    //   navigator.geolocation.getCurrentPosition(
-    //     function (position) {
-    //       const params: any = {
-    //         latitude: position.coords.latitude,
-    //         longitude: position.coords.longitude,
-    //       };
-    //       params1 = params;
-    //       SetNewparam(params1);
-    //       mapzoom = 3;
-    //       searchActions.setUserLocation(params1);
-    //       searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
-    //       searchActions.executeVerticalQuery();
-    //     },
-    //     function (error) {
-    //       if (error.code == error.PERMISSION_DENIED) {
-    //       }
-    //     }
-    //   );
-    // }
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          const params: any = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          };
+          params1 = params;
+          SetNewparam(params1);
+          mapzoom = 3;
+          searchActions.setUserLocation(params1);
+          searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
+          searchActions.executeVerticalQuery();
+        },
+        function (error) {
+          if (error.code == error.PERMISSION_DENIED) {
+          }
+        }
+      );
+    }
     params1 = {
       latitude: 54.9191,
       longitude: -1.3692,
@@ -245,7 +245,6 @@ const loading = useSearchState(s=>s.searchStatus.isLoading);
             <h1 className="">{StaticData.FindLocationtext}</h1>
             <button className="useMyLocation" title="Search with your current location!" id="useLocation" onClick={onClick}>
               <span className="icon" dangerouslySetInnerHTML={{ __html: UseMylocationsvg }} />
-
              <span className="underline hover:no-underline"> {StaticData.Usemylocation}</span>
             </button>
           </div>
@@ -310,11 +309,11 @@ const loading = useSearchState(s=>s.searchStatus.isLoading);
           </div>
 
         <div className="fliter-sec">
-          <button className="useMyLocation" title="Search using your current location!" id="useLocation" onClick={onClick}>
+          {/* <button className="useMyLocation" title="Search using your current location!" id="useLocation" onClick={onClick}>
               <span className="icon" dangerouslySetInnerHTML={{ __html: UseMylocationsvg }} />
 
              <span className="underline hover:no-underline"> {StaticData.Usemylocation}</span>
-            </button>
+            </button> */}
 
           <ResultsCount
             customCssClasses={{ container: "mx-2 my-0 text-dark-gray" }}
