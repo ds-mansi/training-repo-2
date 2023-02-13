@@ -46,21 +46,23 @@ export default function Nearby(props: any) {
       > */}
         {neabyData?.entities?.map((location: any, index: Number) => {
 
-          // let url = "";
-          // var name: any = location.name?.toLowerCase();
-          // var region: any = location.address.region?.toLowerCase();
-          // var initialregion: any = region.toString();
-          // var finalregion: any = initialregion.replaceAll(" ", "-");
-          // var city: any = location.address.city?.toLowerCase();
-          // var initialrcity: any = city.toString();
-          // var finalcity: any = initialrcity.replaceAll(" ", "-");
-          // var string: any = name.toString();
-          // let result1: any = string.replaceAll(" ", "-");
-          // if (!location.slug) {
-          //   url = `/${location.id}-${result1}.html`;
-          // } else {
-          //   url = `/${location.slug.toString()}.html`;
-          // }
+          let url = "";
+          var name: any = location.name?.toLowerCase();
+          var region: any = location.address.region?.toLowerCase().replaceAll(" ", "-");
+          var country: any = location.address.countryCode?.toLowerCase();
+          var initialregion: any = region.toString();
+          var finalregion: any = initialregion.replaceAll(" ", "-");
+          var city: any = location.address.city?.toLowerCase();
+          var initialrcity: any = city.toString();
+          var finalcity: any = initialrcity.replaceAll(" ", "-");
+          var string: any = name.toString();
+          let result1: any = string.replaceAll(" ", "-");
+          var link=country+"/"+region+"/"+city+"/"+location.slug?.toString()+".html";
+          if (!location.slug) {
+            url= `/${link}.html`;
+          } else {
+            url= `/${link}`;
+           }
       
           if (index > 0) {
             return (
@@ -68,10 +70,11 @@ export default function Nearby(props: any) {
                 {/* <SplideSlide key={index}> */}
                   <div className="nearby-card">
                     <div className="location-name-miles icon-row">
-                      <h2><Link className="inline-block notHighlight" href={`/${location.id}`}
-                        data-ya-track={`${location.name}`}
+                      <h2><Link className="inline-block notHighlight" 
+                         data-ya-track={`${location.name}`}
                         eventName={`${location.name}`}
-                        rel="noopener noreferrer">{location.name}</Link></h2>
+                        rel="noopener noreferrer"
+                        href={`/${link}`}>{location.name}</Link></h2>
 
                     </div>
                     <div className="icon-row content-col">
@@ -93,10 +96,11 @@ export default function Nearby(props: any) {
                     }
                     </div> 
                     <div className="button-bx">
-                      <Link className="btn" href={`/${location.id}`}
+                      <Link className="btn" 
                        data-ya-track={`viewstore-${location.name}`}
                        eventName={`viewstore-${location.name}`}
-                       rel="noopener noreferrer">
+                       rel="noopener noreferrer"
+                       href={`/${link}`}>
                         {/* <div dangerouslySetInnerHTML={{__html: View_Store}}/> */}
                         STORE DETAILS</Link>
                       <GetDirection buttonText={props.c_getDirectionsCTAText?props.c_getDirectionsCTAText:"Get directions"} address={location.address} latitude={location.displayCoordinate ? location.displayCoordinate.latitude : location.yextDisplayCoordinate.latitude} longitude={location.displayCoordinate ? location.displayCoordinate.longitude : location.yextDisplayCoordinate.longitude} />

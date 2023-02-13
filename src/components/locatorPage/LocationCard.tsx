@@ -8,6 +8,7 @@ import Address from "../commons/Address";
 import OpenClose from "../commons/openClose";
 import { StaticData } from "../../../sites-global/staticData";
 import { Link } from "@yext/pages/components";
+import Hours from "../commons/hours";
 
 
 const metersToMiles = (meters: number) => {
@@ -48,7 +49,7 @@ function opentime(e: any) {
   var string: any = name.toString();
   let result1: any = string.replaceAll(" ", "-");
   var link=country+"/"+region+"/"+city+"/"+result.rawData.slug?.toString()+".html";
-  // console.log(link,"link");
+  console.log(link,"link");
  if (!result.rawData.slug) {
    url= `/${link}.html`;
  
@@ -90,7 +91,7 @@ function opentime(e: any) {
               <Address address={address} />
               {result.rawData.hours ? <>
               <div className="mt-2">
-              {/* <h6>Opening Hours</h6> */}
+              <h6>Opening Hours</h6>
                 {result.rawData.hours?.reopenDate ? <>
                   <div className="icon"> <img className=" " src={timesvg} width="20" height="20" alt="" /> </div>
                   <div className=" flex open-now-string items-center " data-id={`main-shop-${result.rawData.id}`} onClick={opentime}>
@@ -103,12 +104,12 @@ function opentime(e: any) {
                     </div></>}
 
 
-                {/* <div className={`storelocation-openCloseTime  capitalize hidden`}>
+                <div className={`storelocation-openCloseTime  capitalize hidden`}>
                     {hoursopen?
                    typeof result.rawData.hours === "undefined" ? ("") :
                      <Hours key={result.rawData.name} additionalHoursText={result.rawData.additionalHoursText} hours={result.rawData.hours} c_specific_day={result.rawData.c_specific_day} />
                    :''}
-                </div> */}
+                </div>
               </div></> : <div className="closeddot notHighlight red-dot">
                     <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8">
            <circle id="Ellipse_5" data-name="Ellipse 5" cx="4" cy="4" r="4" fill="#ad1e1f"/>
