@@ -468,7 +468,7 @@ console.log(externalApiData,"static" )
        <BreadCrumbs
         name={name}
         parents={dm_directoryParents}
-        // baseUrl={relativePrefixToRoot}
+        baseUrl={relativePrefixToRoot}
         address={address}
       ></BreadCrumbs>
       <div className="container">

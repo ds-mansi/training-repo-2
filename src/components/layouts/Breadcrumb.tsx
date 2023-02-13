@@ -30,7 +30,6 @@ const BreadCrumbs = (props: data) => {
           // parents[i].name = regionNames.of(parents[i].name);
  
           parents[i].slug = parents[i].slug;
-          
           data.push({
             name: regionNames.of(parents[i].name),
             slug: parents[i].slug,
@@ -55,7 +54,7 @@ const BreadCrumbs = (props: data) => {
           });
         }
       }
-console.log(data)
+
 
       breadcrumbs = data.map((crumb: any) => (
         <li key={crumb.slug}>
