@@ -109,7 +109,7 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
   var name: any = document.name.toLowerCase();
   var string: any = name.toString();;
   let result: any = string.replaceAll(" ", "-");
-  document.dm_directoryParents.map((result: any, i: Number) => {
+  document?.dm_directoryParents?.map((result: any, i: Number) => {
     if (i > 0) {
       url += result.slug + "/"
     }
@@ -331,7 +331,7 @@ const Location: Template<ExternalApiRenderData> = ({
     }
   }
   document.dm_directoryParents &&
-  document.dm_directoryParents.map((i: any, index: any) => {
+  document?.dm_directoryParents?.map((i: any, index: any) => {
     if (i.meta.entityType.id == "ce_country") {
       document.dm_directoryParents[index].name =
         document.dm_directoryParents[index].name;
@@ -352,7 +352,7 @@ const Location: Template<ExternalApiRenderData> = ({
       });
     } else if (i.meta.entityType.id == "ce_region") {
       let url = "";
-      document.dm_directoryParents.map((j: any) => {
+      document?.dm_directoryParents?.map((j: any) => {
         if (
           j.meta.entityType.id != "ce_region" &&
           j.meta.entityType.id != "ce_city" &&
@@ -376,7 +376,7 @@ const Location: Template<ExternalApiRenderData> = ({
       });
     } else if (i.meta.entityType.id == "ce_city") {
       let url = "";
-      document.dm_directoryParents.map((j: any) => {
+      document?.dm_directoryParents?.map((j: any) => {
         if (
           j.meta.entityType.id != "ce_city" &&
           j.meta.entityType.id != "ce_root"
@@ -408,13 +408,13 @@ breadcrumbScheme.push({
     name: document.name,
   },
 });
-  let imageurl = photoGallery ? photoGallery.map((element: any) => {
+  let imageurl = photoGallery ? photoGallery?.map((element: any) => {
     return element.image.url
   }) : null;
   console.log(document)
   let bannerimage = c_banner_image && c_banner_image.image.url;
 
-  const services = c_restroServices.services.map((link:any) => (
+  const services = c_restroServices?.services?.map((link:any) => (
     
       <ul>
         <li>{link.label}</li></ul>
