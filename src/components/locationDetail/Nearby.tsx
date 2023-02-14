@@ -44,7 +44,7 @@ export default function Nearby(props: any) {
           },
         }}
       > */}
-        {neabyData?.entities?.map((location: any, index: Number) => {
+        {neabyData?.entities?.map((location: any, index: number) => {
 
           let url = "";
           var name: any = location.name?.toLowerCase();

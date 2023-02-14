@@ -243,9 +243,9 @@ export const transformProps: TransformProps<ExternalApiData> = async (
   data: any
 ) => {
 
-  var location = `${data.document.yextDisplayCoordinate ? data.document.yextDisplayCoordinate.latitude : data.document.displayCoordinate.latitude},${data.document.yextDisplayCoordinate ? data.document.yextDisplayCoordinate.longitude : data.document.displayCoordinate.longitude}`;
+  // var location = `${data.document.yextDisplayCoordinate ? data.document.yextDisplayCoordinate.latitude : data.document.displayCoordinate.latitude},${data.document.yextDisplayCoordinate ? data.document.yextDisplayCoordinate.longitude : data.document.displayCoordinate.longitude}`;
 
-    const url = `https://liveapi-sandbox.yext.com/v2/accounts/me/entities/geosearch?api_key=89533a282a54cddff3823fbc30582f38&v=20230110&location=United%20Kingdom&radius=2500&limit=4`;
+    const url = `https://liveapi-sandbox.yext.com/v2/accounts/me/entities/geosearch?radius=2500&location=${data.document.yextDisplayCoordinate.latitude},${data.document.yextDisplayCoordinate.longitude}&api_key=89533a282a54cddff3823fbc30582f38&v=20181201&resolvePlaceholders=true&entityTypes=location&limit=4`;
  console.log(url)
   const externalApiData = (await fetch(url).then((res: any) =>
     res.json()
