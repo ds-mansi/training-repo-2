@@ -104,11 +104,13 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
     document?.dm_directoryParents?.map((i: any) => {
       if (i.meta.entityType.id == "ce_country") {
         currentUrl = `${i.slug}/${document.slug.toString()}.html`;
+        // console.log(currentUrl,"574757175171531742")
       } else if (i.meta.entityType.id == "ce_region") {
         let url = `${document.dm_directoryParents[1].slug}/${
           i.slug
         }/${document.slug.toString()}.html`;
         currentUrl = url;
+        console.log(currentUrl,"gugsauhqaghggv")
       }
     });
     return `/${currentUrl}`;
@@ -290,6 +292,7 @@ const City: Template<TemplateRenderProps> = ({
   let slugString = "";
   document.dm_directoryParents?.forEach((e: any) => {
     slugString += e.slug + "/";
+    // console.log(slugString,"8787678789")
   });
   const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
 
@@ -316,7 +319,7 @@ const City: Template<TemplateRenderProps> = ({
     else{
       detailPageUrl = `${entity.slug.toString()}.`
     }
-    console.log(entity.slug,"slug")
+    console.log(detailPageUrl,"slug")
     return (
       <>
      
@@ -324,7 +327,7 @@ const City: Template<TemplateRenderProps> = ({
       <div className="w-full sm:w-1/2 xl:w-1/3 px-[15px]">
         <div className="near-location">
           <h4>
-            <Link eventName={"Location detail"} key={entity.slug} href={`${entity.slug}`}>
+            <Link eventName={"Location detail"} key={entity.slug} href={`${document.slug}/${entity.name.replaceAll(" ", "-")}.html`}>
               {entity.name}
             </Link>
           </h4>
@@ -457,7 +460,7 @@ const City: Template<TemplateRenderProps> = ({
               </svg>{" "}
               Get Directions
             </Link>
-            <a className="view-details" href={`${entity.id}`}>
+            <a className="view-details" href={`${document.slug}/${entity.name.replaceAll(" ", "-")}.html`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="22.403"

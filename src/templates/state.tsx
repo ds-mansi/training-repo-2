@@ -89,10 +89,13 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
     if (i.meta.entityType.id == 'ce_country') {
       url +=  i.slug+"/";
     }
-  });
+        
+  })
   url += document.slug.toString();
- 
+  
+  // console.log(url,"gdhgfhfhhjhjfhjhj");
   return url + ".html";
+  
 };
 
 
@@ -253,16 +256,18 @@ const State: Template<TemplateRenderProps> = ({
     __meta,
     slug,
   } = document;
-
+ //console.log(document.dm_directoryParents[1].slug,"fhfjsd");
   var sortedChildren = dm_directoryChildren.sort(function (a: any, b: any) {
     var a = a.name;
     var b = b.name;
     return a < b ? -1 : a > b ? 1 : 0;
   });
   
-  let slugString = "/";
+  let slugString = " ";
   document.dm_directoryParents.forEach((e: any) => {
     slugString = e.slug + "/";
+
+    console.log(slugString,"uadfadgajfdhagddgahkdgdfkj")
   });
   const childrenDivs =
     dm_directoryChildren &&
@@ -270,6 +275,7 @@ const State: Template<TemplateRenderProps> = ({
       let url: any = "";
 
       url = document.slug.toString();
+      // console.log(url,"gfsffahdaydgadfadfyjdghjadjadfjfdlfhjgfdffg")
       let url1: any = "";
       url1 = url.replace(/(\b\S.+\b)(?=.*\1)/g, "").trim();
       if (entity.dm_directoryChildrenCount == 1) {
@@ -282,7 +288,7 @@ const State: Template<TemplateRenderProps> = ({
           // console.log("testhere"+entity.slug);
           var detlslug = document.slug + "/" + entity.slug+"/"+ entity?.dm_directoryChildren[0]?.slug+".html";
           // var detlslug = +entity.slug + ".html";
-          console.log(detlslug,"url")
+          
           
           return (
             <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4 step1">
@@ -299,7 +305,9 @@ const State: Template<TemplateRenderProps> = ({
         }
 
           else {
+            
           let name: any = entity.dm_directoryChildren[0].name.toLowerCase();
+          // console.log(name,"123465")
           let string: any = name.toString();
           let removeSpecialCharacters = string.replace(
             /[&\/\\#^+()$~%.'":*?<>{}!@]/g,
@@ -307,11 +315,16 @@ const State: Template<TemplateRenderProps> = ({
           );
           let result: any = removeSpecialCharacters.replaceAll("  ", "-");
           let finalString: any = result.replaceAll(" ", "-");
-          url = `${entity.dm_directoryChildren[0].id}-${finalString}.html`;
-          // console.log(url,"url")
+          url1 = `${entity.dm_directoryChildren[0].id}-${finalString}.html`;
+          // console.log(url1,"hugwgrfjgwkswyhfu")
+         
           return (
             <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4 step2">
-              <Link key={entity.slug} href={"/" + url} className="hover:text-red" rel="noopener noreferrer" eventName={`LocationName`}>
+              <Link key={entity.slug} 
+              href={"/" + url+"/"+`${entity.name}`} 
+              className="hover:text-red" 
+              rel="noopener noreferrer" 
+              eventName={`LocationName`}>
                 {entity.name} ({entity.dm_directoryChildrenCount})
               </Link>
             </div>
@@ -319,11 +332,12 @@ const State: Template<TemplateRenderProps> = ({
         }
       } 
       else {
+       console.log(document.slug + "/" + entity.slug,"dsgfsdf");  
         return (
           <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4 step3">
             <Link
               key={entity.slug}
-              href={entity.slug + ".html"}
+              href={document.slug + "/" + entity.slug+".html"}
               className="hover:text-red"
               rel="noopener noreferrer" eventName={`name`}
             >
@@ -354,7 +368,7 @@ const State: Template<TemplateRenderProps> = ({
     "@type": "ListItem",
     position: currentIndex + 1,
     item: {
-      "@id": `${stagingBaseurl}${dm_directoryParents[1].slug}/${document.slug.toString()}.html`,
+      "@id": `${dm_directoryParents[1].slug}/${document.slug.toString()}.html`,
       name: document.name,
     },
   });
