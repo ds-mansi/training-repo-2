@@ -658,7 +658,7 @@ const City: Template<TemplateRenderProps> = ({
       </h1>
       <div className="directory-country nearby-sec">
         <div className="container">
-          <div className="flex  flex-wrap justify-center -mx-[15px]">
+          <div className="citybtn flex flex-wrap justify-center -mx-[15px]">
             {childrenDivs}
           </div>
         </div>

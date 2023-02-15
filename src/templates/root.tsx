@@ -110,7 +110,7 @@ const Root: Template<TemplateRenderProps> = ({
             {dm_directoryChildren.map((child: any) => {
               return (
                 <>
-                  <div className="w-1/2 md:w-1/3 lg:w-1/4 px-4">
+                  <div className="buttons w-1/2 md:w-1/3 lg:w-1/4 px-4">
                     <a
                       href={slug + "/" + child.slug + ".html"}
                       key={child.slug}

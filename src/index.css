@@ -278,7 +278,51 @@ table.day-hrs .time-b{  @apply text-lg md:text-lg  w-auto leading-[1.875rem] rou
 .availablity-content{
   /*  border-l border-nav-link*/ @apply pl-0 py-1.5 
 }
+ 
+.buttons div > *{
+  justify-content: center;
+  display: flex;
+  background-color: #6c4e25;
+  color: white;
+  border: 1px solid black;
+  padding: 15px;
+  border-radius: 10px;
+  
+}
+.buttons div > *:hover{
+  background-color:#f1d7b1 ;
+  color: black;
+}
 
+.near-location{
+  box-shadow: 5px 10px #f1d7b1;
+}
+.citybtn div> *{
+  background-color: #e9e6e2;
+  padding: 5px;
+    }
+
+.citybtn h4>*{
+  font-size: 20px;
+  font-weight: bold;
+  
+}
+.citybtn div> a>*{
+color: #6c4e25;
+}
+.statebtn div > *{
+  background-color: #6c4e25;
+  color: white;
+  border: 1px solid black;
+  padding: 15px;
+  border-radius: 10px;
+  padding: 15px 60px 15px 60px;
+}
+
+.statebtn div > *:hover{
+  background-color:#f1d7b1 ;
+  color: black;
+}
 
 .gm-style-iw{ @apply  !px-0 max-w-full md:!max-w-[24.312rem] lg:!max-w-full}
 .gm-style .gm-style-iw-c{@apply !rounded-none }

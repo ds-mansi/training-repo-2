@@ -315,7 +315,7 @@ const Country: Template<TemplateRenderProps> = ({
       </h1>
       <div className="directory-country py-5 lg:py-[60px] ">
         <div className="container" >
-          <div className=" grid grid-cols-3 gap-4 -mx-3 " style={{justifyItems:"center"}}>
+          <div className=" buttons grid grid-cols-3 gap-8 -mx-3 " style={{justifyContent:"center",display:"flex",flexWrap:"wrap"}}>
             {childrenDivs}
           </div>
         </div>

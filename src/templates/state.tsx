@@ -267,7 +267,7 @@ const State: Template<TemplateRenderProps> = ({
   document.dm_directoryParents.forEach((e: any) => {
     slugString = e.slug + "/";
 
-    console.log(slugString,"uadfadgajfdhagddgahkdgdfkj")
+    // console.log(slugString,"uadfadgajfdhagddgahkdgdfkj")
   });
   const childrenDivs =
     dm_directoryChildren &&
@@ -332,7 +332,7 @@ const State: Template<TemplateRenderProps> = ({
         }
       } 
       else {
-       console.log(document.slug + "/" + entity.slug,"dsgfsdf");  
+      //  console.log(document.slug + "/" + entity.slug,"dsgfsdf");  
         return (
           <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4 step3">
             <Link
@@ -431,8 +431,9 @@ const State: Template<TemplateRenderProps> = ({
       <div className="directory-country nearby-sec">
         <div className="container">
           <div className="flex flex-wrap justify-center -mx-[15px]">
-            <div className="w-full text-center"></div>
+            <div className="statebtn w-full text-center" style={{justifyItems: "center",display: "grid"}}>
             {childrenDivs}
+            </div>
           </div>
         </div>
       </div>
