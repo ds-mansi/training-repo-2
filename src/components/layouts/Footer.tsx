@@ -24,6 +24,26 @@ const menus=props.links?.c_footerLinks?.menus?.map((link:any) => (
      <span>{link.label}</span><br />
    </a>
 ));
+// const iconsCTA=props?._site?.c_footerIcons?.icon?.map((link:any) => (
+
+//    <a className="navbar-item" >
+//      <span>{link.url}</span><br />
+//    </a>
+// ));
+// console.log(iconsCTA,"abcv")
+console.log("siconsfor footer",props.links.c_footerIcons)
+const iconForFooter=props.links.c_footerIcons?.map((item:any)=>{
+   // console.log("siconsfor footer",item)
+   return(
+      <>
+      <a href={item.cTA.link} style={{marginRight:"10px"}}>
+      <img src={item.icon.url} style={{height:"30px",marginTop:"25px"}}/>
+      </a>
+      {/* <h3>{item.cTA.label}</h3> */}
+      </>
+   )
+})
+console.log("nssss",iconForFooter)
    return (
       <>
          <footer className="footer" style={{backgroundColor:"#f1d7b1", width:"100%", display:"flex"}}>
@@ -35,17 +55,23 @@ const menus=props.links?.c_footerLinks?.menus?.map((link:any) => (
             
                <div className="footer_links" style={{display:"flex"}}>
                   <div className="column" style={{marginLeft:"20px"}}>
-                  <h2 style={{fontSize:"50px"}}>About</h2>
+                  <h2 style={{fontSize:"20px",fontWeight:"bold",color:"#2e247a"}}>About</h2>
                   
                      <li style={{display:"block",textDecoration:"none",marginTop:"25%"}}>{About} </li> 
                   </div>
                   <div className="column" style={{marginLeft:"200px"}}>
-                  <h2 style={{fontSize:"50px"}}>Contact Us</h2>
+                  <h2 style={{fontSize:"20px",fontWeight:"bold",color:"#2e247a"}}>Contact Us</h2>
                     <li style={{display:"block",textDecoration:"none",marginTop:"15%"}}> <a>{contactUs}</a></li>
                   </div>
                   <div className="column" style={{marginLeft:"200px"}}>
-                     <h2 style={{fontSize:"50px"}}>Menu</h2>
+                     <h2 style={{fontSize:"20px",fontWeight:"bold",color:"#2e247a"}}>Menu</h2>
                      <li style={{display:"block",textDecoration:"none",marginTop:"25%"}}><a>{menus}</a></li>
+                  </div>
+                  <div style={{marginLeft:"140px"}}>
+                     <h3 style={{fontWeight:"bold",color:"#2e247a"}}>You can follow us on</h3>
+              
+                   <div style={{display:"flex"}}> {iconForFooter}</div>
+            
                   </div>
                   </div>
                </div>

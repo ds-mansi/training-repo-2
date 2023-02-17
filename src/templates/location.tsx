@@ -65,6 +65,7 @@ export const config: TemplateConfig = {
       "meta",
       "name",
       "address",
+      "c_footerIcons",
       "mainPhone",
       "hours",
       "slug",
@@ -269,6 +270,7 @@ const Location: Template<ExternalApiRenderData> = ({
 }) => {
   const {
     _site,
+    c_footerIcons,
     address,
     slug,
     hours,
@@ -540,7 +542,7 @@ console.log(externalApiData,"static" )
         </div>
         <br/>
 
-        <Footer links={_site}/>
+        <Footer links={_site}  icons={_site.c_footerIcons}/>
       </AnalyticsScopeProvider>
       </AnalyticsProvider>
     </>

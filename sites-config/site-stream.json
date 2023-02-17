@@ -8,7 +8,8 @@
       "name",
       "c_headerlinks",
       "c_footerLinks",
-      "c_footerLogo"
+      "c_footerLogo",
+      "c_footerIcons"
 
   ],
   "localization": {
