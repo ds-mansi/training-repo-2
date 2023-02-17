@@ -39,7 +39,6 @@ const iconForFooter=props.links.c_footerIcons?.map((item:any)=>{
       <a href={item.cTA.link} style={{marginRight:"10px"}}>
       <img src={item.icon.url} style={{height:"30px",marginTop:"25px"}}/>
       </a>
-      {/* <h3>{item.cTA.label}</h3> */}
       </>
    )
 })

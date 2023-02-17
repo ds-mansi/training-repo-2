@@ -312,9 +312,9 @@ color: #6c4e25;
 }
 .statebtn div > *{
   background-color: #6c4e25;
+  display: flex;
   color: white;
   border: 1px solid black;
-  padding: 15px;
   border-radius: 10px;
   padding: 15px 60px 15px 60px;
 }
@@ -323,11 +323,6 @@ color: #6c4e25;
   background-color:#f1d7b1 ;
   color: black;
 }
-/* .icon-style{
-  height:30px;
-  margin-top:25px;
-  column-gap:"100px";
-} */
 
 .gm-style-iw{ @apply  !px-0 max-w-full md:!max-w-[24.312rem] lg:!max-w-full}
 .gm-style .gm-style-iw-c{@apply !rounded-none }

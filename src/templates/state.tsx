@@ -431,7 +431,7 @@ const State: Template<TemplateRenderProps> = ({
       <div className="directory-country nearby-sec">
         <div className="container">
           <div className="flex flex-wrap justify-center -mx-[15px]">
-            <div className="statebtn w-full text-center" style={{justifyItems: "center",display: "grid"}}>
+            <div className="statebtn w-full text-center" style={{display: "flex",justifyContent:"center"}}>
             {childrenDivs}
             </div>
           </div>
