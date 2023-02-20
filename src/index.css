@@ -59,6 +59,10 @@ nav[aria-label="Pagination"] button:disabled{  @apply cursor-not-allowed text-op
 nav .active{ @apply bg-light-red}
 .selectedLabel{@apply block}
 
+.navbar >a :hover{
+  font-weight: bold;
+}
+
 /* Header */
 .site-header{   @apply pt-0 lg:pt-6 relative}
 .site-header .header-top{  @apply border-b border-border-light border-opacity-[0.45] text-nav-link}

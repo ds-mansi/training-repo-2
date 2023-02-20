@@ -110,7 +110,7 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
           i.slug
         }/${document.slug.toString()}.html`;
         currentUrl = url;
-        console.log(currentUrl,"gugsauhqaghggv")
+        // console.log(currentUrl,"gugsauhqaghggv")
       }
     });
     return `/${currentUrl}`;
@@ -319,7 +319,8 @@ const City: Template<TemplateRenderProps> = ({
     else{
       detailPageUrl = `${entity.slug.toString()}.`
     }
-    console.log(detailPageUrl,"slug")
+    // console.log(detailPageUrl,"slug")
+    // console.log(entity.name,"name")
     return (
       <>
      
