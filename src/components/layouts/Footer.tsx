@@ -69,7 +69,7 @@ console.log("nssss",iconForFooter)
                   <div style={{marginLeft:"140px"}}>
                      <h3 style={{fontWeight:"bold",color:"#2e247a"}}>You can follow us on</h3>
               
-                   <div style={{display:"flex"}}> {iconForFooter}</div>
+                   <div className="footer-icon"> {iconForFooter}</div>
             
                   </div>
                   </div>

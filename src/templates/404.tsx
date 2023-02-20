@@ -10,15 +10,16 @@ import {
 import * as React from "react";
 import { favicon } from "../../sites-global/global";
 import { StaticData } from "../../sites-global/staticData";
-import PageLayout from "../components/layouts/PageLayout";
+import Header from "../components/layouts/Header";
+import "../index.css";
+import Footer from "../components/layouts/Footer";
 export const config: TemplateConfig = {
   stream: {
     $id: "404",
     // Specifies the exact data that each generated document will contain. This data is passed in
     // directly as props to the default exported function.
     fields: [
-      "name",
-      
+      "name",     
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -26,7 +27,7 @@ export const config: TemplateConfig = {
     },
     // The entity language profiles that documents will be generated for.
     localization: {
-      locales: ["en_GB"],
+      locales: ["en"],
       primary: false,
     },
   },
@@ -62,16 +63,16 @@ const FourOhFour: Template<TemplateRenderProps> = ({
   } = document;
   return (
     <>
-      <PageLayout global={_site}>
+       <Header _site={_site} />
         <div className="content-list">
           <div className="container">
             <div className="sec-title text-center">
-              <h1 className="" style={{ textAlign: "center" }}>
+              <h1 className="" style={{ textAlign: "center",color:"red" }}>
                 {StaticData.PagenotFound}
               </h1>
-              <p>{StaticData.cantfind_page}.</p>
-              <p>{StaticData.Youcouldtry}</p>
-              <div className="button-bx max-w-[45rem] !mx-auto !mt-5">
+              <p style={{textAlign:"center"}}>{StaticData.cantfind_page}.</p>
+              <p style={{textAlign:"center"}}>{StaticData.Youcouldtry}</p>
+              <div className="button-bx max-w-[45rem] !mx-auto !mt-5" style={{textAlign:"center", marginBottom:"5%"}}>
                 <a className="btn" href="javascript:history.back()">{StaticData.Previuspage} &gt;</a>
                 <a className="btn" href="/">{StaticData.homePage} &gt;</a>
               </div>
@@ -80,8 +81,8 @@ const FourOhFour: Template<TemplateRenderProps> = ({
 
           </div>
         </div>
-      </PageLayout>
-    </>
+        <Footer links={_site}  icons={_site.c_footerIcons} />
+      </>
   );
 };
 
