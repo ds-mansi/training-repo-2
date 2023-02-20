@@ -181,6 +181,11 @@ body.mapView .mobile-btns .btn.mapBtn{  @apply text-Dark-red border-t-0 border-l
    px-2 transition-all duration-300 hover:bg-hover-btn text-gray-dark
     hover:text-white   border-black border hover:border-transparent  bg-white text-sm md:text-base font-medium flex items-center justify-center  }
 .button-bx .btn + .btn{  @apply mt-2 sm:mt-0}     
+.button-bx .btn:hover{
+  background-color: #fab969;
+  color: black;
+  border: 1px solid black;
+}
 .button-bx .btn:hover svg{@apply fill-white  }
 .scrollbar-container{@apply md:pr-3 md:!h-[calc(100vh_-_11rem)]}
 .scrollbar-container.ps--active-y{ @apply pr-6}
