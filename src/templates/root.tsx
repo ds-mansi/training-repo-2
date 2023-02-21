@@ -17,6 +17,7 @@ import {
 import {apikey_for_entity, baseuRL,stagingBaseurl,AnalyticsEnableDebugging,AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
 import BreadCrumbs from "../components/layouts/Breadcrumb";
 import Banner from "../components/locationDetail/banner";
+import PageLayout from "../components/layouts/PageLayout";
 // import Logo from "../images/logo.svg";
 // import bannerImage from "../images/app-bg.png";
 var currentUrl = "";
@@ -103,7 +104,7 @@ const Root: Template<TemplateRenderProps> = ({
         text={"Regions"}
         template={"country"}
       /> */}
-      <Banner/>
+     <PageLayout _sites={_site.c_banner.banner} cta={_site.c_banner.bannerCta}/>
       <div className="directory-root py-5 lg:py-[60px]">
         <div className="container">
           <div className="flex flex-wrap -mx-4" style={{justifyContent:"center"}}>

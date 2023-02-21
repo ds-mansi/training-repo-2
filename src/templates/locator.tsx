@@ -198,7 +198,8 @@ const Locator: Template<TemplateRenderProps>= ({
         {" "}
         <AnalyticsScopeProvider name={""}>
         <Header _site={_site}/>
-        <Banner/>
+        {/* <Banner timezone={undefined} CTAButton={c_banner.bannerCta.label} CtaLink={c_banner.bannerCta.link}/> */}
+        <PageLayout _sites={_site.c_banner.banner} cta={_site.c_banner.bannerCta}/>
         <SearchHeadlessProvider
           experienceKey={AnswerExperienceConfig.experienceKey}
           locale={AnswerExperienceConfig.locale}

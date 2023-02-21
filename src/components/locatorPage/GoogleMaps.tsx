@@ -560,7 +560,7 @@ function UnwrappedGoogleMaps({
           )}
         </div>
         <div className="button-bx !ml-4 !mb-0">
-          <a type="button" href={`/${result.rawData.id}`} className="btn">
+          <a type="button" href={`/${result.rawData.id}`} className="btn" style={{backgroundColor:"#9d743d"}}>
             {/* <div dangerouslySetInnerHTML={{__html: View_Store}}/> */}
             {StaticData.StoreDetailbtn}
           </a>

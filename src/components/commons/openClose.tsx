@@ -371,7 +371,7 @@ export const OpenStausFunctions = {
       Date.parse(`${dateString} UTC`) - Date.parse(`${dateString} ${tz}`);
     return OpenStausFunctions.msToTime(offset);
   },
-  msToTime: (duration) => {
+  msToTime: (duration: any) => {
     let milliseconds = Math.floor((duration % 1000) / 100),
       seconds = Math.floor((duration / 1000) % 60),
       minutes = Math.floor((duration / (1000 * 60)) % 60),

@@ -33,13 +33,13 @@ type OpenIntervals = {
   end: string;
 };
 
-const now = new Date();
+const todayIndex =new Date().getDay();
 
 
 /**
  * Dynamically creates a sort order based on today's day.
  */
-function getSorterForCurrentDay(todayIndex:any): { [key: string]: number } {
+function getSorterForCurrentDay(): { [key: string]: number } {
   const dayIndexes = [0, 1, 2, 3, 4, 5, 6];
 
   const updatedDayIndexes = [];
@@ -64,25 +64,25 @@ function getSorterForCurrentDay(todayIndex:any): { [key: string]: number } {
   };
 }
 // for default sorting Monday to sunday
-function getDefaultsorter(): { [key: string]: number } {
-  const dayIndexes = [0, 1, 2, 3, 4, 5, 6];
+// function getDefaultsorter(): { [key: string]: number } {
+//   const dayIndexes = [0, 1, 2, 3, 4, 5, 6];
 
-  const updatedDayIndexes = [];
-  for (let i = 0; i < dayIndexes.length; i++) {
-    const dayIndex = dayIndexes[i];
-    updatedDayIndexes[i] = dayIndex;
-  }
+//   const updatedDayIndexes = [];
+//   for (let i = 0; i < dayIndexes.length; i++) {
+//     const dayIndex = dayIndexes[i];
+//     updatedDayIndexes[i] = dayIndex;
+//   }
 
-  return {
-    monday: updatedDayIndexes[0],
-    tuesday: updatedDayIndexes[1],
-    wednesday: updatedDayIndexes[2],
-    thursday: updatedDayIndexes[3],
-    friday: updatedDayIndexes[4],
-    saturday: updatedDayIndexes[5],
-    sunday: updatedDayIndexes[6],
-  };
-}
+//   return {
+//     monday: updatedDayIndexes[0],
+//     tuesday: updatedDayIndexes[1],
+//     wednesday: updatedDayIndexes[2],
+//     thursday: updatedDayIndexes[3],
+//     friday: updatedDayIndexes[4],
+//     saturday: updatedDayIndexes[5],
+//     sunday: updatedDayIndexes[6],
+//   };
+// }
 //
 
 const defaultSorter: { [key: string]: number } = {
@@ -94,23 +94,11 @@ const defaultSorter: { [key: string]: number } = {
   friday: 5,
   saturday: 6,
 };
-var cuurentdaynum:number;
-function sortByDay(week: Week): Week {
-  const currentdayuk=useCallback(
-    () => {
-      return new Date(
-        now.toLocaleString("en-US", { timeZone: "Europe/London" })
-      ).getDay();
 
-    },
-    [now],
-  )
-  
-  const todayIndex = currentdayuk();
-  cuurentdaynum= currentdayuk();
+function sortByDay(week: Week): Week {
   const tmp = [];
   for (const [k, v] of Object.entries(week)) {
-    tmp[getSorterForCurrentDay(todayIndex)[k]] = { key: k, value: v };
+    tmp[getSorterForCurrentDay()[k]] = { key: k, value: v };
   }
 
   const orderedWeek: Week = {};
@@ -121,17 +109,6 @@ function sortByDay(week: Week): Week {
   return orderedWeek;
 }
 
-const weekDays: any = {
-  // "sunday": 0, // << if sunday is first day of week
-  monday: 1,
-  tuesday: 2,
-  wednesday: 3,
-  thursday: 4,
-  friday: 5,
-  saturday: 6,
-  sunday: 7,
-};
-
 const renderHours = (week: Week, c_specific_day: any) => {
   const dayDom: JSX.Element[] = [];
   let i = 0;
@@ -139,7 +116,7 @@ const renderHours = (week: Week, c_specific_day: any) => {
     let a;
     let s;
     let dayDate = new Date();
-    const getday = dayDate.getDay();
+    // const getday = dayDate.getDay();
     // console.log(weekDays[getday],"dayyyyyyy")
     function join(t: any, a: any, s: any) {
       function format(m: any) {
@@ -148,7 +125,7 @@ const renderHours = (week: Week, c_specific_day: any) => {
       }
       return a.map(format).join(s);
     }
-    function formatDate(date) {
+    function formatDate(date: any) {
       let d = new Date(date),
         month = "" + (d.getMonth() + 1),
         day = "" + d.getDate(),
@@ -165,32 +142,23 @@ const renderHours = (week: Week, c_specific_day: any) => {
     a = [{ day: "numeric" }, { month: "long" }, { year: "numeric" }];
     s = join(dayDate, a, " ");
     dayDate = s;
-    // console.log('isToday',new Date(),new Date().getDay(),todayIndex, k, isDayToday(k));
+   
 
-    dayDom.push(
-      <DayRow
-        key={k}
-        dayDate={dayDate}
-        dayName={k}
-        day={v}
-        isToday={isDayToday(k)}
-        holidayhours={week.holidayHours}
-        c_specific_day={c_specific_day}
-      />
-    );
+    week.holidayHours?.map((res:any)=>{
+      if(res.date==formatDate(dayDate)){
+      }
+    })
+    dayDom.push(<DayRow key={k} dayDate={dayDate} dayName={k} day={v} isToday={isDayToday(k)} holidayhours={week.holidayHours} c_specific_day={undefined} />);
     i++;
   }
 
-  dayDom.sort(function sortByDay(a: any, b: any) {
-    const day1 = a.key?.toLowerCase();
-    const day2 = b.key?.toLowerCase();
-    return weekDays[day1] - weekDays[day2];
-  });
-  return <tbody key={i}>{dayDom}</tbody>;
+
+
+  return <tbody className="font-normal">{dayDom}</tbody>;
 };
 
 function isDayToday(dayName: string) {
-  return defaultSorter[dayName] === cuurentdaynum;
+  return defaultSorter[dayName] === todayIndex;
 }
 
 function convertTo12HourFormat(time: string, includeMeridiem: boolean): string {
@@ -216,24 +184,16 @@ type DayRow = {
 };
 
 const DayRow = (props: DayRow) => {
-  const { dayName, day, isToday, dayDate, holidayhours,key, c_specific_day } =
-    props;
-    const[currentDay,setCurrentDay]=useState('');
+  const { dayName, day, isToday, dayDate, holidayhours } = props;
   const [myDataAccordintToMe, setMyDataAccordintToMe] = React.useState({});
-  let a: (
-      | { day: string; month?: undefined; year?: undefined }
-      | { month: string; day?: undefined; year?: undefined }
-      | { year: string; day?: undefined; month?: undefined }
-    )[],
-    s,
-    holidayDate: any;
+  let a, s, holidayDate: any;
   function join(t: any, a: any, s: any) {
     function format(m: any) {
-      const f = new Intl.DateTimeFormat("en", m);
+      let f = new Intl.DateTimeFormat('en', m);
       return f.format(t);
     }
     return a.map(format).join(s);
-  }
+  } 
 
   const holidayarray: any[] = [];
   const holidayopenintervals: any[] = [];
@@ -249,8 +209,7 @@ const DayRow = (props: DayRow) => {
 
   React.useEffect(() => {
     if (keysFromData) {
-      const keysFromDataUnique = keysFromData.filter(
-        (value: any, index: any, self: any) => {
+      const keysFromDataUnique = keysFromData.filter((value: any, index: any, self: any) => {
           return self.indexOf(value) === index;
         }
       );
@@ -259,9 +218,7 @@ const DayRow = (props: DayRow) => {
       for (let index = 0; index < keysFromDataUnique.length; index++) {
         const element = keysFromDataUnique[index];
 
-        const day = new Date(element).getDate();
-
-        dataAccordintToMe[element] = holidayarray.filter((fe) => {
+        dataAccordintToMe[element] = holidayarray.filter((fe:any) => {
           const adate = [
             { day: "numeric" },
             { month: "long" },
@@ -286,17 +243,12 @@ const DayRow = (props: DayRow) => {
     }
   }
 
- useEffect(()=>{
-  if (isToday) {
-    setCurrentDay("currentDay");
-  }
- },[])
 
 
   return (
-    <tr className={currentDay} key={key}>
+    <tr className={isToday? "bg-[#cf7c00]":""}>
       {Status ? (
-        <td className="dayName" key={key}>
+        <td className="dayName">
           <span className="checked"></span> {dayName}*
           {/* {c_specific_day &&
             c_specific_day.map((res: any) => {
@@ -312,7 +264,7 @@ const DayRow = (props: DayRow) => {
             })} */}
         </td>
       ) : (
-        <td className="dayName" key={key}>
+        <td className="dayName" >
           <span className="checked"></span> {dayName}
         </td>
       )}

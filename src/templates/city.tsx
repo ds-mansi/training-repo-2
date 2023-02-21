@@ -36,6 +36,7 @@ import {apikey_for_entity, baseuRL,stagingBaseurl,AnalyticsEnableDebugging,Analy
 import { JsonLd } from "react-schemaorg";
 import BreadCrumbs from "../components/layouts/Breadcrumb";
 import Banner from "../components/locationDetail/banner";
+import PageLayout from "../components/layouts/PageLayout";
 // import Herobanner from "../components/commons/Herobanner";
 var currentUrl = "";
 export const config: TemplateConfig = {
@@ -634,7 +635,7 @@ const City: Template<TemplateRenderProps> = ({
         <AnalyticsScopeProvider name={""}>
       {/* <Header></Header> */}
       <Header _site={_site}/>
-      <Banner/>
+      <PageLayout _sites={_site.c_banner.banner} cta={_site.c_banner.bannerCta}/>
       {/* <Header personal={_site.c_personal} bussiness={_site.c_business} findAStore={_site.c_findAStore} networkStatusChecker={_site.c_networkStatusChecker}></Header> */}
       <BreadCrumbs
         name={name}

@@ -32,6 +32,7 @@ import {
 import {apikey_for_entity, baseuRL,stagingBaseurl,AnalyticsEnableDebugging,AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
 import BreadCrumbs from "../components/layouts/Breadcrumb";
 import Banner from "../components/locationDetail/banner";
+import PageLayout from "../components/layouts/PageLayout";
 // import Herobanner from "../components/commons/Herobanner";
 
 //import Logo from "../images/logo.svg";
@@ -299,6 +300,7 @@ const Country: Template<TemplateRenderProps> = ({
         address={{}}
       ></BreadCrumbs>
        <div className="header-title ">
+       <PageLayout _sites={_site.c_banner.banner} cta={_site.c_banner.bannerCta}/>
           {/* <Herobanner c_bannerTitle={_site.c_bannerTitle}></Herobanner> */}
         </div>
       {/* <Banner

@@ -192,6 +192,7 @@ body.mapView .mobile-btns .btn.mapBtn{  @apply text-Dark-red border-t-0 border-l
   color: black;
   border: 1px solid black;
 }
+
 .button-bx .btn:hover svg{@apply fill-white  }
 .scrollbar-container{@apply md:pr-3 md:!h-[calc(100vh_-_11rem)]}
 .scrollbar-container.ps--active-y{ @apply pr-6}
@@ -393,7 +394,7 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 .nearby-card .button-bx .btn + .btn{@apply mt-2 md:mt-0 w-auto hover:no-underline}
 .nearby-card .button-bx .btn:hover svg{@apply !fill-red }
 .map-section .button-bx .btn{@apply w-[11.25rem] md:w-[9.25rem] lg:w-[11.25rem]  bg-Dark-red hover:bg-hover-btn font-second-main-font  border-none text-white;
-  background-color: #9d743d !important;
+  /* background-color: #9d743d !important; */
 }
 .map-section .button-bx .btn.notHighligh{@apply w-full md:w-[48%] bg-white justify-start  border-none text-black underline  }
 .map-section .button-bx .btn + .btn{@apply mt-2 md:mt-0 w-auto ml-2 hover:no-underline}
@@ -436,18 +437,46 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 }
 
 /* hero-banner */
-.hero-section{  @apply relative z-0 overflow-hidden bg-black}
-.hero-section .hero-image{  @apply w-full h-full z-10 object-cover object-center absolute top-0 left-0 opacity-60
+.hero-section{  @apply relative z-0 overflow-hidden bg-black;
+  display: flex;
+  align-items: center;
 }
-.hero-section .hero-content{ @apply relative z-10 text-white text-base md:text-2xl py-6 md:py-14 leading-7 md:leading-10 min-h-[220px] md:min-h-[290px] flex w-full items-center
-}
-.hero-section .hero-content .banner-text{  @apply border-l-2 border-dashed border-white px-7}
-.hero-section .hero-content h1{  @apply text-3xl md:text-5xl font-normal mb-3}
-.hero-section .hero-content p{@apply max-w-2xl}
-.banner-text h1{ @apply text-red text-[2.4375rem] mb-3  mt-8 font-second-main-font;
-  color: #6c4e25;
-}
+.herotxt{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 20px;
+  font-style: italic;
+  margin-bottom: 10px;
+  opacity: 1;
+  text-shadow: 3px 3px #6c4e25;
 
+}
+.bannertxt{
+  text-shadow: 3px 3px #6c4e25;
+  font-weight: bold;
+  font-size: 30px;
+}
+.hero-section .hero-image{  @apply w-full h-full z-10 object-cover object-center relative top-0 left-0 opacity-40
+}
+/* .hero-section { @apply relative z-10 text-white text-base md:text-2xl py-6 md:py-14 leading-7 md:leading-10 min-h-[220px] md:min-h-[290px] flex w-full items-center
+} */
+/* .hero-section  .banner-text{  @apply border-l-2 border-dashed border-white px-7} */
+/* .hero-section  h1{  @apply text-3xl md:text-5xl font-normal mb-3} */
+/* .hero-section  p{@apply max-w-2xl} */
+/* .banner-text h1{ @apply text-red text-[2.4375rem] mb-3  mt-8 font-second-main-font;
+  color: #6c4e25;
+} */
+.bannercta{
+    background-color: #6c4e25;
+  border: 1px solid black;
+  color: #e9e6e2;
+  padding: 10px;
+  width: 10%;
+  margin-top: 15%;
+}
+.bannerimg{
+ fill: black;
+ opacity: 90%;
+}
 /* address sec */
 .location-information{  @apply flex flex-wrap w-full justify-between xl:justify-start max-w-[87.5rem] mx-auto md:px-5 xl:px-4 2xl:px-0 pb-7 pt-1 md:py-11}
 .address-main-sec{@apply bg-address-bg px-4 md:px-6 py-4 md:py-6 w-full md:w-[48%]  lg:w-[24.8125rem] relative z-[0] md:mr-4 order-2 md:order-none mt-4 md:mt-4 lg:mt-0; } 

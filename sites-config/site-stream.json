@@ -9,7 +9,8 @@
       "c_headerlinks",
       "c_footerLinks",
       "c_footerLogo",
-      "c_footerIcons"
+      "c_footerIcons",
+      "c_banner"
 
   ],
   "localization": {

@@ -73,8 +73,7 @@ export const config: TemplateConfig = {
       "yextDisplayCoordinate",
       "displayCoordinate",
       "c_about",
-      "c_banner",
-      "c_restroServices",
+       "c_restroServices",
       "c_faq.name",
       "c_faq.answer",
       "dm_directoryParents.name",
@@ -276,7 +275,6 @@ const Location: Template<ExternalApiRenderData> = ({
     hours,
     mainPhone,
     photoGallery,
-    c_banner_image,
     c_canonical,
     description,
     additionalHoursText,
@@ -286,7 +284,6 @@ const Location: Template<ExternalApiRenderData> = ({
     cityCoordinate,
     name,
     c_about,
-    c_banner,
     c_restroServices,
     c_faq,
     dm_directoryParents
@@ -414,7 +411,7 @@ breadcrumbScheme.push({
     return element.image.url
   }) : null;
   console.log(document)
-  let bannerimage = c_banner_image && c_banner_image.image.url;
+  // let bannerimage = c_banner_image && c_banner_image.image.url;
 
   const services = c_restroServices?.services?.map((link:any) => (
     
@@ -466,13 +463,16 @@ console.log(externalApiData,"static" )
         {" "}
         <AnalyticsScopeProvider name={""}>
         <Header _site={_site}/>
-       <img src={c_banner?.banner?.url}/>
+        <PageLayout _sites={_site.c_banner.banner} cta={_site.c_banner.bannerCta}/>
+       {/* <img src={c_banner?.banner?.url}/> */}
+       {/* <Banner timezone={undefined} CTAButton={c_banner.bannerCta.label} CtaLink={c_banner.bannerCta.link}/> */}
        <BreadCrumbs
         name={name}
         parents={dm_directoryParents}
         baseUrl={relativePrefixToRoot}
         address={address}
       ></BreadCrumbs>
+      
       <div className="container">
             <div className='banner-text banner-dark-bg justify-center text-center'>
               <h1 className="">{name}</h1>

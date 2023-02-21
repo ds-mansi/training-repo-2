@@ -1,6 +1,7 @@
 import * as React from "react";
 import OpenClose from "../commons/openClose";
 import Defaultimage from "../../images/luxurystore.jpg"
+import { Link } from "@material-ui/core";
 
 export type Address = {
   line1: string;
@@ -14,10 +15,12 @@ type Banner = {
   name?: string;
   address?: Address;
   hours?: any;
+  CtaLink:any;
   timezone: any;
   clickcollect?: object;
-  c_bannerImage?: string;
+  c_bannerImage?: any;
   c_locatorBannerAdditionalText?:string;
+  CTAButton:string;
   children?: React.ReactNode;
 };
 
@@ -34,29 +37,25 @@ const renderPrettyAddress = (address?: Address) => {
 };
 
 const Banner = (props: Banner) => {
-  const { name, address, clickcollect, c_bannerImage,c_locatorBannerAdditionalText, children } = props;
-  
-
-  return (
+  const { name, address, clickcollect,CtaLink, c_bannerImage,c_locatorBannerAdditionalText,CTAButton, children } = props;
+  console.log("object1111",props.CtaLink)
+   return (
     <>
-      <div className="hero-section">
+      <div className="hero-section relative">
         <img className="hero-image"
           src={c_bannerImage?c_bannerImage:Defaultimage} alt="banner" width="1" height="1" />
-        <div className="hero-content">
-          <div className="container">
-            <div className={`banner-text  ${props.hours && props.timezone ? 'banner-dark-bg': ''}`}>
-              <h1>{name}</h1>
-              {c_locatorBannerAdditionalText?
-              <p>{c_locatorBannerAdditionalText}</p>
-              :''}
-              {props.hours && props.timezone ?
-                <div className="openClosestatus">
-                  <OpenClose timezone={props.timezone} hours={props.hours} deliveryHours={props.hours}></OpenClose>
-                </div> : ''}
-            </div>
+          <div className="absolute text-center" style={{marginLeft:"30%",backgroundColor:"white",padding:"10px",borderRadius:"10px"}}>
+          <p className="herotxt">Real good food</p>
+          <p className="bannertxt">Feels like Home, Tastes like a Paradise</p>
+          
+          <button >
+      <a className="bannercta" href={props.CtaLink}>{props.CTAButton}</a> 
+      </button>
+      
           </div>
+         
         </div>
-        </div>
+        
       </>
       );
 };
