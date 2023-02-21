@@ -106,11 +106,11 @@ const Root: Template<TemplateRenderProps> = ({
       <Banner/>
       <div className="directory-root py-5 lg:py-[60px]">
         <div className="container">
-          <div className="flex flex-wrap -mx-4">
+          <div className="flex flex-wrap -mx-4" style={{justifyContent:"center"}}>
             {dm_directoryChildren.map((child: any) => {
               return (
                 <>
-                  <div className="buttons w-1/2 md:w-1/3 lg:w-1/4 px-4">
+                  <div className="rootbtn w-1/2 md:w-1/3 lg:w-1/4 px-4" style={{justifyContent:"center"}}>
                     <a
                       href={slug + "/" + child.slug + ".html"}
                       key={child.slug}

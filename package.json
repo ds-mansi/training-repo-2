@@ -61,6 +61,7 @@
     "smooth-scrollbar-react": "^2.4.1"
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.16",
     "@types/react": "^17.0.53",
     "@types/react-dom": "^17.0.10",
     "@types/react-modal": "^3.13.1",
