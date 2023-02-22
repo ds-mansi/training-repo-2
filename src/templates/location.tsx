@@ -5,12 +5,12 @@ import Contact from "../components/locationDetail/contact";
 import ApiCall from "../Apis/ApiCall";
 import Nearby from "../components/locationDetail/Nearby";
 import Faqs from "../components/locationDetail/Faqs";
-import { CustomFieldDebuggerReactProvider } from '@yext/custom-field-debugger';
+import { CustomFieldDebuggerReactProvider } from "@yext/custom-field-debugger";
 import { JsonLd } from "react-schemaorg";
 import Opening from "../components/commons/openClose";
 import { nearByLocation } from "../types/nearByLocation";
-import Logo from "../images/logo-header.svg"
-import offerBanner from "../images/offer-banner.jpg"
+import Logo from "../images/logo-header.svg";
+import offerBanner from "../images/offer-banner.jpg";
 import IframeMap from "../components/locationDetail/IframeMap";
 import BreadCrumb from "../components/layouts/Breadcrumb";
 import SimpleImageSlider from "react-simple-image-slider";
@@ -41,7 +41,14 @@ import StoreHighlight from "../components/locationDetail/SoreHighlight";
 import OpenClose from "../components/commons/openClose";
 import Faq from "../components/locationDetail/Faqs";
 import { StaticData } from "../../sites-global/staticData";
-import {apikey_for_entity, baseuRL,stagingBaseurl,AnalyticsEnableDebugging,AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
+import {
+  apikey_for_entity,
+  baseuRL,
+  stagingBaseurl,
+  AnalyticsEnableDebugging,
+  AnalyticsEnableTrackingCookie,
+  favicon,
+} from "../../sites-global/global";
 import {
   AnalyticsProvider,
   AnalyticsScopeProvider,
@@ -73,7 +80,7 @@ export const config: TemplateConfig = {
       "yextDisplayCoordinate",
       "displayCoordinate",
       "c_about",
-       "c_restroServices",
+      "c_restroServices",
       "c_faq.name",
       "c_faq.answer",
       "dm_directoryParents.name",
@@ -81,14 +88,11 @@ export const config: TemplateConfig = {
       "dm_directoryParents.meta.entityType",
       "dm_directoryParents.c_addressRegionDisplayName",
 
-
-
       //"cityCoordinate"
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
-     entityTypes:['location']
-
+      entityTypes: ["location"],
     },
     // The entity language profiles that documents will be generated for.
     localization: {
@@ -107,19 +111,19 @@ export const config: TemplateConfig = {
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   var url = "";
   var name: any = document.name.toLowerCase();
-  var string: any = name.toString();;
+  var string: any = name.toString();
   let result: any = string.replaceAll(" ", "-");
   document?.dm_directoryParents?.map((result: any, i: Number) => {
     if (i > 0) {
-      url += result.slug + "/"
+      url += result.slug + "/";
     }
-  })
+  });
   if (!document.slug) {
     url += `${result}.html`;
   } else {
     url += `${document.slug.toString()}.html`;
   }
-  
+
   // return document.id;
   return url;
 };
@@ -145,7 +149,9 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   document,
 }): HeadConfig => {
   return {
-    title: document.c_meta_title?document.c_meta_title:`${document.name}  Club Mate Restro`,
+    title: document.c_meta_title
+      ? document.c_meta_title
+      : `${document.name}  Club Mate Restro`,
     charset: "UTF-8",
     viewport: "width=device-width, initial-scale=1",
     tags: [
@@ -153,11 +159,14 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           name: "description",
-          content: `${document.c_meta_description?document.c_meta_description:`Find the ${document.name}  Club Mate Restro in ${document.address.city}. We deliver best food.`}`,
+          content: `${
+            document.c_meta_description
+              ? document.c_meta_description
+              : `Find the ${document.name}  Club Mate Restro in ${document.address.city}. We deliver best food.`
+          }`,
         },
       },
 
-     
       {
         type: "meta",
         attributes: {
@@ -178,9 +187,9 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "link",
         attributes: {
           rel: "canonical",
-          href: `${document._site.c_canonical?document.c_canonical:stagingBaseurl
-
-            }${document.slug?document.slug:`${document.name.toLowerCase()}`}`,
+          href: `${
+            document._site.c_canonical ? document.c_canonical : stagingBaseurl
+          }${document.slug ? document.slug : `${document.name.toLowerCase()}`}`,
         },
       },
 
@@ -188,7 +197,11 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           property: "og:description",
-          content: `${document.c_meta_description?document.c_meta_description:`Find the ${document.name} Restro and club in ${document.address.city}. We deliever our best food.`}`,
+          content: `${
+            document.c_meta_description
+              ? document.c_meta_description
+              : `Find the ${document.name} Restro and club in ${document.address.city}. We deliever our best food.`
+          }`,
         },
       },
       {
@@ -223,38 +236,39 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           name: "twitter:title",
-          content: document.c_meta_title?document.c_meta_title:`${document.name} Store of Club Mate Restro`,
+          content: document.c_meta_title
+            ? document.c_meta_title
+            : `${document.name} Store of Club Mate Restro`,
         },
       },
       {
         type: "meta",
         attributes: {
           name: "twitter:description",
-          content: `${document.c_meta_description?document.c_meta_description:`Find the ${document.name}  Club Mate Restro in ${document.address.city}. We deliver best food.`}`,
+          content: `${
+            document.c_meta_description
+              ? document.c_meta_description
+              : `Find the ${document.name}  Club Mate Restro in ${document.address.city}. We deliver best food.`
+          }`,
         },
       },
       /// twitter tag
     ],
-
   };
 };
 type ExternalApiData = TemplateProps & { externalApiData: nearByLocation };
 export const transformProps: TransformProps<ExternalApiData> = async (
   data: any
 ) => {
-
   // var location = `${data.document.yextDisplayCoordinate ? data.document.yextDisplayCoordinate.latitude : data.document.displayCoordinate.latitude},${data.document.yextDisplayCoordinate ? data.document.yextDisplayCoordinate.longitude : data.document.displayCoordinate.longitude}`;
 
-    const url = `https://liveapi-sandbox.yext.com/v2/accounts/me/entities/geosearch?radius=2500&location=${data.document.yextDisplayCoordinate.latitude},${data.document.yextDisplayCoordinate.longitude}&api_key=89533a282a54cddff3823fbc30582f38&v=20181201&resolvePlaceholders=true&entityTypes=location&limit=4`;
- console.log(url)
+  const url = `https://liveapi-sandbox.yext.com/v2/accounts/me/entities/geosearch?radius=2500&location=${data.document.yextDisplayCoordinate.latitude},${data.document.yextDisplayCoordinate.longitude}&api_key=89533a282a54cddff3823fbc30582f38&v=20181201&resolvePlaceholders=true&entityTypes=location&limit=4`;
+  console.log(url);
   const externalApiData = (await fetch(url).then((res: any) =>
     res.json()
-
   )) as nearByLocation;
   return { ...data, externalApiData };
 };
-
-
 
 type ExternalApiRenderData = TemplateRenderProps & {
   externalApiData: nearByLocation;
@@ -286,13 +300,10 @@ const Location: Template<ExternalApiRenderData> = ({
     c_about,
     c_restroServices,
     c_faq,
-    dm_directoryParents
-    
+    dm_directoryParents,
   } = document;
 
-  
-
- let templateData = { document: document, __meta: __meta };
+  let templateData = { document: document, __meta: __meta };
   let hoursSchema = [];
   let breadcrumbScheme = [];
   for (var key in hours) {
@@ -330,97 +341,95 @@ const Location: Template<ExternalApiRenderData> = ({
     }
   }
   document.dm_directoryParents &&
-  document?.dm_directoryParents?.map((i: any, index: any) => {
-    if (i.meta.entityType.id == "ce_country") {
-      document.dm_directoryParents[index].name =
-        document.dm_directoryParents[index].name;
-      document.dm_directoryParents[index].slug =
-        document.dm_directoryParents[index].slug;
+    document?.dm_directoryParents?.map((i: any, index: any) => {
+      if (i.meta.entityType.id == "ce_country") {
+        document.dm_directoryParents[index].name =
+          document.dm_directoryParents[index].name;
+        document.dm_directoryParents[index].slug =
+          document.dm_directoryParents[index].slug;
 
-      breadcrumbScheme.push({
-        "@type": "ListItem",
-        position: index,
-        item: {
-          "@id":
-            stagingBaseurl +
-       
-            document.dm_directoryParents[index].slug +
-            ".html",
-          name: i.name,
-        },
-      });
-    } else if (i.meta.entityType.id == "ce_region") {
-      let url = "";
-      document?.dm_directoryParents?.map((j: any) => {
-        if (
-          j.meta.entityType.id != "ce_region" &&
-          j.meta.entityType.id != "ce_city" &&
-          j.meta.entityType.id != "ce_root"
-        ) {
-          console.log(j, "j");
-          url = url  + j.slug;
-        }
-      });
-      breadcrumbScheme.push({
-        "@type": "ListItem",
-        position: index,
-        item: {
-          "@id":
-            stagingBaseurl +
-            url + "/" +
-            document.dm_directoryParents[index].slug +
-            ".html",
-          name: i.name,
-        },
-      });
-    } else if (i.meta.entityType.id == "ce_city") {
-      let url = "";
-      document?.dm_directoryParents?.map((j: any) => {
-        if (
-          j.meta.entityType.id != "ce_city" &&
-          j.meta.entityType.id != "ce_root"
-        ) {
-          console.log(j, "j");
-          url = url  + "/" + j.slug;
-        }
-      });
-      breadcrumbScheme.push({
-        "@type": "ListItem",
-        position: index,
-        item: {
-          "@id":
-            stagingBaseurl +
-            url +"/" +
-            document.dm_directoryParents[index].slug +
-            ".html",
-          name: i.name,
-        },
-      });
-    }
+        breadcrumbScheme.push({
+          "@type": "ListItem",
+          position: index,
+          item: {
+            "@id":
+              stagingBaseurl +
+              document.dm_directoryParents[index].slug +
+              ".html",
+            name: i.name,
+          },
+        });
+      } else if (i.meta.entityType.id == "ce_region") {
+        let url = "";
+        document?.dm_directoryParents?.map((j: any) => {
+          if (
+            j.meta.entityType.id != "ce_region" &&
+            j.meta.entityType.id != "ce_city" &&
+            j.meta.entityType.id != "ce_root"
+          ) {
+            console.log(j, "j");
+            url = url + j.slug;
+          }
+        });
+        breadcrumbScheme.push({
+          "@type": "ListItem",
+          position: index,
+          item: {
+            "@id":
+              stagingBaseurl +
+              url +
+              "/" +
+              document.dm_directoryParents[index].slug +
+              ".html",
+            name: i.name,
+          },
+        });
+      } else if (i.meta.entityType.id == "ce_city") {
+        let url = "";
+        document?.dm_directoryParents?.map((j: any) => {
+          if (
+            j.meta.entityType.id != "ce_city" &&
+            j.meta.entityType.id != "ce_root"
+          ) {
+            console.log(j, "j");
+            url = url + "/" + j.slug;
+          }
+        });
+        breadcrumbScheme.push({
+          "@type": "ListItem",
+          position: index,
+          item: {
+            "@id":
+              stagingBaseurl +
+              url +
+              "/" +
+              document.dm_directoryParents[index].slug +
+              ".html",
+            name: i.name,
+          },
+        });
+      }
+    });
+
+  breadcrumbScheme.push({
+    "@type": "ListItem",
+    position: 4,
+    item: {
+      "@id": stagingBaseurl + path,
+      name: document.name,
+    },
   });
-
-breadcrumbScheme.push({
-  "@type": "ListItem",
-  position: 4,
-  item: {
-    "@id": stagingBaseurl + path,
-    name: document.name,
-  },
-});
 
   // let bannerimage = c_banner_image && c_banner_image.image.url;
 
-  const services = c_restroServices?.services?.map((link:any) => (
-    
-      <ul>
-        <li>{link.label}</li></ul>
-   
-));
-console.log(externalApiData,"static" )
+  const services = c_restroServices?.services?.map((link: any) => (
+    <ul>
+      <li>{link.label}</li>
+    </ul>
+  ));
+  console.log(externalApiData, "static");
   return (
-
     <>
-
       <JsonLd<Store>
         item={{
           "@context": "https://schema.org",
@@ -438,7 +447,9 @@ console.log(externalApiData,"static" )
           description: description,
           // image: imageurl,
           telephone: mainPhone,
-          url: `${c_canonical?c_canonical:stagingBaseurl}${slug?slug:`${name}`}.html`
+          url: `${c_canonical ? c_canonical : stagingBaseurl}${
+            slug ? slug : `${name}`
+          }.html`,
         }}
       />
       <JsonLd<BreadcrumbList>
@@ -449,101 +460,198 @@ console.log(externalApiData,"static" )
           itemListElement: breadcrumbScheme,
         }}
       />
-    
 
-
-<AnalyticsProvider
+      <AnalyticsProvider
         templateData={templateData}
-        enableDebugging={AnalyticsEnableDebugging} 
+        enableDebugging={AnalyticsEnableDebugging}
         enableTrackingCookie={AnalyticsEnableTrackingCookie}
       >
         {" "}
         <AnalyticsScopeProvider name={""}>
-        <Header _site={_site}/>
-        <PageLayout _sites={_site.c_banner.banner} cta={_site.c_banner.bannerCta}/>
-       {/* <img src={c_banner?.banner?.url}/> */}
-       {/* <Banner timezone={undefined} CTAButton={c_banner.bannerCta.label} CtaLink={c_banner.bannerCta.link}/> */}
-       <BreadCrumbs
-        name={name}
-        parents={dm_directoryParents}
-        baseUrl={relativePrefixToRoot}
-        address={address}
-      ></BreadCrumbs>
-      
-      <div className="container">
-            <div className='banner-text banner-dark-bg justify-center text-center'>
+          <Header _site={_site} />
+          <PageLayout
+            _sites={_site.c_banner.banner}
+            cta={_site.c_banner.bannerCta}
+          />
+          {/* <img src={c_banner?.banner?.url}/> */}
+          {/* <Banner timezone={undefined} CTAButton={c_banner.bannerCta.label} CtaLink={c_banner.bannerCta.link}/> */}
+          <BreadCrumbs
+            name={name}
+            parents={dm_directoryParents}
+            baseUrl={relativePrefixToRoot}
+            address={address}
+          ></BreadCrumbs>
+
+          <div className="container">
+            <div className="banner-text banner-dark-bg justify-center text-center">
               <h1 className="">{name}</h1>
-                <div className="openClosestatus detail-page closeing-div">
-                  <OpenClose timezone={timezone} hours={hours} />
-                </div> 
+              <div className="openClosestatus detail-page closeing-div">
+                <OpenClose timezone={timezone} hours={hours} />
+              </div>
             </div>
           </div>
           <div className="location-information">
-        <Contact address={address} 
-           phone={mainPhone} latitude={yextDisplayCoordinate ? yextDisplayCoordinate.latitude : displayCoordinate?.latitude}
-           yextDisplayCoordinate={yextDisplayCoordinate} longitude={yextDisplayCoordinate ? yextDisplayCoordinate.longitude : displayCoordinate?.longitude} hours={hours}  additionalHoursText={additionalHoursText} ></Contact>
-          {
-            hours ?
+            <Contact
+              address={address}
+              phone={mainPhone}
+              latitude={
+                yextDisplayCoordinate
+                  ? yextDisplayCoordinate.latitude
+                  : displayCoordinate?.latitude
+              }
+              yextDisplayCoordinate={yextDisplayCoordinate}
+              longitude={
+                yextDisplayCoordinate
+                  ? yextDisplayCoordinate.longitude
+                  : displayCoordinate?.longitude
+              }
+              hours={hours}
+              additionalHoursText={additionalHoursText}
+            ></Contact>
+            {hours ? (
               <div className="map-sec" id="map_canvas">
-                <CustomMap prop={yextDisplayCoordinate ? yextDisplayCoordinate : displayCoordinate} />
-              </div> :
+                <CustomMap
+                  prop={
+                    yextDisplayCoordinate
+                      ? yextDisplayCoordinate
+                      : displayCoordinate
+                  }
+                />
+              </div>
+            ) : (
               <div className="map-sec without-hours" id="map_canvas">
-                <CustomMap prop={yextDisplayCoordinate ? yextDisplayCoordinate : displayCoordinate} />
+                <CustomMap
+                  prop={
+                    yextDisplayCoordinate
+                      ? yextDisplayCoordinate
+                      : displayCoordinate
+                  }
+                />
               </div>
-          }
-        </div>
-        <div>
-        <div style={{backgroundColor:"#dfded8",flexWrap: "wrap",paddingTop:"25px"}}>
-        <div style={{textAlign:"center"}}>
-          <h2 style={{fontSize:"50px",color:"#6c4e25",marginLeft:"60px",alignContent:"center"}}>ABOUT</h2></div>
-          <div style={{display:"flex",marginLeft:"60px",marginTop:"30px"}}>
-            <div style={{marginTop:"5%",paddingRight:"20px",fontSize:"18px",width:"100%"}}>{c_about?.description }</div>
-           
-            <br/>
-            <PhotoSlider c_about={c_about} />
+            )}
           </div>
-         
-         
-          <a  href={c_about?.cTA?.link} style={{margin:"auto"}}>
-            <button type="button" style={{color:"#f1d7b1",backgroundColor:"#6c4e25",padding:"18px",border:"2px solid #f1d7b1",borderRadius: "10px",margin:"10px",marginLeft:"60px"}}>
-              {c_about?.cTA?.label}
-              </button>
-            </a>
-          </div>
-            
-            </div>
-            <br/>
-            <div style={{margin:"auto"}}>
-              <h2 style={{fontSize:"50px",margin:"30px",textAlign:"center",color:"#6c4e25"}}>FAQS</h2>
-              <br/>
-              <div><Faqs faq={c_faq}/></div>
-              <br/>
-            </div>
-            <div style={{backgroundColor:"#dfded8",marginTop:"60px",paddingBottom:"40px"}}>
-              <div className="col-span-full text-center " style={{fontSize: "50px",margin: "30px",color: "#6c4e25",paddingTop: "20px"}}>Services</div>
-              
-                  <div className="text-center flex flex-wrap gap-y-5 text-lg services-wrapper">
-                    {services}
-                  </div>
-                  
+          <div>
+            <div
+              style={{
+                backgroundColor: "#dfded8",
+                flexWrap: "wrap",
+                paddingTop: "25px",
+              }}
+            >
+              <div style={{ textAlign: "center" }}>
+                <h2
+                  style={{
+                    fontSize: "50px",
+                    color: "#6c4e25",
+                    marginLeft: "60px",
+                    alignContent: "center",
+                  }}
+                >
+                  ABOUT
+                </h2>
               </div>
-             
-            
-        <div className="nearby-sec">
-          <div className="container">
-            <div className="sec-title"><h2 className="">{StaticData.NearStoretext}</h2></div>
-            <div className="nearby-sec-inner">
-              {yextDisplayCoordinate || cityCoordinate || displayCoordinate ?
-                <Nearby externalApiData={externalApiData} /> 
-             : ''}
-            </div>
-          </div>
-          
-        </div>
-        <br/>
+              <div
+                style={{
+                  display: "flex",
+                  marginLeft: "60px",
+                  marginTop: "30px",
+                }}
+              >
+                <div
+                  style={{
+                    marginTop: "5%",
+                    paddingRight: "20px",
+                    fontSize: "18px",
+                    width: "100%",
+                  }}
+                >
+                  {c_about?.description}
+                </div>
 
-        <Footer links={_site}  icons={_site.c_footerIcons}/>
-      </AnalyticsScopeProvider>
+                <br />
+                <PhotoSlider c_about={c_about} />
+              </div>
+
+              <a href={c_about?.cTA?.link} style={{ margin: "auto" }}>
+                <button
+                  type="button"
+                  style={{
+                    color: "#f1d7b1",
+                    backgroundColor: "#6c4e25",
+                    padding: "18px",
+                    border: "2px solid #f1d7b1",
+                    borderRadius: "10px",
+                    margin: "10px",
+                    marginLeft: "60px",
+                  }}
+                >
+                  {c_about?.cTA?.label}
+                </button>
+              </a>
+            </div>
+          </div>
+          <br />
+          <div style={{ margin: "auto" }}>
+            <h2
+              style={{
+                fontSize: "50px",
+                margin: "30px",
+                textAlign: "center",
+                color: "#6c4e25",
+              }}
+            >
+              FAQS
+            </h2>
+            <br />
+            <div>
+              <Faqs faq={c_faq} />
+            </div>
+            <br />
+          </div>
+          <div
+            style={{
+              backgroundColor: "#dfded8",
+              marginTop: "60px",
+              paddingBottom: "40px",
+            }}
+          >
+            <div
+              className="col-span-full text-center "
+              style={{
+                fontSize: "50px",
+                margin: "30px",
+                color: "#6c4e25",
+                paddingTop: "20px",
+              }}
+            >
+              Services
+            </div>
+
+            <div className="text-center flex flex-wrap gap-y-5 text-lg services-wrapper">
+              {services}
+            </div>
+          </div>
+
+          <div className="nearby-sec">
+            <div className="container">
+              <div className="sec-title">
+                <h2 className="">{StaticData.NearStoretext}</h2>
+              </div>
+              <div className="nearby-sec-inner">
+                {yextDisplayCoordinate ||
+                cityCoordinate ||
+                displayCoordinate ? (
+                  <Nearby externalApiData={externalApiData} />
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
+          </div>
+          <br />
+
+          <Footer links={_site} icons={_site.c_footerIcons} />
+        </AnalyticsScopeProvider>
       </AnalyticsProvider>
     </>
   );
