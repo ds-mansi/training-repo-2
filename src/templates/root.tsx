@@ -14,7 +14,14 @@ import {
   GetHeadConfig,
   HeadConfig,
 } from "@yext/pages";
-import {apikey_for_entity, baseuRL,stagingBaseurl,AnalyticsEnableDebugging,AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
+import {
+  apikey_for_entity,
+  baseuRL,
+  stagingBaseurl,
+  AnalyticsEnableDebugging,
+  AnalyticsEnableTrackingCookie,
+  favicon,
+} from "../../sites-global/global";
 import BreadCrumbs from "../components/layouts/Breadcrumb";
 import Banner from "../components/locationDetail/banner";
 import PageLayout from "../components/layouts/PageLayout";
@@ -30,7 +37,7 @@ export const config: TemplateConfig = {
     fields: [
       "id",
       "uid",
-       "meta",
+      "meta",
       "name",
       "slug",
       "description",
@@ -39,7 +46,7 @@ export const config: TemplateConfig = {
       "dm_directoryParents.meta.entityType",
       "dm_directoryChildren.name",
       "dm_directoryChildren.slug",
-      "dm_directoryChildrenCount"
+      "dm_directoryChildrenCount",
       // "c_globalData.c_headerLinks1",
       // "c_globalData.c_footerLinks",
       // "c_globalData.facebookPageUrl",
@@ -79,23 +86,27 @@ const Root: Template<TemplateRenderProps> = ({
   path,
   document,
 }) => {
-  
-  const { description, dm_directoryParents,_site, dm_directoryChildren } = document;
+  const { description, dm_directoryParents, _site, dm_directoryChildren } =
+    document;
 
   const { name, slug, c_globalData } = document;
 
   return (
     <>
-      <Header _site={_site}/>
+      <Header _site={_site} />
+      <PageLayout
+        _sites={_site.c_banner.banner}
+        cta={_site.c_banner.bannerCta}
+      />
       <BreadCrumbs
         name={name}
         parents={dm_directoryParents}
         baseUrl={relativePrefixToRoot}
         address={{}}
       ></BreadCrumbs>
-       <div className="header-title ">
-          {/* <Herobanner c_bannerTitle={_site.c_bannerTitle}></Herobanner> */}
-        </div>
+      <div className="header-title ">
+        {/* <Herobanner c_bannerTitle={_site.c_bannerTitle}></Herobanner> */}
+      </div>
       {/* <Banner
         Name={name ? name : ""}
         TagLine={""}
@@ -104,14 +115,20 @@ const Root: Template<TemplateRenderProps> = ({
         text={"Regions"}
         template={"country"}
       /> */}
-     <PageLayout _sites={_site.c_banner.banner} cta={_site.c_banner.bannerCta}/>
+
       <div className="directory-root py-5 lg:py-[60px]">
         <div className="container">
-          <div className="flex flex-wrap -mx-4" style={{justifyContent:"center"}}>
+          <div
+            className="flex flex-wrap -mx-4"
+            style={{ justifyContent: "center" }}
+          >
             {dm_directoryChildren.map((child: any) => {
               return (
                 <>
-                  <div className="rootbtn w-1/2 md:w-1/3 lg:w-1/4 px-4" style={{justifyContent:"center"}}>
+                  <div
+                    className="rootbtn w-1/2 md:w-1/3 lg:w-1/4 px-4"
+                    style={{ justifyContent: "center" }}
+                  >
                     <a
                       href={slug + "/" + child.slug + ".html"}
                       key={child.slug}
@@ -126,7 +143,7 @@ const Root: Template<TemplateRenderProps> = ({
           </div>
         </div>
       </div>
-      <Footer links={_site}/>
+      <Footer links={_site} />
     </>
   );
 };

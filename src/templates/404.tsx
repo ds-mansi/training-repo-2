@@ -13,17 +13,16 @@ import { StaticData } from "../../sites-global/staticData";
 import Header from "../components/layouts/Header";
 import "../index.css";
 import Footer from "../components/layouts/Footer";
+import PageLayout from "../components/layouts/PageLayout";
 export const config: TemplateConfig = {
   stream: {
     $id: "404",
     // Specifies the exact data that each generated document will contain. This data is passed in
     // directly as props to the default exported function.
-    fields: [
-      "name",     
-    ],
+    fields: ["name"],
     // Defines the scope of entities that qualify for this stream.
     filter: {
-      entityIds: ["global-data"]
+      entityIds: ["global-data"],
     },
     // The entity language profiles that documents will be generated for.
     localization: {
@@ -50,39 +49,42 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = () => {
           href: favicon,
         },
       },
-    ]
+    ],
   };
 };
 
 // Template that will show as the page
-const FourOhFour: Template<TemplateRenderProps> = ({
-  document,
-}) => {
-  const {
-    _site
-  } = document;
+const FourOhFour: Template<TemplateRenderProps> = ({ document }) => {
+  const { _site } = document;
   return (
     <>
-       <Header _site={_site} />
-        <div className="content-list">
-          <div className="container">
-            <div className="sec-title text-center">
-              <h1 className="" style={{ textAlign: "center",color:"red" }}>
-                {StaticData.PagenotFound}
-              </h1>
-              <p style={{textAlign:"center"}}>{StaticData.cantfind_page}.</p>
-              <p style={{textAlign:"center"}}>{StaticData.Youcouldtry}</p>
-              <div className="button-bx max-w-[45rem] !mx-auto !mt-5" style={{textAlign:"center"}}>
-                <a className="btn" href="javascript:history.back()">{StaticData.Previuspage} &gt;</a>
-                <a className="btn" href="/">{StaticData.homePage} &gt;</a>
-              </div>
+      <Header _site={_site} />
+      <PageLayout
+        _sites={_site.c_banner.banner}
+        cta={_site.c_banner.bannerCta}
+      />
+      <div className="content-list">
+        <div className="container">
+          <div className="sec-title text-center">
+            <h1 className="" style={{ textAlign: "center", color: "red" }}>
+              {StaticData.PagenotFound}
+            </h1>
+            <p style={{ textAlign: "center" }}>{StaticData.cantfind_page}.</p>
+            <p style={{ textAlign: "center" }}>{StaticData.Youcouldtry}</p>
+            <div
+              className="button-bx max-w-[45rem] !mx-auto !mt-5"
+              style={{ textAlign: "center" }}
+            >
+              {/* <a className="btn" href="javascript:history.back()">{StaticData.Previuspage} &gt;</a> */}
+              <a className="btn" href="/">
+                {StaticData.homePage} &gt;
+              </a>
             </div>
-
-
           </div>
         </div>
-        <Footer links={_site}  icons={_site.c_footerIcons} />
-      </>
+      </div>
+      <Footer links={_site} icons={_site.c_footerIcons} />
+    </>
   );
 };
 
