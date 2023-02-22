@@ -497,7 +497,7 @@ console.log(externalApiData,"static" )
         <div style={{textAlign:"center"}}>
           <h2 style={{fontSize:"50px",color:"#6c4e25",marginLeft:"60px",alignContent:"center"}}>ABOUT</h2></div>
           <div style={{display:"flex",marginLeft:"60px",marginTop:"30px"}}>
-            <div style={{marginTop:"5%",paddingRight:"20px"}}>{c_about?.description }</div>
+            <div style={{marginTop:"5%",paddingRight:"20px",fontSize:"18px",width:"100%"}}>{c_about?.description }</div>
            
             <br/>
             <PhotoSlider c_about={c_about} />

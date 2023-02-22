@@ -21,19 +21,21 @@ export default function Faq(props: any) {
                 <Accordion
                   open={open === index + 1}
                   style={{
-                    width: "80%",
+                    width: "75%",
                     margin: "auto",
                     backgroundColor: "#f1d7b1",
-                    padding: "20px",
+                    fontSize:"20px",
+                    padding: "20px 20px 3px 20px",
                   }}
                 >
                   <AccordionHeader onClick={() => handleOpen(index + 1)}>
-                    <h4>{res.name}</h4>
+                    <h4 style={{padding:"20px,10px,0px,10px"}}>{res.name}</h4>
                   </AccordionHeader>
                   <AccordionBody
                     style={{
                       backgroundColor: "#f7c173",
                       border: "1px solid black",
+                      fontSize:"20px"
                     }}
                   >
                     {res?.answer}
