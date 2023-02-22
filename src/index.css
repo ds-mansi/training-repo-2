@@ -1283,6 +1283,7 @@ nav[aria-label="Pagination"] button:disabled {
 
 .locator-main .result.active {
   @apply border-l-4 border-l-hover-border;
+  background-color: #f7e8d2;
 }
 .locator-main .result.fixed-hover.active {
   @apply border-l-4 border-l-red;
