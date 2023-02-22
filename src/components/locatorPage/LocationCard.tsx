@@ -156,7 +156,7 @@ function opentime(e: any) {
           </div>
           <div className="flex ml-7 mt-2">
           <img src={phone} style={{height:"30px"}}/>
-          <div style={{fontSize:"20px",fontWeight:"bold"}}>{mainPhone}</div>
+          <div style={{fontSize:"20px"}}>{mainPhone}</div>
           </div>
           
           </div>
