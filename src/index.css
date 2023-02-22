@@ -1279,6 +1279,7 @@ nav[aria-label="Pagination"] button:disabled {
 }
 .locator-main .result {
   @apply border-l-4 border-l-white;
+  background-color: #f7e8d2;
 }
 
 .locator-main .result.active {
@@ -1287,9 +1288,11 @@ nav[aria-label="Pagination"] button:disabled {
 }
 .locator-main .result.fixed-hover.active {
   @apply border-l-4 border-l-red;
+  background-color: #f7e8d2;
 }
 .locator-main .result.fixed-hover {
   @apply border-l-4 border-l-red;
+  background-color: #f7e8d2;
 }
 .footer-block {
   @apply border-b border-border-light py-3 lg:py-0 lg:border-none px-5;
