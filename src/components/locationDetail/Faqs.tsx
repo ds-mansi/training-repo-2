@@ -33,7 +33,6 @@ export default function Faq(props: any) {
                   <AccordionBody
                     style={{
                       backgroundColor: "#f7c173",
-                      padding: "10px",
                       border: "1px solid black",
                     }}
                   >
