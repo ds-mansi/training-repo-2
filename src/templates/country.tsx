@@ -311,7 +311,7 @@ const Country: Template<TemplateRenderProps> = ({
         text={"Regions"}
         template={"country"}
       /> */}
-      <Banner/>
+      {/* <Banner/> */}
       <h1 className="sec_heading" style={{ textAlign: "center" ,backgroundColor:"#cf7c00",padding:"10px 0px 10px 0px"}}>
         All Regions of {name}{" "}
       </h1>
