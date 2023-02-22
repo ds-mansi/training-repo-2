@@ -37,6 +37,7 @@ import { JsonLd } from "react-schemaorg";
 import BreadCrumbs from "../components/layouts/Breadcrumb";
 import Banner from "../components/locationDetail/banner";
 import PageLayout from "../components/layouts/PageLayout";
+import Nearby from "../components/locationDetail/Nearby";
 // import Herobanner from "../components/commons/Herobanner";
 var currentUrl = "";
 export const config: TemplateConfig = {
@@ -333,6 +334,7 @@ const City: Template<TemplateRenderProps> = ({
               {entity.name}
             </Link>
           </h4>
+          
           <div className="store-address">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -457,7 +459,7 @@ const City: Template<TemplateRenderProps> = ({
                 <path d="M0,0H24V24H0Z" fill="none" />
                 <path
                   d="M22.43,10.59,13.42,1.58a2.051,2.051,0,0,0-2.83,0l-9,9a1.992,1.992,0,0,0,0,2.82l9,9a2,2,0,0,0,2.82,0l8.99-8.99A1.992,1.992,0,0,0,22.43,10.59ZM12.01,20.99l-9-9,9-9,9,9ZM8,11v4h2V12h4v2.5L17.5,11,14,7.5V10H9A1,1,0,0,0,8,11Z"
-                  fill="#fff"
+                  fill="#6c4e25"
                 />
               </svg>{" "}
               Get Directions
@@ -473,12 +475,12 @@ const City: Template<TemplateRenderProps> = ({
                   <path
                     d="M27.176,120a10.337,10.337,0,0,1-4.387-1.05,16.655,16.655,0,0,1-3.481-2.249,21.287,21.287,0,0,1-3.183-3.253.742.742,0,0,1,0-.9,21.288,21.288,0,0,1,3.183-3.253,16.655,16.655,0,0,1,3.481-2.249A10.337,10.337,0,0,1,27.176,106a10.337,10.337,0,0,1,4.387,1.05,16.655,16.655,0,0,1,3.481,2.249,21.023,21.023,0,0,1,3.183,3.253.742.742,0,0,1,0,.9,21.287,21.287,0,0,1-3.183,3.253,16.655,16.655,0,0,1-3.481,2.249A10.337,10.337,0,0,1,27.176,120Zm-9.492-7c1.171,1.386,5.04,5.507,9.492,5.507S35.5,114.386,36.669,113c-1.171-1.386-5.04-5.507-9.492-5.507S18.856,111.614,17.684,113Z"
                     transform="translate(0 0)"
-                    fill="#fff"
+                    fill="#6c4e25"
                   />
                   <path
                     d="M187.36,190.72a3.36,3.36,0,1,1,3.36-3.36A3.364,3.364,0,0,1,187.36,190.72Zm0-5.227a1.867,1.867,0,1,0,1.867,1.867A1.866,1.866,0,0,0,187.36,185.493Z"
                     transform="translate(-160.184 -74.36)"
-                    fill="#fff"
+                    fill="#6c4e25"
                   />
                 </g>
               </svg>{" "}

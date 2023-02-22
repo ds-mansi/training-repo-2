@@ -80,8 +80,7 @@ export default function Nearby(props: any) {
                         rel="noopener noreferrer"
                         href={`/${link}`}>{location.name}</Link></h2>
                          <div className="distance">
-                         {/* {metersToMiles(location.distanceMiles)} <span>{StaticData.miles}</span> */}
-                        {neabyData?.distances.map((res:any)=>{
+                          {neabyData?.distances.map((res:any)=>{
                           if(res.id==location.meta.id)
                           return(
                             <div className="distance">
