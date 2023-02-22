@@ -13,6 +13,7 @@ import Logo from "../images/logo-header.svg"
 import offerBanner from "../images/offer-banner.jpg"
 import IframeMap from "../components/locationDetail/IframeMap";
 import BreadCrumb from "../components/layouts/Breadcrumb";
+import SimpleImageSlider from "react-simple-image-slider";
 import "../index.css";
 import {
   Template,
@@ -40,7 +41,6 @@ import StoreHighlight from "../components/locationDetail/SoreHighlight";
 import OpenClose from "../components/commons/openClose";
 import Faq from "../components/locationDetail/Faqs";
 import { StaticData } from "../../sites-global/staticData";
-
 import {apikey_for_entity, baseuRL,stagingBaseurl,AnalyticsEnableDebugging,AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
 import {
   AnalyticsProvider,
@@ -407,10 +407,7 @@ breadcrumbScheme.push({
     name: document.name,
   },
 });
-  let imageurl = photoGallery ? photoGallery?.map((element: any) => {
-    return element.image.url
-  }) : null;
-  console.log(document)
+
   // let bannerimage = c_banner_image && c_banner_image.image.url;
 
   const services = c_restroServices?.services?.map((link:any) => (
@@ -439,7 +436,7 @@ console.log(externalApiData,"static" )
           },
           openingHoursSpecification: hoursSchema,
           description: description,
-          image: imageurl,
+          // image: imageurl,
           telephone: mainPhone,
           url: `${c_canonical?c_canonical:stagingBaseurl}${slug?slug:`${name}`}.html`
         }}
@@ -499,11 +496,14 @@ console.log(externalApiData,"static" )
         <div style={{backgroundColor:"#dfded8",flexWrap: "wrap",paddingTop:"25px"}}>
         <div style={{textAlign:"center"}}>
           <h2 style={{fontSize:"50px",color:"#6c4e25",marginLeft:"60px",alignContent:"center"}}>ABOUT</h2></div>
-          <div style={{display:"flex",marginLeft:"60px"}}>
-            <div style={{marginTop:"12%",paddingRight:"20px"}}>{c_about?.description }</div>
-            <img src={c_about?.photo?.url} style={{height: "350px",width:"550px",float:"right",marginTop:"40px"}}/>
+          <div style={{display:"flex",marginLeft:"60px",marginTop:"30px"}}>
+            <div style={{marginTop:"5%",paddingRight:"20px"}}>{c_about?.description }</div>
+           
             <br/>
+            <PhotoSlider c_about={c_about} />
           </div>
+         
+         
           <a  href={c_about?.cTA?.link} style={{margin:"auto"}}>
             <button type="button" style={{color:"#f1d7b1",backgroundColor:"#6c4e25",padding:"18px",border:"2px solid #f1d7b1",borderRadius: "10px",margin:"10px",marginLeft:"60px"}}>
               {c_about?.cTA?.label}

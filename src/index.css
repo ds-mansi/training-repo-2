@@ -60,7 +60,8 @@ nav .active{ @apply bg-light-red}
 .selectedLabel{@apply block}
 
 .navbar >a :hover{
-  font-weight: bold;
+  text-decoration: underline;
+  transition-duration: 700ms;
 }
 .footer_links >div> h2:hover{
   font-weight: bold;
@@ -435,6 +436,10 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 .breadcrumb ul li a{ 
   @apply hover:text-red font-main-font
 }
+.breadcrumb ul li a:hover{ 
+  color: #f1d7b1;
+}
+
 
 /* hero-banner */
 .hero-section{  @apply relative z-0 overflow-hidden bg-black;

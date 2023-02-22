@@ -9,16 +9,19 @@ import Phonesvg from "../../images/phone.svg"
 import { Addresssvg, mobilesvg, View_Store } from "../../../sites-global/global";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Link } from "@yext/pages/components";
+import phone from "../../images/phone.svg"
+import { StaticData } from "../../../sites-global/staticData";
 
 export default function Nearby(props: any) {
-  console.log("object",props)
+  // console.log("object",props)
   const [neabyData, setnearbyData] = React.useState(props?.externalApiData?.response);
   const metersToMiles = (meters: number) => {
     
     const miles = meters * 0.000621371;
     return miles.toFixed(2);
-  }
+    }
   console.log("neabyData",neabyData)
+ 
   return (
 
     <>
@@ -48,6 +51,7 @@ export default function Nearby(props: any) {
 
           let url = "";
           var name: any = location.name?.toLowerCase();
+          var mainPhone:any=location?.mainPhone;
           var region: any = location.address.region?.toLowerCase().replaceAll(" ", "-");
           var country: any = location.address.countryCode?.toLowerCase();
           var initialregion: any = region.toString();
@@ -75,6 +79,17 @@ export default function Nearby(props: any) {
                         eventName={`${location.name}`}
                         rel="noopener noreferrer"
                         href={`/${link}`}>{location.name}</Link></h2>
+                         <div className="distance">
+                         {/* {metersToMiles(location.distanceMiles)} <span>{StaticData.miles}</span> */}
+                        {neabyData?.distances.map((res:any)=>{
+                          if(res.id==location.meta.id)
+                          return(
+                            <div className="distance">
+                              {res.distanceMiles.toFixed(2)}
+                            </div>
+                          )
+                        })}
+                         </div>
 
                     </div>
                     <div className="icon-row content-col">
@@ -95,6 +110,10 @@ export default function Nearby(props: any) {
                    </div>
                     }
                     </div> 
+                    <div className="flex ml-5 mt-2">
+                      <img src={phone} style={{height:"30px"}}/>
+                      <div>{mainPhone}</div>
+                    </div>
                     <div className="button-bx">
                       <Link className="btn" 
                        data-ya-track={`viewstore-${location.name}`}

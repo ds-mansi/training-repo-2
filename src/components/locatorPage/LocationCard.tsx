@@ -9,6 +9,7 @@ import OpenClose from "../commons/openClose";
 import { StaticData } from "../../../sites-global/staticData";
 import { Link } from "@yext/pages/components";
 import Hours from "../commons/hours";
+import phone from "../../images/phone.svg"
 
 
 const metersToMiles = (meters: number) => {
@@ -39,6 +40,7 @@ function opentime(e: any) {
 
     const { address } = result.rawData;
     var name: any = result.rawData.name?.toLowerCase();
+    var mainPhone:any=result.rawData.mainPhone;
     var country: any = result.rawData.address.countryCode?.toLowerCase();
   var region: any = result.rawData.address.region?.toLowerCase().replaceAll(" ", "-");
   var initialregion: any = region.toString();
@@ -151,9 +153,12 @@ function opentime(e: any) {
                 )
             })}
             </div>
-         
-
           </div>
+          <div className="flex ml-7 mt-2">
+          <img src={phone} style={{height:"30px"}}/>
+          <div style={{fontSize:"20px",fontWeight:"bold"}}>{mainPhone}</div>
+          </div>
+          
           </div>
         </div>
       </div>
