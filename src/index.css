@@ -1596,3 +1596,13 @@ nav[aria-label="Pagination"] button:disabled {
     @apply left-1;
   }
 }
+.active.daylist{ @apply  !block pl-[50px]}
+.OpenCloseStatus .daylist{@apply hidden}
+.daylist{
+  display: none;
+}
+.closeing-div notHighlight{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

@@ -412,7 +412,7 @@ export default function OpenClose(props: any) {
         </>
       ) : props.hours ? (
         //  <div class="closeing-div notHighlight" dangerouslySetInnerHTML={{__html: OpenStausFunctions.formatOpenNowString(props.hours, props.timezone)}} />
-        <div className="closeing-div notHighlight">
+        <div className="closeing-div notHighlight" style={{ display: "flex",alignItems: "center",gap: "10px"}}>
           {/* {OpenStausFunctions.formatOpenNowString(props.hours, props.timezone)}{" "} */}
           {
             OpenStausFunctions.formatOpenNowString(props.hours, props.timezone)}

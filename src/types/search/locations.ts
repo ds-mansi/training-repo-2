@@ -248,6 +248,7 @@ export interface ComplexVideo {
 }
 
 export interface Location {
+  c_specific_day: any;
   c_restroServices: ReactNode;
   c_click_collect_availability: any;
   c_open_for_shopping: any;

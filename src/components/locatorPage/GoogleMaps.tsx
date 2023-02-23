@@ -539,14 +539,15 @@ function UnwrappedGoogleMaps({
             <div className="icon-row">
               <div className="icon">
                 {" "}
-                <img className=" " src={phone} width="20" height="20" alt="" />
+                <img className=" " src={phone} width="20" height="20" alt="" style={{marginTop:"5px"}}/>
               </div>
               <div className="content-col">
-                <h6>Telephone</h6>
+              
                 <a
                   id="address"
                   className="notHighlight"
                   href={`tel:${mainPhone}`}
+                  style={{fontWeight:"bold",marginTop:"2px"}}
                 >
                   {mainPhone}
                 </a>

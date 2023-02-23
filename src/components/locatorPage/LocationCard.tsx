@@ -10,6 +10,7 @@ import { StaticData } from "../../../sites-global/staticData";
 import { Link } from "@yext/pages/components";
 import Hours from "../commons/hours";
 import phone from "../../images/phone.svg";
+import { useState } from "react";
 
 const metersToMiles = (meters: number) => {
   const miles = meters * 0.000621371;
@@ -18,6 +19,17 @@ const metersToMiles = (meters: number) => {
 let array = [];
 
 const LocationCard: CardComponent<Location> = ({ result }) => {
+  const [timeStatus, setTimeStatus] = useState("");
+  const onOpenHide = () => {
+    if (timeStatus == "") {
+      setTimeStatus("active");
+      $('.daylist').show();
+    } else {
+      setTimeStatus("");
+      $('.daylist').hide();
+    }
+  };
+
   let url = "";
   const [hoursopen, setHoursopen] = React.useState(false);
 
@@ -41,11 +53,13 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
     }
   }
 
-  const { address } = result.rawData;
+  const { address, hours, additionalHoursText, timezone } = result.rawData;
   var name: any = result.rawData.name?.toLowerCase();
   var mainPhone: any = result.rawData.mainPhone;
   var country: any = result.rawData.address.countryCode?.toLowerCase();
-  var region: any = result.rawData.address.region?.toLowerCase().replaceAll(" ", "-");
+  var region: any = result.rawData.address.region
+    ?.toLowerCase()
+    .replaceAll(" ", "-");
   var initialregion: any = region.toString();
   var finalregion: any = initialregion.replaceAll(" ", "-");
   var city: any = result.rawData.address.city?.toLowerCase();
@@ -53,12 +67,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
   var finalcity: any = initialrcity.replaceAll(" ", "-");
   var string: any = name.toString();
   let result1: any = string.replaceAll(" ", "-");
-  var link =
-    country +
-    "/" +
-    region +
-    "/" +
-    city +
+  var link =country + "/" + region + "/" + city +
     "/" +
     result.rawData.slug?.toString() +
     ".html";
@@ -137,35 +146,58 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                           />{" "}
                         </div>
                         <div
-                          className=" flex open-now-string items-center "
+                          className={timeStatus + "onhighLight "}
                           data-id={`main-shop-${result.rawData.id}`}
-                          onClick={opentime}
+                          onClick={onOpenHide}
                         >
                           {StaticData.tempClosed}
                         </div>
                       </>
                     ) : (
                       <>
-                        <div
-                          className=" flex open-now-string items-center"
-                          data-id={`main-shop-${result.rawData.id}`}
-                        >
+                        <Link
+                        className={timeStatus + "onhighLight "}
+                         href="javascript:void(0);"
+                          onClick={onOpenHide} >
                           <OpenClose
                             timezone={result.rawData.timezone}
                             hours={result.rawData.hours}
                             deliveryHours={result.rawData.hours}
-                          ></OpenClose>
+                           
+                          >
+                            
+                            </OpenClose>
+                            <svg
+                            className="mt-2"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="9.585"
+                            height="4.793"
+                            viewBox="0 0 9.585 4.793"
+                          >
+                            <path
+                              id="hrd-drop"
+                              d="M9,13.5l4.793,4.793L18.585,13.5Z"
+                              transform="translate(-9 -13.5)"
+                              fill="#00363f"
+                            ></path>
+                          </svg>
+                        </Link>
+                        <div className={timeStatus + " daylist"}>
+                          <Hours
+                            key={result.rawData.id}
+                            hours={result.rawData.hours}
+                            additionalHoursText={additionalHoursText}
+                          />
                         </div>
                       </>
                     )}
 
-                    <div
-                      className={`storelocation-openCloseTime  capitalize hidden`}
-                    >
+                      <div className={timeStatus + " daylist"}>
                       {hoursopen ? (
                         typeof result.rawData.hours === "undefined" ? (
                           ""
                         ) : (
+                          
                           <Hours
                             key={result.rawData.name}
                             additionalHoursText={
@@ -174,6 +206,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                             hours={result.rawData.hours}
                             c_specific_day={result.rawData.c_specific_day}
                           />
+                          
                         )
                       ) : (
                         ""
@@ -234,7 +267,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
               )}
             </div>
             <div>
-              <div
+              {/* <div
                 style={{
                   marginLeft: "21px",
                   fontSize: "20px",
@@ -251,8 +284,8 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                 >
                   <a href="/">Services</a>
                 </button>
-              </div>
-              <div style={{ display: "flex", marginLeft: "29px", gap: "20px" }}>
+              </div> */}
+              {/* <div style={{ display: "flex", marginLeft: "29px", gap: "20px" }}>
                 {result.rawData.c_restroServices?.services.map((item: any) => {
                   return (
                     <>
@@ -262,7 +295,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                     </>
                   );
                 })}
-              </div>
+              </div> */}
             </div>
             <div className="flex ml-7 mt-2">
               <img src={phone} style={{ height: "30px" }} />
