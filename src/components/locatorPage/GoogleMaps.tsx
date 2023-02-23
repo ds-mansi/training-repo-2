@@ -477,20 +477,36 @@ function UnwrappedGoogleMaps({
     let url = "";
     var mainPhone: any = result.rawData.mainPhone;
 
-    // const name: any = result.rawData.name?.toLowerCase();
-    // const region: any = result.rawData.address.region?.toLowerCase();
-    // const initialregion: any = region.toString();
-    // const finalregion: any = initialregion.replaceAll(" ", "-");
-    // const city: any = result.rawData.address.city?.toLowerCase();
-    // const initialrcity: any = city.toString();
-    // const finalcity: any = initialrcity.replaceAll(" ", "-");
-    // const string1: any = name.toString();
-    // const result1: any = string1.replaceAll(" ", "-");
-    // if (!result.rawData.slug) {
-    //   url = `${result.rawData.id}-${result1}.html`;
-    // } else {
-    //   url = `${result.rawData.slug.toString()}.html`;
-    // }
+    const name: any = result.rawData.name?.toLowerCase();
+    const region: any = result.rawData.address.region?.toLowerCase();
+    const country :any= result.rawData.country?.replaceAll(" ", "-");
+    const initialregion: any = region.toString();
+    const finalregion: any = initialregion.replaceAll(" ", "-");
+    const city: any = result.rawData.address.city?.toLowerCase();
+    const initialrcity: any = city.toString();
+    const finalcity: any = initialrcity.replaceAll(" ", "-");
+    const string1: any = name.toString();
+    const result1: any = string1.replaceAll(" ", "-");
+    if (!result.rawData.slug) {
+      url = `${result.rawData.id}-${result1}.html`;
+    } else {
+      url = `${result.rawData.slug.toString()}.html`;
+    }
+    var link =
+    country +
+    "/" +
+    region +
+    "/" +
+    city +
+    "/" +
+    result.rawData.slug?.toString() +
+    ".html";
+  console.log(link, "link");
+  if (!result.rawData.slug) {
+    url = `/${link}.html`;
+  } else {
+    url = `/${link}`;
+  }
 
     const MarkerContent = (
       <>
@@ -576,7 +592,7 @@ function UnwrappedGoogleMaps({
         <div className="button-bx !ml-4 !mb-0">
           <a
             type="button"
-            href={`/${result.rawData.id}`}
+            href={`/${link}`}
             className="btn"
             style={{ backgroundColor: "#9d743d" }}
           >
