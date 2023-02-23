@@ -35,7 +35,8 @@ export default function Faq(props: any) {
                     style={{
                       backgroundColor: "#f7c173",
                       border: "1px solid black",
-                      fontSize:"20px"
+                      fontSize:"20px",
+                      padding:"10px"
                     }}
                   >
                     {res?.answer}
