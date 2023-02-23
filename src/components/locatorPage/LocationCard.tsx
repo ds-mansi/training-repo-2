@@ -45,9 +45,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
   var name: any = result.rawData.name?.toLowerCase();
   var mainPhone: any = result.rawData.mainPhone;
   var country: any = result.rawData.address.countryCode?.toLowerCase();
-  var region: any = result.rawData.address.region
-    ?.toLowerCase()
-    .replaceAll(" ", "-");
+  var region: any = result.rawData.address.region?.toLowerCase().replaceAll(" ", "-");
   var initialregion: any = region.toString();
   var finalregion: any = initialregion.replaceAll(" ", "-");
   var city: any = result.rawData.address.city?.toLowerCase();
