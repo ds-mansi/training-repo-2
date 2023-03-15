@@ -33,8 +33,7 @@ type OpenIntervals = {
   end: string;
 };
 
-const todayIndex =new Date().getDay();
-
+const todayIndex = new Date().getDay();
 
 /**
  * Dynamically creates a sort order based on today's day.
@@ -142,17 +141,24 @@ const renderHours = (week: Week, c_specific_day: any) => {
     a = [{ day: "numeric" }, { month: "long" }, { year: "numeric" }];
     s = join(dayDate, a, " ");
     dayDate = s;
-   
 
-    week.holidayHours?.map((res:any)=>{
-      if(res.date==formatDate(dayDate)){
+    week.holidayHours?.map((res: any) => {
+      if (res.date == formatDate(dayDate)) {
       }
-    })
-    dayDom.push(<DayRow key={k} dayDate={dayDate} dayName={k} day={v} isToday={isDayToday(k)} holidayhours={week.holidayHours} c_specific_day={undefined} />);
+    });
+    dayDom.push(
+      <DayRow
+        key={k}
+        dayDate={dayDate}
+        dayName={k}
+        day={v}
+        isToday={isDayToday(k)}
+        holidayhours={week.holidayHours}
+        c_specific_day={undefined}
+      />
+    );
     i++;
   }
-
-
 
   return <tbody className="font-normal">{dayDom}</tbody>;
 };
@@ -176,7 +182,7 @@ function convertTo12HourFormat(time: string, includeMeridiem: boolean): string {
 type DayRow = {
   dayName: string;
   day: Day;
-  key:any;
+  key: any;
   isToday?: boolean;
   dayDate: any;
   holidayhours: any;
@@ -189,11 +195,11 @@ const DayRow = (props: DayRow) => {
   let a, s, holidayDate: any;
   function join(t: any, a: any, s: any) {
     function format(m: any) {
-      let f = new Intl.DateTimeFormat('en', m);
+      let f = new Intl.DateTimeFormat("en", m);
       return f.format(t);
     }
     return a.map(format).join(s);
-  } 
+  }
 
   const holidayarray: any[] = [];
   const holidayopenintervals: any[] = [];
@@ -209,7 +215,8 @@ const DayRow = (props: DayRow) => {
 
   React.useEffect(() => {
     if (keysFromData) {
-      const keysFromDataUnique = keysFromData.filter((value: any, index: any, self: any) => {
+      const keysFromDataUnique = keysFromData.filter(
+        (value: any, index: any, self: any) => {
           return self.indexOf(value) === index;
         }
       );
@@ -218,7 +225,7 @@ const DayRow = (props: DayRow) => {
       for (let index = 0; index < keysFromDataUnique.length; index++) {
         const element = keysFromDataUnique[index];
 
-        dataAccordintToMe[element] = holidayarray.filter((fe:any) => {
+        dataAccordintToMe[element] = holidayarray.filter((fe: any) => {
           const adate = [
             { day: "numeric" },
             { month: "long" },
@@ -243,10 +250,8 @@ const DayRow = (props: DayRow) => {
     }
   }
 
-
-
   return (
-    <tr className={isToday? "bg-[#cf7c00]":""}>
+    <tr className={isToday ? "bg-[#ac2424]" : ""}>
       {Status ? (
         <td className="dayName">
           <span className="checked"></span> {dayName}*
@@ -264,17 +269,17 @@ const DayRow = (props: DayRow) => {
             })} */}
         </td>
       ) : (
-        <td className="dayName" >
+        <td className="dayName">
           <span className="checked"></span> {dayName}
         </td>
       )}
 
       {!day.isClosed && (
-        <td className="dayTime" >
+        <td className="dayTime">
           {Status
             ? holidayopenintervals &&
               holidayopenintervals.map((res: any) => {
-                return res?.map((openint: any,index:any) => {
+                return res?.map((openint: any, index: any) => {
                   return (
                     <>
                       {openint.isClosed ? (
@@ -283,20 +288,16 @@ const DayRow = (props: DayRow) => {
                         </div>
                       ) : (
                         openint?.openIntervals &&
-                        openint.openIntervals.map((res: any,index:any) => {
+                        openint.openIntervals.map((res: any, index: any) => {
                           return (
                             <>
                               <div className="time-group" key={index}>
                                 <span className="time-b">
-                                  {OpenStausFunctions.formatTime(
-                                    res.start
-                                  )}
+                                  {OpenStausFunctions.formatTime(res.start)}
                                 </span>{" "}
                                 <span className="dash"></span>{" "}
                                 <span className="time-b">
-                                  {OpenStausFunctions.formatTime(
-                                    res.end
-                                  )}
+                                  {OpenStausFunctions.formatTime(res.end)}
                                 </span>
                               </div>
                             </>
@@ -331,21 +332,23 @@ const DayRow = (props: DayRow) => {
             {holidayopenintervals &&
               holidayopenintervals.map((res: any) => {
                 return res.map((openint: any) => {
-                  return openint.openIntervals.map((res: any,index:number) => {
-                    return (
-                      <>
-                        <div className="time-group" key={index}>
-                          <span className="time-b">
-                            {OpenStausFunctions.formatTime(res.start)}
-                          </span>{" "}
-                          <span className="dash"></span>{" "}
-                          <span className="time-b">
-                            {OpenStausFunctions.formatTime(res.end)}
-                          </span>
-                        </div>
-                      </>
-                    );
-                  });
+                  return openint.openIntervals.map(
+                    (res: any, index: number) => {
+                      return (
+                        <>
+                          <div className="time-group" key={index}>
+                            <span className="time-b">
+                              {OpenStausFunctions.formatTime(res.start)}
+                            </span>{" "}
+                            <span className="dash"></span>{" "}
+                            <span className="time-b">
+                              {OpenStausFunctions.formatTime(res.end)}
+                            </span>
+                          </div>
+                        </>
+                      );
+                    }
+                  );
                 });
               })}
           </td>

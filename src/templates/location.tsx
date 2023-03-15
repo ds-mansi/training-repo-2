@@ -15,6 +15,9 @@ import IframeMap from "../components/locationDetail/IframeMap";
 import BreadCrumb from "../components/layouts/Breadcrumb";
 import SimpleImageSlider from "react-simple-image-slider";
 import "../index.css";
+import { withTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
+import "../types/i18n.tsx";
 import {
   Template,
   GetPath,
@@ -96,7 +99,7 @@ export const config: TemplateConfig = {
     },
     // The entity language profiles that documents will be generated for.
     localization: {
-      locales: ["en"],
+      locales: ["en", "fr-FR"],
       primary: false,
     },
   },
@@ -186,10 +189,10 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
       {
         type: "link",
         attributes: {
-          rel: "canonical",
-          href: `${
-            document._site.c_canonical ? document.c_canonical : stagingBaseurl
-          }${document.slug ? document.slug : `${document.name.toLowerCase()}`}`,
+          // rel: "canonical",
+          // href: `${
+          //   document._site.c_canonical ? document.c_canonical : stagingBaseurl
+          // }${document.slug ? document.slug : `${document.name.toLowerCase()}`}`,
         },
       },
 
@@ -263,7 +266,7 @@ export const transformProps: TransformProps<ExternalApiData> = async (
   // var location = `${data.document.yextDisplayCoordinate ? data.document.yextDisplayCoordinate.latitude : data.document.displayCoordinate.latitude},${data.document.yextDisplayCoordinate ? data.document.yextDisplayCoordinate.longitude : data.document.displayCoordinate.longitude}`;
 
   const url = `https://liveapi-sandbox.yext.com/v2/accounts/me/entities/geosearch?radius=2500&location=${data.document.yextDisplayCoordinate.latitude},${data.document.yextDisplayCoordinate.longitude}&api_key=89533a282a54cddff3823fbc30582f38&v=20181201&resolvePlaceholders=true&entityTypes=location&limit=4`;
-  console.log(url);
+  // console.log(url);
   const externalApiData = (await fetch(url).then((res: any) =>
     res.json()
   )) as nearByLocation;
@@ -273,6 +276,7 @@ export const transformProps: TransformProps<ExternalApiData> = async (
 type ExternalApiRenderData = TemplateRenderProps & {
   externalApiData: nearByLocation;
 };
+
 
 const Location: Template<ExternalApiRenderData> = ({
   relativePrefixToRoot,
@@ -289,7 +293,7 @@ const Location: Template<ExternalApiRenderData> = ({
     hours,
     mainPhone,
     photoGallery,
-    c_canonical,
+    // c_canonical,
     description,
     additionalHoursText,
     timezone,
@@ -304,6 +308,7 @@ const Location: Template<ExternalApiRenderData> = ({
   } = document;
 
   let templateData = { document: document, __meta: __meta };
+  console.log(document,"document")
   let hoursSchema = [];
   let breadcrumbScheme = [];
   for (var key in hours) {
@@ -367,7 +372,7 @@ const Location: Template<ExternalApiRenderData> = ({
             j.meta.entityType.id != "ce_city" &&
             j.meta.entityType.id != "ce_root"
           ) {
-            console.log(j, "j");
+            // console.log(j, "j");
             url = url + j.slug;
           }
         });
@@ -427,7 +432,10 @@ const Location: Template<ExternalApiRenderData> = ({
       <li>{link.label}</li>
     </ul>
   ));
-  console.log(externalApiData, "static");
+  const { t, i18n } = useTranslation();
+  // i18n.changeLanguage(meta.locale);
+  // useUpdateTranslation(_site, meta.locale);
+  // console.log(externalApiData, "static");
   return (
     <>
       <JsonLd<Store>
@@ -447,9 +455,9 @@ const Location: Template<ExternalApiRenderData> = ({
           description: description,
           // image: imageurl,
           telephone: mainPhone,
-          url: `${c_canonical ? c_canonical : stagingBaseurl}${
-            slug ? slug : `${name}`
-          }.html`,
+          // url: `${c_canonical ? c_canonical : stagingBaseurl}${
+          //   slug ? slug : `${name}`
+          // }.html`,
         }}
       />
       <JsonLd<BreadcrumbList>
@@ -470,8 +478,8 @@ const Location: Template<ExternalApiRenderData> = ({
         <AnalyticsScopeProvider name={""}>
           <Header _site={_site} />
           <PageLayout
-            _sites={_site.c_banner.banner}
-            cta={_site.c_banner.bannerCta}
+            _sites={_site?.c_banner?.banner}
+            cta={_site?.c_banner?.bannerCta}
           />
           {/* <img src={c_banner?.banner?.url}/> */}
           {/* <Banner timezone={undefined} CTAButton={c_banner.bannerCta.label} CtaLink={c_banner.bannerCta.link}/> */}
@@ -565,6 +573,7 @@ const Location: Template<ExternalApiRenderData> = ({
                     width: "100%",
                   }}
                 >
+                  
                   {c_about?.description}
                 </div>
 
@@ -591,6 +600,7 @@ const Location: Template<ExternalApiRenderData> = ({
             </div>
           </div>
           <br />
+          {/* FAQ Section Start */}
           <div style={{ margin: "auto" }}>
             <h2
               style={{
@@ -608,6 +618,7 @@ const Location: Template<ExternalApiRenderData> = ({
             </div>
             <br />
           </div>
+          {/* FAQ Section End*/}
           <div
             style={{
               backgroundColor: "#dfded8",
@@ -623,9 +634,7 @@ const Location: Template<ExternalApiRenderData> = ({
                 color: "#6c4e25",
                 paddingTop: "20px",
               }}
-            >
-              Services
-            </div>
+            ></div>
 
             <div className="text-center flex flex-wrap gap-y-5 text-lg services-wrapper">
               {services}
@@ -650,7 +659,7 @@ const Location: Template<ExternalApiRenderData> = ({
           </div>
           <br />
 
-          <Footer links={_site} icons={_site.c_footerIcons} />
+          <Footer links={_site} icons={_site?.c_footerIcons} />
         </AnalyticsScopeProvider>
       </AnalyticsProvider>
     </>
@@ -658,3 +667,7 @@ const Location: Template<ExternalApiRenderData> = ({
 };
 
 export default Location;
+// function useTranslation(): { t: any; i18n: any; } {
+//   throw new Error("Function not implemented.");
+// }
+

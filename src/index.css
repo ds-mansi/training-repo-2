@@ -113,7 +113,6 @@ nav .active {
 }
 
 .navbar > a :hover {
-  text-decoration: underline;
   transition-duration: 700ms;
 }
 .footer_links > div > h2:hover {
@@ -916,6 +915,9 @@ nav[aria-label="Pagination"] button:disabled {
   @apply !bg-Dark-red !text-white  !border-button-light hover:!border-transparent !border-2;
   background-color: #9d743d !important;
 }
+.direction-button a:hover{
+  background-color: #d1c0ab;
+}
 .direction-button .btn:hover svg {
   @apply !fill-red;
   background-color: #f1d7b1 !important;
@@ -1605,4 +1607,8 @@ nav[aria-label="Pagination"] button:disabled {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.navbar-item:hover{
+  text-decoration:underline;
 }

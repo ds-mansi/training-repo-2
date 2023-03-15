@@ -6,6 +6,7 @@ import OpenClose from "../commons/openClose";
 import timesvg from "../../images/watch-icn.svg";
 import mapimage from "../../images/map.svg";
 import Phonesvg from "../../images/phone.svg";
+// import time from "../../images/time.svg"
 import {
   Addresssvg,
   mobilesvg,
@@ -15,6 +16,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Link } from "@yext/pages/components";
 import phone from "../../images/phone.svg";
 import { StaticData } from "../../../sites-global/staticData";
+import {time} from "../../images/time.svg";
 
 export default function Nearby(props: any) {
   // console.log("object",props)
@@ -25,7 +27,7 @@ export default function Nearby(props: any) {
     const miles = meters * 0.000621371;
     return miles.toFixed(2);
   };
-  console.log("neabyData", neabyData);
+  // console.log("neabyData", neabyData);
 
   return (
     <>
@@ -109,10 +111,13 @@ export default function Nearby(props: any) {
                     })}
                   </div>
                 </div>
-                <div className="icon-row content-col">
+                <div className="icon-row content-col flex">
+                  {/* <img src={mapimage} style={{height:"25px"}}/> */}
                   <Address address={location.address} />
                 </div>
-                <div className="icon-row closeing-div">
+                <div className="icon-row closeing-div flex">
+                {/* <img src={time}/> */}
+                <img src={timesvg} style={{height:"25px"}}/>
                   {location.hours ? (
                     <div
                       className="flex open-now-string items-center "
@@ -126,30 +131,23 @@ export default function Nearby(props: any) {
                     </div>
                   ) : (
                     <div className="closeddot notHighlight red-dot">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="8"
-                        height="8"
-                        viewBox="0 0 8 8"
-                      >
-                        <circle
-                          id="Ellipse_5"
-                          data-name="Ellipse 5"
-                          cx="4"
-                          cy="4"
-                          r="4"
-                          fill="#ad1e1f"
-                        />
-                      </svg>
+                      
                       <div className="hours-info text-lg font-second-main-font closeddot">
                         Closed
                       </div>
                     </div>
                   )}
                 </div>
-                <div className="flex ml-5 mt-2">
+                <div className="flex ml-1 mt-2">
                   <img src={phone} style={{ height: "30px" }} />
-                  <div>{mainPhone}</div>
+                  {/* <div>{mainPhone}</div> */}
+                  <Link
+                      eventName={"PhoneNumber"}
+                      href={`tel:${mainPhone}`}
+                      rel="noopener noreferrer"
+                    >
+                      {mainPhone}
+                    </Link>
                 </div>
                 <div className="button-bx">
                   <Link

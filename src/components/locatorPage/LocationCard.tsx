@@ -71,7 +71,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
     "/" +
     result.rawData.slug?.toString() +
     ".html";
-  console.log(link, "link");
+  // console.log(link, "link");
   if (!result.rawData.slug) {
     url = `/${link}.html`;
   } else {
@@ -165,8 +165,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                             deliveryHours={result.rawData.hours}
                            
                           >
-                            
-                            </OpenClose>
+                           </OpenClose>
                             <svg
                             className="mt-2"
                             xmlns="http://www.w3.org/2000/svg"
@@ -267,35 +266,6 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
               )}
             </div>
             <div>
-              {/* <div
-                style={{
-                  marginLeft: "21px",
-                  fontSize: "20px",
-                  padding: "9px",
-                  marginTop: "7px",
-                }}
-              >
-                <button
-                  style={{
-                    backgroundColor: "#f1d7b1",
-                    padding: "5px",
-                    border: "1px solid black",
-                  }}
-                >
-                  <a href="/">Services</a>
-                </button>
-              </div> */}
-              {/* <div style={{ display: "flex", marginLeft: "29px", gap: "20px" }}>
-                {result.rawData.c_restroServices?.services.map((item: any) => {
-                  return (
-                    <>
-                      <ul className="hover:underline hover:font-bold ">
-                        <li>{item.label}</li>
-                      </ul>
-                    </>
-                  );
-                })}
-              </div> */}
             </div>
             <div className="flex ml-7 mt-2">
               <img src={phone} style={{ height: "30px" }} />

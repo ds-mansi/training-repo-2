@@ -1,7 +1,7 @@
 import * as React from "react";
 
 const Footer = (props: any) => {
-  console.log(props.links);
+//   console.log(props.links);
   React.useEffect(() => {
     document.body.setAttribute("id", "body");
   });
@@ -9,19 +9,19 @@ const Footer = (props: any) => {
     (document.getElementById("body") as HTMLInputElement).classList.toggle("");
   };
 
-  const About = props.links?.c_footerLinks?.about?.map((link: any) => (
+  const About = props?.links?.c_footerLinks?.about?.map((link: any) => (
     <a className="navbar-item" href={link.link}>
       <span>{link.label}</span>
       <br />
     </a>
   ));
-  const contactUs = props.links?.c_footerLinks?.contactUs?.map((link: any) => (
+  const contactUs = props?.links?.c_footerLinks?.contactUs?.map((link: any) => (
     <a className="navbar-item" href={link.link}>
       <span>{link.label}</span>
       <br />
     </a>
   ));
-  const menus = props.links?.c_footerLinks?.menus?.map((link: any) => (
+  const menus = props?.links?.c_footerLinks?.menus?.map((link: any) => (
     <a className="navbar-item" href={link.link}>
       <span>{link.label}</span>
       <br />
@@ -34,21 +34,21 @@ const Footer = (props: any) => {
   //    </a>
   // ));
   // console.log(iconsCTA,"abcv")
-  console.log("siconsfor footer", props.links.c_footerIcons);
-  const iconForFooter = props.links.c_footerIcons?.map((item: any) => {
+//   console.log("siconsfor footer", props.links.c_footerIcons);
+  const iconForFooter = props?.links?.c_footerIcons?.map((item: any) => {
     // console.log("siconsfor footer",item)
     return (
       <>
-        <a href={item.cTA.link} style={{ marginRight: "10px" }}>
+        <a href={item?.cTA?.link} style={{ marginRight: "10px" }}>
           <img
-            src={item.icon.url}
+            src={item?.icon?.url}
             style={{ height: "30px", marginTop: "25px" }}
           />
         </a>
       </>
     );
   });
-  console.log("nssss", iconForFooter);
+//   console.log("nssss", iconForFooter);
   return (
     <>
       <footer
@@ -63,7 +63,7 @@ const Footer = (props: any) => {
           <a className="logo" href="/">
             <img
               style={{ height: "109px" }}
-              src={props.links.c_footerLogo.url}
+              src={props?.links?.c_footerLogo?.url}
             />
           </a>
 

@@ -5,7 +5,7 @@ import {
   AccordionBody,
 } from "@material-tailwind/react";
 export default function Faq(props: any) {
-  console.log(props.faq, "faq");
+  // console.log(props.faq, "faq");
   const [open, setOpen] = React.useState(0);
   const handleOpen = (value: any) => {
     setOpen(open === value ? 0 : value);

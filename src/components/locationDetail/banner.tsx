@@ -47,7 +47,7 @@ const Banner = (props: Banner) => {
     CTAButton,
     children,
   } = props;
-  console.log("object1111", props.CtaLink);
+  // console.log("object1111", props.CtaLink);
   return (
     <>
       <div className="hero-section relative">

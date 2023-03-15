@@ -501,7 +501,7 @@ function UnwrappedGoogleMaps({
     "/" +
     result.rawData.slug?.toString() +
     ".html";
-  console.log(link, "link");
+  // console.log(link, "link");
   if (!result.rawData.slug) {
     url = `/${link}.html`;
   } else {
