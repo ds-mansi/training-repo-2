@@ -112,19 +112,25 @@ export const config: TemplateConfig = {
  * take on the form: featureName/entityId
  */
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
+  // console.log(document,"Document");
   var url = "";
   var name: any = document.name.toLowerCase();
   var string: any = name.toString();
   let result: any = string.replaceAll(" ", "-");
+
+  // var localizedRegionName:any=document.localizedRegionName.replaceAll(" ", "-");
   document?.dm_directoryParents?.map((result: any, i: Number) => {
     if (i > 0) {
       url += result.slug + "/";
+      // console.log(url,"url")
     }
   });
   if (!document.slug) {
-    url += `${result}.html`;
+    let slugString = document.name;
+    url += `${document.meta.locale}/${slugString}.html`;
   } else {
-    url += `${document.slug.toString()}.html`;
+    console.log("LocalizedRegionName and City");
+    url = `${document.meta.locale}/${document.slug.toString()}.html`;
   }
 
   // return document.id;
@@ -277,7 +283,6 @@ type ExternalApiRenderData = TemplateRenderProps & {
   externalApiData: nearByLocation;
 };
 
-
 const Location: Template<ExternalApiRenderData> = ({
   relativePrefixToRoot,
   path,
@@ -308,7 +313,7 @@ const Location: Template<ExternalApiRenderData> = ({
   } = document;
 
   let templateData = { document: document, __meta: __meta };
-  console.log(document,"document")
+  // console.log(document,"document")
   let hoursSchema = [];
   let breadcrumbScheme = [];
   for (var key in hours) {
@@ -573,7 +578,6 @@ const Location: Template<ExternalApiRenderData> = ({
                     width: "100%",
                   }}
                 >
-                  
                   {c_about?.description}
                 </div>
 
@@ -670,4 +674,3 @@ export default Location;
 // function useTranslation(): { t: any; i18n: any; } {
 //   throw new Error("Function not implemented.");
 // }
-
