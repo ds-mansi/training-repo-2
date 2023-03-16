@@ -78,7 +78,7 @@ export const config: TemplateConfig = {
       // "c_metaTitle",
     ],
     localization: {
-      locales: ["en"],
+      locales: ["en","fr"],
       primary: false,
     },
   },
@@ -281,8 +281,8 @@ const State: Template<TemplateRenderProps> = ({
       url1 = url?.replace(/(\b\S.+\b)(?=.*\1)/g, "")?.trim();
       if (entity?.dm_directoryChildrenCount == 1) {
         if (
-          entity.dm_directoryChildren &&
-          entity.dm_directoryChildren[0].id
+          entity?.dm_directoryChildren &&
+          entity?.dm_directoryChildren[0].id
           
         ) {
 
