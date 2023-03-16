@@ -306,10 +306,9 @@ const Country: Template<TemplateRenderProps> = ({
             address={{}}
           ></BreadCrumbs>
           <div className="header-title ">
-            <PageLayout
-              _sites={_site.c_banner.banner}
-              cta={_site.c_banner.bannerCta}
-            />
+          <PageLayout
+            _sites={_site} 
+          />
             {/* <Herobanner c_bannerTitle={_site.c_bannerTitle}></Herobanner> */}
           </div>
           {/* <Banner

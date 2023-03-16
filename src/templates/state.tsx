@@ -405,7 +405,9 @@ const State: Template<TemplateRenderProps> = ({
       >
         <AnalyticsScopeProvider name={""}>
         <Header _site={_site}/>
-        <PageLayout _sites={_site.c_banner.banner} cta={_site.c_banner.bannerCta}/>
+        <PageLayout
+            _sites={_site} 
+          />
       {/* <Header personal={_site.c_personal} bussiness={_site.c_business} findAStore={_site.c_findAStore} networkStatusChecker={_site.c_networkStatusChecker}></Header> */}
       <BreadCrumbs
         name={name}
