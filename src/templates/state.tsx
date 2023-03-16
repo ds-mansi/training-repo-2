@@ -86,7 +86,7 @@ export const config: TemplateConfig = {
 
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   let url = "";
-  document.dm_directoryParents.map((i: any) => {
+  document.dm_directoryParents?.map((i: any) => {
     if (i.meta.entityType.id == 'ce_country') {
       url +=  i.slug+"/";
     }
@@ -272,7 +272,7 @@ const State: Template<TemplateRenderProps> = ({
   });
   const childrenDivs =
     dm_directoryChildren &&
-    dm_directoryChildren.map((entity: any) => {
+    dm_directoryChildren?.map((entity: any) => {
       let url: any = "";
 
       url = document.slug.toString();
@@ -352,7 +352,7 @@ const State: Template<TemplateRenderProps> = ({
     let breadcrumbScheme: any = [];
   let currentIndex: any = 0;
   dm_directoryParents &&
-    dm_directoryParents.map((i: any, index: any) => {
+    dm_directoryParents?.map((i: any, index: any) => {
       currentIndex = index;
       if (index != 0) {
         breadcrumbScheme.push({
