@@ -278,7 +278,7 @@ const State: Template<TemplateRenderProps> = ({
       url = document.slug.toString();
       // console.log(url,"gfsffahdaydgadfadfyjdghjadjadfjfdlfhjgfdffg")
       let url1: any = "";
-      url1 = url.replace(/(\b\S.+\b)(?=.*\1)/g, "").trim();
+      url1 = url?.replace(/(\b\S.+\b)(?=.*\1)/g, "")?.trim();
       if (entity?.dm_directoryChildrenCount == 1) {
         if (
           entity.dm_directoryChildren &&
@@ -369,7 +369,7 @@ const State: Template<TemplateRenderProps> = ({
     "@type": "ListItem",
     position: currentIndex + 1,
     item: {
-      "@id": `${dm_directoryParents[1].slug}/${document.slug.toString()}.html`,
+      "@id": `${dm_directoryParents[1]?.slug}/${document?.slug?.toString()}.html`,
       name: document.name,
     },
   });
