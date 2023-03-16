@@ -258,7 +258,7 @@ const State: Template<TemplateRenderProps> = ({
     slug,
   } = document;
  //console.log(document.dm_directoryParents[1].slug,"fhfjsd");
-  var sortedChildren = dm_directoryChildren.sort(function (a: any, b: any) {
+  var sortedChildren = dm_directoryChildren?.sort(function (a: any, b: any) {
     var a = a.name;
     var b = b.name;
     return a < b ? -1 : a > b ? 1 : 0;
