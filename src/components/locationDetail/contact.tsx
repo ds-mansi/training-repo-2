@@ -18,21 +18,31 @@ const Contact = (props: any) => {
     latitude,
     longitude,
     hours,
+    heading,
     c_specific_day,
     additionalHoursText,
     yextDisplayCoordinate,
     c_storeInfoHeading,
-    c_getDirectionsCTAText
+    c_getDirectionsCTAText,
   } = props;
+  // console.log(props.heading,"bajbjhasdjhasgbdjhb")
   return (
     <>
       <div className="address-main-sec">
-        <h4 className="box-title">{c_storeInfoHeading?c_storeInfoHeading:"Store Details"}</h4>
+        <h4 className="box-title">
+          {c_storeInfoHeading ? c_storeInfoHeading : "Store Details"}
+        </h4>
 
         <div className="icon-row content-col">
           <div className="icon">
             {" "}
-            <img className=" " src={mapimage} width="20" height="20" alt="mapimage" />
+            <img
+              className=" "
+              src={mapimage}
+              width="20"
+              height="20"
+              alt="mapimage"
+            />
           </div>
           <div className="  address-text notHighlight">
             {address.line1}
@@ -46,7 +56,13 @@ const Contact = (props: any) => {
           <div className="icon-row">
             <div className="icon">
               {" "}
-              <img className=" " src={Phonesvg} width="22" height="22" alt="phonesvg" />
+              <img
+                className=" "
+                src={Phonesvg}
+                width="22"
+                height="22"
+                alt="phonesvg"
+              />
             </div>
             <div className="content-col">
               <a id="address" className=" location-phn" href={`tel:${phone}`}>
@@ -61,7 +77,11 @@ const Contact = (props: any) => {
         <ul className="">
           <li className="button-bx direction-button">
             <GetDirection
-              buttonText={c_getDirectionsCTAText?c_getDirectionsCTAText:StaticData.getDirection}
+              buttonText={
+                c_getDirectionsCTAText
+                  ? c_getDirectionsCTAText
+                  : StaticData.getDirection
+              }
               address={address}
               latitude={latitude}
               longitude={longitude}
@@ -72,14 +92,13 @@ const Contact = (props: any) => {
         <div className="map-sec">
           <CustomMap prop={yextDisplayCoordinate} />
         </div>
-
       </div>
 
       {hours && typeof hours.monday != "undefined" ? (
         <div className="hours">
           <div className="hours-sec">
             <div className="title-with-link-1">
-              <h4 className="box-title">{"Store Opening Hours"}</h4>
+              <h4 className="box-title">{props.heading}</h4>
             </div>
             <div className="hours-div mb-5 md:mb-1 flex flex-col">
               {hours.holidayHours && typeof hours.reopenDate == "undefined" ? (

@@ -5,7 +5,7 @@ type props = {
 };
 
 const Header = (props: any) => {
-  console.log(props, "props");
+  // console.log(props, "props");
   React.useEffect(() => {
     document.body.setAttribute("id", "body");
   });

@@ -48,7 +48,7 @@ const Footer = (props: any) => {
       </>
     );
   });
-//   console.log("nssss", iconForFooter);
+  // console.log("nssss", props?.head);
   return (
     <>
       <footer
@@ -76,7 +76,7 @@ const Footer = (props: any) => {
                   color: "#2e247a",
                 }}
               >
-                About
+                {props?.head?.aboutHeading}
               </h2>
 
               <li
@@ -97,7 +97,7 @@ const Footer = (props: any) => {
                   color: "#2e247a",
                 }}
               >
-                Contact Us
+                {props?.head?.contactUsHeading}
               </h2>
               <li
                 style={{
@@ -118,7 +118,7 @@ const Footer = (props: any) => {
                   color: "#2e247a",
                 }}
               >
-                Menu
+                  {props?.head?.menusHeading}
               </h2>
               <li
                 style={{
@@ -132,7 +132,7 @@ const Footer = (props: any) => {
             </div>
             <div style={{ marginLeft: "140px" }}>
               <h3 style={{ fontWeight: "bold", color: "#2e247a" }}>
-                You can follow us on
+              {props?.head?.socialHeading}
               </h3>
 
               <div className="footer-icon"> {iconForFooter}</div>

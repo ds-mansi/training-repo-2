@@ -86,7 +86,11 @@ export const config: TemplateConfig = {
       "c_restroServices",
       "c_faq.name",
       "c_faq.answer",
+      "c_nearbyLoactionHeading",
+      "c_servicesHeading",
+      "c_aboutHeading",
       "dm_directoryParents.name",
+      "c_storeOpeningHeading",
       "dm_directoryParents.slug",
       "dm_directoryParents.meta.entityType",
       "dm_directoryParents.c_addressRegionDisplayName",
@@ -129,7 +133,7 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
     let slugString = document.name;
     url += `${document.meta.locale}/${slugString}.html`;
   } else {
-    console.log("LocalizedRegionName and City");
+    // console.log("LocalizedRegionName and City");
     url = `${document.meta.locale}/${document.slug.toString()}.html`;
   }
 
@@ -142,9 +146,9 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
  * NOTE: This currently has no impact on the local dev path. Redirects will be setup on
  * a new deploy.
  */
-export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
-  return [`index-old/${document.id}`];
-};
+// export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
+//   return [`index-old/${document.id}`];
+// };
 
 /**
  * This allows the user to define a function which will take in their template
@@ -309,7 +313,11 @@ const Location: Template<ExternalApiRenderData> = ({
     c_about,
     c_restroServices,
     c_faq,
+    c_servicesHeading,
+    c_aboutHeading,
+    c_storeOpeningHeading,
     dm_directoryParents,
+    c_nearbyLoactionHeading
   } = document;
 
   let templateData = { document: document, __meta: __meta };
@@ -441,6 +449,7 @@ const Location: Template<ExternalApiRenderData> = ({
   // i18n.changeLanguage(meta.locale);
   // useUpdateTranslation(_site, meta.locale);
   // console.log(externalApiData, "static");
+  console.log(_site?.c_banner,"abcd")
   return (
     <>
       <JsonLd<Store>
@@ -483,8 +492,7 @@ const Location: Template<ExternalApiRenderData> = ({
         <AnalyticsScopeProvider name={""}>
           <Header _site={_site} />
           <PageLayout
-            _sites={_site?.c_banner?.banner}
-            cta={_site?.c_banner?.bannerCta}
+            _sites={_site} 
           />
           {/* <img src={c_banner?.banner?.url}/> */}
           {/* <Banner timezone={undefined} CTAButton={c_banner.bannerCta.label} CtaLink={c_banner.bannerCta.link}/> */}
@@ -507,6 +515,7 @@ const Location: Template<ExternalApiRenderData> = ({
             <Contact
               address={address}
               phone={mainPhone}
+              heading={c_storeOpeningHeading}
               latitude={
                 yextDisplayCoordinate
                   ? yextDisplayCoordinate.latitude
@@ -560,7 +569,7 @@ const Location: Template<ExternalApiRenderData> = ({
                     alignContent: "center",
                   }}
                 >
-                  ABOUT
+                  { c_aboutHeading}
                 </h2>
               </div>
               <div
@@ -629,7 +638,11 @@ const Location: Template<ExternalApiRenderData> = ({
               marginTop: "60px",
               paddingBottom: "40px",
             }}
-          >
+          ><h2 style={{
+            fontSize: "50px",
+            margin: "30px",
+            textAlign: "center",
+            color: "#6c4e25"}}>{c_servicesHeading}</h2>
             <div
               className="col-span-full text-center "
               style={{
@@ -641,6 +654,7 @@ const Location: Template<ExternalApiRenderData> = ({
             ></div>
 
             <div className="text-center flex flex-wrap gap-y-5 text-lg services-wrapper">
+              
               {services}
             </div>
           </div>
@@ -648,7 +662,7 @@ const Location: Template<ExternalApiRenderData> = ({
           <div className="nearby-sec">
             <div className="container">
               <div className="sec-title">
-                <h2 className="">{StaticData.NearStoretext}</h2>
+                <h2 className="">{c_nearbyLoactionHeading}</h2>
               </div>
               <div className="nearby-sec-inner">
                 {yextDisplayCoordinate ||
@@ -663,7 +677,11 @@ const Location: Template<ExternalApiRenderData> = ({
           </div>
           <br />
 
-          <Footer links={_site} icons={_site?.c_footerIcons} />
+          <Footer
+            links={_site}
+            icons={_site?.c_footerIcons}
+                head={_site?.c_footerLinks}
+          />
         </AnalyticsScopeProvider>
       </AnalyticsProvider>
     </>

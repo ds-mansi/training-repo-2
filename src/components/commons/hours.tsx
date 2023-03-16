@@ -251,7 +251,7 @@ const DayRow = (props: DayRow) => {
   }
 
   return (
-    <tr className={isToday ? "bg-[#ac2424]" : ""}>
+    <tr className={isToday ? "bg-[#cf7c00]" : ""}>
       {Status ? (
         <td className="dayName">
           <span className="checked"></span> {dayName}*
