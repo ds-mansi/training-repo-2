@@ -60,9 +60,8 @@ const FourOhFour: Template<TemplateRenderProps> = ({ document }) => {
     <>
       <Header _site={_site} />
       <PageLayout
-        _sites={_site.c_banner.banner}
-        cta={_site.c_banner.bannerCta}
-      />
+            _sites={_site} 
+          />
       <div className="content-list">
         <div className="container">
           <div className="sec-title text-center">
