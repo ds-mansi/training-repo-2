@@ -1,7 +1,7 @@
 import * as React from "react";
 
 const Footer = (props: any) => {
-//   console.log(props.links);
+  //   console.log(props.links);
   React.useEffect(() => {
     document.body.setAttribute("id", "body");
   });
@@ -34,7 +34,7 @@ const Footer = (props: any) => {
   //    </a>
   // ));
   // console.log(iconsCTA,"abcv")
-//   console.log("siconsfor footer", props.links.c_footerIcons);
+  //   console.log("siconsfor footer", props.links.c_footerIcons);
   const iconForFooter = props?.links?.c_footerIcons?.map((item: any) => {
     // console.log("siconsfor footer",item)
     return (
@@ -68,7 +68,7 @@ const Footer = (props: any) => {
           </a>
 
           <div className="footer_links" style={{ display: "flex" }}>
-            <div className="column" style={{ marginLeft: "20px" }}>
+            <div className="column" style={{ marginLeft: "30px" }}>
               <h2
                 style={{
                   fontSize: "20px",
@@ -89,7 +89,7 @@ const Footer = (props: any) => {
                 {About}{" "}
               </li>
             </div>
-            <div className="column" style={{ marginLeft: "200px" }}>
+            <div className="column" style={{ marginLeft: "150px" }}>
               <h2
                 style={{
                   fontSize: "20px",
@@ -118,7 +118,7 @@ const Footer = (props: any) => {
                   color: "#2e247a",
                 }}
               >
-                  {props?.head?.menusHeading}
+                {props?.head?.menusHeading}
               </h2>
               <li
                 style={{
@@ -132,7 +132,7 @@ const Footer = (props: any) => {
             </div>
             <div style={{ marginLeft: "140px" }}>
               <h3 style={{ fontWeight: "bold", color: "#2e247a" }}>
-              {props?.head?.socialHeading}
+                {props?.head?.socialHeading}
               </h3>
 
               <div className="footer-icon"> {iconForFooter}</div>

@@ -4,6 +4,9 @@ import { StaticData } from "../../../sites-global/staticData";
 import Timer from "../locationDetail/countdown";
 import Model from "../locationDetail/Model";
 import { OpenStausFunctions } from "./openClose";
+import { withTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
+import "../../types/i18n.tsx"; 
 
 type Hours = {
   title?: string;
@@ -243,6 +246,7 @@ const DayRow = (props: DayRow) => {
 
   let Status = false;
   let boxday: any;
+  const { t, i18n } = useTranslation();
   for (const key in myDataAccordintToMe) {
     if (key == dayDate) {
       Status = true;
@@ -254,7 +258,7 @@ const DayRow = (props: DayRow) => {
     <tr className={isToday ? "bg-[#cf7c00]" : ""}>
       {Status ? (
         <td className="dayName">
-          <span className="checked"></span> {dayName}*
+          <span className="checked"></span>  {t(dayName)}*
           {/* {c_specific_day &&
             c_specific_day.map((res: any) => {
               return (
@@ -270,7 +274,7 @@ const DayRow = (props: DayRow) => {
         </td>
       ) : (
         <td className="dayName">
-          <span className="checked"></span> {dayName}
+          <span className="checked"></span> {t(dayName)}
         </td>
       )}
 

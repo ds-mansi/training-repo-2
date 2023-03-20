@@ -18,6 +18,7 @@ import "../index.css";
 import { withTranslation } from "react-i18next";
 import { useTranslation } from "react-i18next";
 import "../types/i18n.tsx";
+import useUpdateTranslation from "../hooks/useUpdateTranslation";
 import {
   Template,
   GetPath,
@@ -446,8 +447,8 @@ const Location: Template<ExternalApiRenderData> = ({
     </ul>
   ));
   const { t, i18n } = useTranslation();
-  // i18n.changeLanguage(meta.locale);
-  // useUpdateTranslation(_site, meta.locale);
+   i18n.changeLanguage(document.meta.locale);
+  useUpdateTranslation(_site, document.meta.locale);
   // console.log(externalApiData, "static");
   console.log(_site?.c_banner,"abcd")
   return (
