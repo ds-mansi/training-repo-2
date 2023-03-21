@@ -82,7 +82,11 @@ const FourOhFour: Template<TemplateRenderProps> = ({ document }) => {
           </div>
         </div>
       </div>
-      <Footer links={_site} icons={_site.c_footerIcons} />
+      <Footer
+            links={_site}
+            icons={_site?.c_footerIcons}
+            head={_site?.c_footerLinks}
+          />
     </>
   );
 };

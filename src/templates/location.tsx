@@ -127,15 +127,17 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
   document?.dm_directoryParents?.map((result: any, i: Number) => {
     if (i > 0) {
       url += result.slug + "/";
-      // console.log(url,"url")
+      
     }
   });
   if (!document.slug) {
     let slugString = document.name;
     url += `${document.meta.locale}/${slugString}.html`;
+
   } else {
     // console.log("LocalizedRegionName and City");
     url = `${document.meta.locale}/${document.slug.toString()}.html`;
+    console.log(url,"urlll")
   }
 
   // return document.id;
@@ -318,7 +320,7 @@ const Location: Template<ExternalApiRenderData> = ({
     c_aboutHeading,
     c_storeOpeningHeading,
     dm_directoryParents,
-    c_nearbyLoactionHeading
+    c_nearbyLoactionHeading,
   } = document;
 
   let templateData = { document: document, __meta: __meta };
@@ -447,10 +449,10 @@ const Location: Template<ExternalApiRenderData> = ({
     </ul>
   ));
   const { t, i18n } = useTranslation();
-   i18n.changeLanguage(document.meta.locale);
+  i18n.changeLanguage(document.meta.locale);
   useUpdateTranslation(_site, document.meta.locale);
   // console.log(externalApiData, "static");
-  console.log(_site?.c_banner,"abcd")
+  console.log(_site?.c_banner, "abcd");
   return (
     <>
       <JsonLd<Store>
@@ -492,9 +494,7 @@ const Location: Template<ExternalApiRenderData> = ({
         {" "}
         <AnalyticsScopeProvider name={""}>
           <Header _site={_site} />
-          <PageLayout
-            _sites={_site} 
-          />
+          <PageLayout _sites={_site} />
           {/* <img src={c_banner?.banner?.url}/> */}
           {/* <Banner timezone={undefined} CTAButton={c_banner.bannerCta.label} CtaLink={c_banner.bannerCta.link}/> */}
           <BreadCrumbs
@@ -570,7 +570,7 @@ const Location: Template<ExternalApiRenderData> = ({
                     alignContent: "center",
                   }}
                 >
-                  { c_aboutHeading}
+                  {c_aboutHeading}
                 </h2>
               </div>
               <div
@@ -639,11 +639,17 @@ const Location: Template<ExternalApiRenderData> = ({
               marginTop: "60px",
               paddingBottom: "40px",
             }}
-          ><h2 style={{
-            fontSize: "50px",
-            margin: "30px",
-            textAlign: "center",
-            color: "#6c4e25"}}>{c_servicesHeading}</h2>
+          >
+            <h2
+              style={{
+                fontSize: "50px",
+                margin: "30px",
+                textAlign: "center",
+                color: "#6c4e25",
+              }}
+            >
+              {c_servicesHeading}
+            </h2>
             <div
               className="col-span-full text-center "
               style={{
@@ -655,7 +661,6 @@ const Location: Template<ExternalApiRenderData> = ({
             ></div>
 
             <div className="text-center flex flex-wrap gap-y-5 text-lg services-wrapper">
-              
               {services}
             </div>
           </div>
@@ -663,7 +668,7 @@ const Location: Template<ExternalApiRenderData> = ({
           <div className="nearby-sec">
             <div className="container">
               <div className="sec-title">
-                <h2 className="">{c_nearbyLoactionHeading}</h2>
+                <h2 className="text-2xl">{c_nearbyLoactionHeading}</h2>
               </div>
               <div className="nearby-sec-inner">
                 {yextDisplayCoordinate ||
@@ -681,7 +686,7 @@ const Location: Template<ExternalApiRenderData> = ({
           <Footer
             links={_site}
             icons={_site?.c_footerIcons}
-                head={_site?.c_footerLinks}
+            head={_site?.c_footerLinks}
           />
         </AnalyticsScopeProvider>
       </AnalyticsProvider>

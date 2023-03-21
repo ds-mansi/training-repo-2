@@ -88,7 +88,7 @@ export const config: TemplateConfig = {
       // "c_metaTitle",
     ],
     localization: {
-      locales: ["en"],
+      locales: ["en","fr"],
       primary: false,
     },
   },
@@ -700,7 +700,11 @@ const City: Template<TemplateRenderProps> = ({
             </div>
           </div>
           {/* <Footer></Footer> */}
-          <Footer links={_site} />
+          <Footer
+            links={_site}
+            icons={_site?.c_footerIcons}
+            head={_site?.c_footerLinks}
+          />
         </AnalyticsScopeProvider>
       </AnalyticsProvider>
       {/* 

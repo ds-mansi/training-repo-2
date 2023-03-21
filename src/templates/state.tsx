@@ -445,7 +445,11 @@ const State: Template<TemplateRenderProps> = ({
      helpSupport={_site.c_helpSupport} helpSupportcta={_site.c_helpSupportcta} vodafoneUK={_site.c_vodafoneUK} vodafoneUKCta={_site.c_vodafoneUKCta} c_cPIChanges={_site.c_cPIChanges}
      c_cPIChangesDescription1={_site.c_cPIChangesDescription1} vodafoneDetails={_site.c_vodafoneDetails}
      ></Footer> */}
-     <Footer links={_site}/>
+     <Footer
+            links={_site}
+            icons={_site?.c_footerIcons}
+            head={_site?.c_footerLinks}
+          />
      </AnalyticsScopeProvider>
       </AnalyticsProvider>
       {/* <Footer

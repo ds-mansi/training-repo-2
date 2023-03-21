@@ -104,8 +104,9 @@ export default function Nearby(props: any) {
                     {neabyData?.distances.map((res: any) => {
                       if (res.id == location.meta.id)
                         return (
-                          <div className="distance">
+                          <div className="distance" style={{display:"flex"}}>
                             {res.distanceMiles.toFixed(2)}
+                            <p style={{marginLeft:"5px"}}>Miles</p>
                           </div>
                         );
                     })}

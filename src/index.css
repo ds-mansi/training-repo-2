@@ -448,6 +448,9 @@ table.day-hrs td {
 .storelocation-openCloseTime table.day-hrs {
   @apply bg-white xl:max-w-md 2xl:max-w-lg border   mx-auto xl:right-3.5 relative;
 }
+.store-css:hover{
+  color: #ecd9c1;
+}
 .storelocation-openCloseTime table.day-hrs .dayName {
   @apply w-auto;
 }
@@ -730,6 +733,7 @@ nav[aria-label="Pagination"] button:disabled {
 .nearby-card .button-bx .btn {
   @apply w-[9.75rem] bg-Dark-red hover:bg-hover-btn font-second-main-font py-2.5  border-none text-white;
   background-color: #9d743d;
+  border: 1px solid #f1d7b1 ;
 }
 .nearby-card .button-bx .btn:hover {
   background-color: #f1d7b1;

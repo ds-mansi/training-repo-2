@@ -69,17 +69,142 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
   return document.slug.toString() + ".html";
 };
 
-// export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
-//   relativePrefixToRoot,
-//   path,
-//   document,
-// }): HeadConfig => {
-//   return {
-//     title: document.name,
-//     charset: "UTF-8",
-//     viewport: "width=device-width, initial-scale=1",
-//   };
-// };
+export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
+  relativePrefixToRoot,
+  path,
+  document,
+}): HeadConfig => {
+
+  let metaDescription = document._site ? document._site : "Find your nearest Club-mate Restro and which services are available." + document.name;
+  let metaTitle = `Club-mate Restro stores in ${document.name} | Find a Local Store`;
+  // let canonicalURL = document._site.c_metaTags.canonicalURL ? document._site.c_metaTags.canonicalURL + document.dm_directoryParents[1].name.toLowerCase() +"/"+  document.slug + ".html"
+  // : stagingBaseUrl +  document.slug + ".html"
+  //let ogmetaImage = document._site.c_ogmetaTags.oGImage[0].url ? document._site.c_ogmetaTags.oGImage[0].url : "https://cdn.vodafone.co.uk/en/assets/images/large/IMG_10480.jpg"
+
+  return {
+    title: metaTitle,
+    charset: "UTF-8",
+    viewport: "width=device-width, initial-scale=1",
+    tags: [
+      {
+        type: "link",
+        attributes: {
+          rel: "icon",
+          type: "image/x-icon",
+          href: favicon,
+        },
+      },
+      {
+        type: "meta",
+        attributes: {
+          name: "description",
+          content: `${metaDescription}`,
+        },
+      },
+      
+      // {
+      //   type: "meta",
+      //   attributes: {
+      //     name: "title",
+      //     content: `${metaTitle}`,
+      //   },
+      // },
+      {
+        type: "meta",
+        attributes: {
+          name: "author",
+          content: " Club Mate",
+        },
+      },
+      
+      {
+        type: "meta",
+        attributes: {
+          name: "robots",
+          content: "noindex, nofollow",
+        },
+      },
+      
+      {
+        type: "link",
+        attributes: {
+          rel: "canonical",
+          // href: ` ${canonicalURL}`,
+        },
+      },
+      ///og tags
+      
+      {
+        type: "meta",
+        attributes: {
+          property: "og:url",
+          // content: `${canonicalURL}`,
+        },
+      },
+      
+      {
+        type: "meta",
+        attributes: {
+          property: "og:description",
+          content: `${metaDescription}`,
+        },
+      },
+      {
+        type: "meta",
+        attributes: {
+          property: "og:title",
+          content: `${metaTitle}`,
+        },
+      },
+      {
+        type: "meta",
+        attributes: {
+          name: "og:image",
+          // content: `${ogmetaImage}`
+        },
+      },
+      
+      /// twitter tag
+     
+
+      {
+        type: "meta",
+        attributes: {
+          name: "twitter:card",
+          content: "summary",
+        },
+      },
+      {
+        type: "meta",
+        attributes: {
+          name: "twitter:title",
+          content: `${metaTitle}`,
+        },
+      },
+      {
+        type: "meta",
+        attributes: {
+          name: "twitter:url",
+          // content: `${canonicalURL}`,
+        },
+      },
+      {
+        type: "meta",
+        attributes: {
+          name: "twitter:image",
+          content: `https://www.vodafone.co.uk/cs/groups/configfiles/documents/document/favicon.ico`
+        },
+      },
+      {
+        type: "meta",
+        attributes: {
+          name: "twitter:description",
+          content: `${metaDescription}`,
+        },
+      },
+    ],
+  };
+};
 
 const Root: Template<TemplateRenderProps> = ({
   relativePrefixToRoot,
@@ -95,9 +220,8 @@ const Root: Template<TemplateRenderProps> = ({
     <>
       <Header _site={_site} />
       <PageLayout
-        _sites={_site.c_banner.banner}
-        cta={_site.c_banner.bannerCta}
-      />
+            _sites={_site} 
+          />
       <BreadCrumbs
         name={name}
         parents={dm_directoryParents}
@@ -120,19 +244,19 @@ const Root: Template<TemplateRenderProps> = ({
         <div className="container">
           <div
             className="flex flex-wrap -mx-4"
-            style={{ justifyContent: "center" }}
+            style={{ justifyContent: "center"}}
           >
             {dm_directoryChildren.map((child: any) => {
               return (
                 <>
                   <div
                     className="rootbtn w-1/2 md:w-1/3 lg:w-1/4 px-4"
-                    style={{ justifyContent: "center" }}
+                    style={{ justifyContent: "center" ,margin:"10px" }}
                   >
                     <a
                       href={slug + "/" + child.slug + ".html"}
                       key={child.slug}
-                      className="hover:text-red"
+                      className="store-css"
                     >
                       {child.name} {child.dm_directoryChildrenCount}
                     </a>
@@ -143,7 +267,11 @@ const Root: Template<TemplateRenderProps> = ({
           </div>
         </div>
       </div>
-      <Footer links={_site} />
+      <Footer
+            links={_site}
+            icons={_site?.c_footerIcons}
+            head={_site?.c_footerLinks}
+          />
     </>
   );
 };
