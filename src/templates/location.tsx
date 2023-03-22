@@ -127,17 +127,15 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
   document?.dm_directoryParents?.map((result: any, i: Number) => {
     if (i > 0) {
       url += result.slug + "/";
-      
     }
   });
   if (!document.slug) {
     let slugString = document.name;
     url += `${document.meta.locale}/${slugString}.html`;
-
   } else {
     // console.log("LocalizedRegionName and City");
     url = `${document.meta.locale}/${document.slug.toString()}.html`;
-    console.log(url,"urlll")
+    // console.log(url, "urlll");
   }
 
   // return document.id;
@@ -452,7 +450,7 @@ const Location: Template<ExternalApiRenderData> = ({
   i18n.changeLanguage(document.meta.locale);
   useUpdateTranslation(_site, document.meta.locale);
   // console.log(externalApiData, "static");
-  console.log(_site?.c_banner, "abcd");
+  // console.log(_site?.c_banner, "abcd");
   return (
     <>
       <JsonLd<Store>

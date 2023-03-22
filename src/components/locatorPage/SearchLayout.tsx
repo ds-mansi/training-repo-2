@@ -170,7 +170,7 @@ const SearchLayout = (props: any): JSX.Element => {
     setInputValue("");
   };
   const handleSetUserShareLocation = (value: any, userShareStatus: boolean) => {
-    console.log(value, center_latitude, center_longitude, "value");
+    // console.log(value, center_latitude, center_longitude, "value");
     setInputValue(value);
     if (userShareStatus) {
       setCenterLatitude(center_latitude);
@@ -208,7 +208,7 @@ const SearchLayout = (props: any): JSX.Element => {
     }
   }, [locationinbuit]);
   useEffect(() => {
-    console.log("yes rerender");
+    // console.log("yes rerender");
     locationResults.map((result: any, index: number) => {
       const resultelement = document.querySelectorAll(
         `.result-list-inner-${index + 1}`

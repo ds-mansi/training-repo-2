@@ -12,7 +12,7 @@ import {
   useComposedCssClasses,
 } from "../../hooks/useComposedCssClasses";
 import Mapicon2 from "../../images/MGMpin.svg";
-import clustericon from "../../images/cluster.png";
+import clustericon from "../../images/cluster.svg";
 import mapimage from "../../images/map.svg";
 import timesvg from "../../images/watch-icn.svg";
 import Hovermap from "../../images/MGMhover1.svg";
@@ -493,20 +493,20 @@ function UnwrappedGoogleMaps({
       url = `${result.rawData.slug.toString()}.html`;
     }
     var link =
-    country +
-    "/" +
-    region +
-    "/" +
-    city +
-    "/" +
-    result.rawData.slug?.toString() +
-    ".html";
-  // console.log(link, "link");
-  if (!result.rawData.slug) {
-    url = `/${link}.html`;
-  } else {
-    url = `/${link}`;
-  }
+      country +
+      "/" +
+      region +
+      "/" +
+      city +
+      "/" +
+      result.rawData.slug?.toString() +
+      ".html";
+    // console.log(link, "link");
+    if (!result.rawData.slug) {
+      url = `/${link}.html`;
+    } else {
+      url = `/${link}`;
+    }
 
     const MarkerContent = (
       <>
@@ -539,15 +539,21 @@ function UnwrappedGoogleMaps({
             <div className="icon-row">
               <div className="icon">
                 {" "}
-                <img className=" " src={phone} width="20" height="20" alt="" style={{marginTop:"5px"}}/>
+                <img
+                  className=" "
+                  src={phone}
+                  width="20"
+                  height="20"
+                  alt=""
+                  style={{ marginTop: "5px" }}
+                />
               </div>
               <div className="content-col">
-              
                 <a
                   id="address"
                   className="notHighlight"
                   href={`tel:${mainPhone}`}
-                  style={{fontWeight:"bold",marginTop:"2px"}}
+                  style={{ fontWeight: "bold", marginTop: "2px" }}
                 >
                   {mainPhone}
                 </a>
