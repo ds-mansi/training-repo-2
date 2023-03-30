@@ -60,14 +60,16 @@ export const config: TemplateConfig = {
       "name",
       // "c_addressRegionDisplayName",
       "slug",
+      // "dm_directoryParents",
       "dm_directoryParents.name",
       "dm_directoryParents.slug",
       "dm_directoryParents.meta.entityType",
+      "dm_directoryParents.id",
       "dm_directoryChildren.name",
       "dm_directoryChildren.slug",
       "dm_directoryChildren.id",
-      "dm_directoryParents.dm_directoryChildrenCount",
-      "dm_directoryChildren.dm_directoryChildrenCount",
+      // "dm_directoryParents.dm_directoryChildrenCount",
+      "dm_directoryChildren.dm_baseEntityCount",
       "dm_directoryChildren.address",
       "dm_directoryChildren.hours",
       "dm_directoryChildren.mainPhone",
@@ -88,7 +90,7 @@ export const config: TemplateConfig = {
       // "c_metaTitle",
     ],
     localization: {
-      locales: ["en","fr"],
+      locales: ["en", "fr"],
       primary: false,
     },
   },
@@ -107,25 +109,29 @@ let slugString = "";
 
 //   return slugString + document.slug + ".html";
 // };
+
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  if (document.dm_directoryParents) {
+  if (document?.dm_directoryParents) {
     document?.dm_directoryParents?.map((i: any) => {
-      if (i.meta.entityType.id == "ce_country") {
-        currentUrl = `${i.slug}/${document.slug.toString()}.html`;
+      if (i?.meta?.entityType?.id == "ce_country") {
+        currentUrl = `${
+          i?.slug
+        }/${document?.meta?.locale?.slug?.toString()}.html`;
         // console.log(currentUrl,"574757175171531742")
-      } else if (i.meta.entityType.id == "ce_region") {
-        let url = `${document.dm_directoryParents[1].slug}/${
-          i.slug
-        }/${document.slug.toString()}.html`;
+      } else if (i?.meta?.entityType?.id == "ce_region") {
+        let url = `${document?.meta?.locale?.dm_directoryParents?.slug}/${
+          i?.slug
+        }/${document?.meta?.locale?.slug?.toString()}.html`;
         currentUrl = url;
-        // console.log(currentUrl,"gugsauhqaghggv")
+        // console.log(currentUrl," console.log(currentUrl)")
       }
     });
     return `/${currentUrl}`;
+   
   } else {
-    return `/${document.slug.toString()}.html`;
+    return `/${document?.slug?.toString()}.html`;
   }
-};
+ };
 
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   relativePrefixToRoot,
@@ -133,11 +139,12 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   document,
   __meta,
 }): HeadConfig => {
-  let metaDescription = document._site
-    ? document._site
+  
+  let metaDescription = document?._site
+    ? document?._site
     : "Find your nearest Club-Mate store and which services are available." +
-      document.name;
-  let metaTitle = `Club-Mate Restro in ${document.name} | Find a Local Store`;
+      document?.name;
+  let metaTitle = `Club-Mate Restro in ${document?.name} | Find a Local Store`;
   // let canonicalURL = document._site.c_metaTags.canonicalURL  ? document._site.c_metaTags.canonicalURL + document.dm_directoryParents[1].name.toLowerCase() +"/"+ document.dm_directoryParents[2].slug +"/"+ document.slug + ".html"  : stagingBaseUrl + document.dm_directoryParents[1].name.toLowerCase() +"/"+ document.dm_directoryParents[2].slug +"/"+ document.slug + ".html"
   //let ogmetaImage = document._site.c_ogmetaTags.oGImage[0].url ? document._site.c_ogmetaTags.oGImage[0].url : "https://cdn.vodafone.co.uk/en/assets/images/large/IMG_10480.jpg"
 
@@ -296,11 +303,11 @@ const City: Template<TemplateRenderProps> = ({
     var b = b.name;
     return a < b ? -1 : a > b ? 1 : 0;
   });
+  console.log(document.slug,"document")
 
   let slugString = "";
-  document.dm_directoryParents?.forEach((e: any) => {
-    slugString += e.slug + "/";
-    // console.log(slugString,"8787678789")
+  document?.dm_directoryParents?.forEach((e: any) => {
+    slugString += e?.slug + "/";
   });
   const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
 
@@ -317,17 +324,17 @@ const City: Template<TemplateRenderProps> = ({
       }
       // let key: any = Object.keys(entity.hours)&&(entity.hours)[0];
       let detailPageUrl = "";
-      var name: any = entity.name.toLowerCase();
+      var name: any = entity?.name.toLowerCase();
       var string: any = name.toString();
       let removeSpecialCharacters = string.replace(
         /[&\/\\#^+()$~%.'":*?<>{}!@]/g,
         ""
       );
       let result: any = removeSpecialCharacters.replaceAll(" ", "-");
-      if (!entity.slug || entity.slug == "undefined") {
-        detailPageUrl = `${entity.slug}-${result}.html`;
+      if (!entity?.slug || entity?.slug == "undefined") {
+        detailPageUrl = `${entity?.slug}-${result}.html`;
       } else {
-        detailPageUrl = `${entity.slug.toString()}.`;
+        detailPageUrl = `${entity?.slug?.toString()}.`;
       }
       // console.log(detailPageUrl,"slug")
       // console.log(entity.name,"name")
@@ -338,8 +345,8 @@ const City: Template<TemplateRenderProps> = ({
               <h4>
                 <Link
                   eventName={"Location detail"}
-                  key={entity.slug}
-                  href={`${document.slug}/${entity.name.replaceAll(
+                  key={entity?.slug}
+                  href={`${document?.slug}/${entity.name.replaceAll(
                     " ",
                     "-"
                   )}.html`}
@@ -432,7 +439,7 @@ const City: Template<TemplateRenderProps> = ({
               What3Words
             </a>
           </div> */}
-              {entity.mainPhone && (
+              {entity?.mainPhone && (
                 <div className="store-phone">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -485,7 +492,7 @@ const City: Template<TemplateRenderProps> = ({
                 </Link>
                 <a
                   className="view-details"
-                  href={`${document.slug}/${entity.name.replaceAll(
+                  href={`${document?.slug}/${entity.name.replaceAll(
                     " ",
                     "-"
                   )}.html`}
@@ -579,7 +586,7 @@ const City: Template<TemplateRenderProps> = ({
     }
   }
   c_globalData &&
-    c_globalData.map((i: any) => {
+    c_globalData?.map((i: any) => {
       address = i.address ? i.address : [];
       c_companyrn = i.c_companyrn ? i.c_companyrn : "";
       c_footerLinks = i.c_footerLinks ? i.c_footerLinks : [];
@@ -663,9 +670,7 @@ const City: Template<TemplateRenderProps> = ({
         <AnalyticsScopeProvider name={""}>
           {/* <Header></Header> */}
           <Header _site={_site} />
-          <PageLayout
-            _sites={_site} 
-          />
+          <PageLayout _sites={_site} />
           {/* <Header personal={_site.c_personal} bussiness={_site.c_business} findAStore={_site.c_findAStore} networkStatusChecker={_site.c_networkStatusChecker}></Header> */}
           <BreadCrumbs
             name={name}
@@ -686,11 +691,11 @@ const City: Template<TemplateRenderProps> = ({
       /> */}
           <h1 className="sec_heading mt-12" style={{ textAlign: "center" }}>
             Available Stores in {name},{" "}
-            {document.dm_directoryParents &&
-              document.dm_directoryParents[2].name}
+            {document?.dm_directoryParents &&
+              document?.dm_directoryParents[2]?.name}
             ,{" "}
-            {document.dm_directoryParents &&
-              document.dm_directoryParents[1].name}{" "}
+            {document?.dm_directoryParents &&
+              document?.dm_directoryParents[1]?.name}{" "}
           </h1>
           <div className="directory-country nearby-sec">
             <div className="container">

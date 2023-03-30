@@ -49,9 +49,11 @@ export const config: TemplateConfig = {
   },
 };
 
-export const getPath: GetPath<TemplateProps> = () => {
-  return `index.html`;
+export const getPath: GetPath<TemplateProps> = ({document}) => {
+  return `${document.locale}`+"/"+`index.html`;
 };
+
+
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   relativePrefixToRoot,
   path,
@@ -166,6 +168,7 @@ const Locator: Template<TemplateRenderProps>= ({
    const {    
    _site
    } = document;
+   console.log(document,"documentb ckegwqjhd")
  
 
   let templateData = { document: document, __meta: __meta };

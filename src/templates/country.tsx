@@ -59,7 +59,7 @@ export const config: TemplateConfig = {
       "slug",
       "dm_directoryChildren.name",
       "dm_directoryChildren.slug",
-      "dm_directoryChildren.dm_directoryChildrenCount",
+      "dm_directoryChildren.dm_baseEntityCount",
       "dm_directoryParents.name",
       "dm_directoryParents.slug",
       "dm_directoryParents.meta.entityType",
@@ -85,8 +85,8 @@ export const config: TemplateConfig = {
 };
 
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  currentUrl = "/" + document.slug.toString() + ".html";
-  return "/" + document.slug.toString() + ".html";
+  currentUrl = "/" + document?.slug?.toString() + ".html";
+  return "/" + document?.slug?.toString() + ".html";
   //  return "index.html";
 };
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
@@ -252,7 +252,7 @@ const Country: Template<TemplateRenderProps> = ({
           href={slug + "/" + entity.slug + ".html"}
           className="hover:text-red"
         >
-          {entity.name} ({entity.dm_directoryChildrenCount})
+          {entity.name} ({entity.dm_baseEntityCount})
         </Link>
       </div>
     ));

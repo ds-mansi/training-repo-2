@@ -116,10 +116,12 @@ export const config: TemplateConfig = {
  * NOTE: This currently has no impact on the local dev path. Local dev urls currently
  * take on the form: featureName/entityId
  */
+// console.log(document,"Document");
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  // console.log(document,"Document");
+
   var url = "";
   var name: any = document.name.toLowerCase();
+
   var string: any = name.toString();
   let result: any = string.replaceAll(" ", "-");
 
@@ -127,20 +129,24 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
   document?.dm_directoryParents?.map((result: any, i: Number) => {
     if (i > 0) {
       url += result.slug + "/";
+      // console.log(url,"url123")
     }
   });
   if (!document.slug) {
     let slugString = document.name;
     url += `${document.meta.locale}/${slugString}.html`;
+    // console.log(url,"url123")
   } else {
-    // console.log("LocalizedRegionName and City");
+
     url = `${document.meta.locale}/${document.slug.toString()}.html`;
-    // console.log(url, "urlll");
+    // console.log(url, "abc");
   }
 
   // return document.id;
+  
   return url;
 };
+
 /**
  * Defines a list of paths which will redirect to the path created by getPath.
  *
@@ -276,7 +282,7 @@ export const transformProps: TransformProps<ExternalApiData> = async (
 ) => {
   // var location = `${data.document.yextDisplayCoordinate ? data.document.yextDisplayCoordinate.latitude : data.document.displayCoordinate.latitude},${data.document.yextDisplayCoordinate ? data.document.yextDisplayCoordinate.longitude : data.document.displayCoordinate.longitude}`;
 
-  const url = `https://liveapi-sandbox.yext.com/v2/accounts/me/entities/geosearch?radius=2500&location=${data.document.yextDisplayCoordinate.latitude},${data.document.yextDisplayCoordinate.longitude}&api_key=89533a282a54cddff3823fbc30582f38&v=20181201&resolvePlaceholders=true&entityTypes=location&limit=4`;
+  const url = `https://liveapi-sandbox.yext.com/v2/accounts/me/entities/geosearch?radius=2500&location=${data.document.yextDisplayCoordinate.latitude},${data.document.yextDisplayCoordinate.longitude}&api_key=706fed5d92b3f7683a6527211e1ac561&v=20181201&resolvePlaceholders=true&entityTypes=location&limit=4`;
   // console.log(url);
   const externalApiData = (await fetch(url).then((res: any) =>
     res.json()
@@ -320,6 +326,7 @@ const Location: Template<ExternalApiRenderData> = ({
     dm_directoryParents,
     c_nearbyLoactionHeading,
   } = document;
+  // console.log(document._site.meta,"document")
 
   let templateData = { document: document, __meta: __meta };
   // console.log(document,"document")
@@ -361,6 +368,7 @@ const Location: Template<ExternalApiRenderData> = ({
   }
   document.dm_directoryParents &&
     document?.dm_directoryParents?.map((i: any, index: any) => {
+      // console.log(document.dm_directoryParents,"document.dm_directoryParents")
       if (i.meta.entityType.id == "ce_country") {
         document.dm_directoryParents[index].name =
           document.dm_directoryParents[index].name;
@@ -439,7 +447,7 @@ const Location: Template<ExternalApiRenderData> = ({
     },
   });
 
-  // let bannerimage = c_banner_image && c_banner_image.image.url;
+
 
   const services = c_restroServices?.services?.map((link: any) => (
     <ul>

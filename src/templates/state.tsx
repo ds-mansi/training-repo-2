@@ -58,8 +58,8 @@ export const config: TemplateConfig = {
       "dm_directoryChildren.name",
       "dm_directoryChildren.slug",
       "dm_directoryChildren.id",
-      "dm_directoryParents.dm_directoryChildrenCount",
-      "dm_directoryChildren.dm_directoryChildrenCount",
+      "dm_directoryParents.dm_baseEntityCount",
+      "dm_directoryChildren.dm_baseEntityCount",
       "dm_directoryChildren.dm_directoryChildren.name",
       "dm_directoryChildren.dm_directoryChildren.slug",
       "dm_directoryChildren.dm_directoryChildren.id",
@@ -86,13 +86,13 @@ export const config: TemplateConfig = {
 
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   let url = "";
-  document.dm_directoryParents?.map((i: any) => {
-    if (i.meta.entityType.id == 'ce_country') {
-      url +=  i.slug+"/";
+  document?.dm_directoryParents?.map((i: any) => {
+    if (i?.meta?.entityType?.id == 'ce_country') {
+      url +=  i?.slug+"/";
     }
         
   })
-  url += document.slug.toString();
+  url += document?.slug?.toString();
   
   // console.log(url,"gdhgfhfhhjhjfhjhj");
   return url + ".html";
@@ -106,8 +106,8 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   document,
 }): HeadConfig => {
 
-  let metaDescription = document._site ? document._site : "Find your nearest Club-mate Restro and which services are available." + document.name;
-  let metaTitle = `Club-mate Restro in ${document.name} | Find a Local Store`;
+  let metaDescription = document._site ? document._site : "Find your nearest Club-mate Restro and which services are available." + document?.name;
+  let metaTitle = `Club-mate Restro in ${document?.name} | Find a Local Store`;
   // let canonicalURL = document._site.c_metaTags.canonicalURL ? document._site.c_metaTags.canonicalURL + document.dm_directoryParents[1].name.toLowerCase() +"/"+  document.slug + ".html"
   // : stagingBaseUrl +  document.slug + ".html"
   //let ogmetaImage = document._site.c_ogmetaTags.oGImage[0].url ? document._site.c_ogmetaTags.oGImage[0].url : "https://cdn.vodafone.co.uk/en/assets/images/large/IMG_10480.jpg"
@@ -275,11 +275,11 @@ const State: Template<TemplateRenderProps> = ({
     dm_directoryChildren?.map((entity: any) => {
       let url: any = "";
 
-      url = document.slug.toString();
+      url = document?.slug?.toString();
       // console.log(url,"gfsffahdaydgadfadfyjdghjadjadfjfdlfhjgfdffg")
       let url1: any = "";
       url1 = url?.replace(/(\b\S.+\b)(?=.*\1)/g, "")?.trim();
-      if (entity?.dm_directoryChildrenCount == 1) {
+      if (entity?.dm_baseEntityCount == 1) {
         if (
           entity?.dm_directoryChildren &&
           entity?.dm_directoryChildren[0].id
@@ -297,9 +297,9 @@ const State: Template<TemplateRenderProps> = ({
                 key={entity.slug}
                 href={detlslug}
                 className="hover:text-red"
-                eventName={entity.name}
+                eventName={entity?.name}
               >
-                {entity.name} ({entity.dm_directoryChildrenCount})
+                {entity?.name} ({entity.dm_baseEntityCount})
               </Link>
             </div>
           );
@@ -309,7 +309,7 @@ const State: Template<TemplateRenderProps> = ({
             
           let name: any = entity.dm_directoryChildren[0].name.toLowerCase();
           // console.log(name,"123465")
-          let string: any = name.toString();
+          let string: any = name?.toString();
           let removeSpecialCharacters = string.replace(
             /[&\/\\#^+()$~%.'":*?<>{}!@]/g,
             ""
@@ -322,11 +322,11 @@ const State: Template<TemplateRenderProps> = ({
           return (
             <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4 step2">
               <Link key={entity.slug} 
-              href={"/" + url+"/"+`${entity.name}`} 
+              href={"/" + url+"/"+`${entity?.name}`} 
               className="hover:text-red" 
               rel="noopener noreferrer" 
               eventName={`LocationName`}>
-                {entity.name} ({entity.dm_directoryChildrenCount})
+                {entity?.name} ({entity.dm_baseEntityCount})
               </Link>
             </div>
           );
@@ -342,7 +342,7 @@ const State: Template<TemplateRenderProps> = ({
               className="hover:text-red"
               rel="noopener noreferrer" eventName={`name`}
             >
-              {entity.name} ({entity.dm_directoryChildrenCount})
+              {entity?.name} ({entity.dm_baseEntityCount})
             </Link>
           </div>
         );
@@ -360,7 +360,7 @@ const State: Template<TemplateRenderProps> = ({
           position: index,
           item: {
             "@id": `${stagingBaseurl}${i.slug}.html`,
-            name: i.name,
+            name: i?.name,
           },
         });
       }
@@ -370,7 +370,7 @@ const State: Template<TemplateRenderProps> = ({
     position: currentIndex + 1,
     item: {
       "@id": `${dm_directoryParents[1]?.slug}/${document?.slug?.toString()}.html`,
-      name: document.name,
+      name: document?.name,
     },
   });
   return (
@@ -429,7 +429,7 @@ const State: Template<TemplateRenderProps> = ({
       /> */}
 
       <h1 className="sec_heading mt-12" style={{ textAlign: "center" }}>
-        Cities in {name}, {document.dm_directoryParents[1].name}{" "}
+        Cities in {name}, {document.dm_directoryParents[1]?.name}{" "}
       </h1>
       <div className="directory-country nearby-sec">
         <div className="container">

@@ -8,7 +8,7 @@ export const baseuRL =
 export const apikey_for_entity = "e58a233583cfa3f71cbf0ef7f2604935";
 export const favicon =
   "https://lemurmuredelacave.com/wp-content/uploads/2021/06/ogImage.jpg";
-export const apiKey = "89533a282a54cddff3823fbc30582f38";
+export const apiKey = "706fed5d92b3f7683a6527211e1ac561";
 export const googleApikey = "AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18";
 export const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
 export const AnalyticsEnableDebugging = true;

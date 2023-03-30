@@ -46,7 +46,7 @@ export const config: TemplateConfig = {
       "dm_directoryParents.meta.entityType",
       "dm_directoryChildren.name",
       "dm_directoryChildren.slug",
-      "dm_directoryChildrenCount",
+      "dm_baseEntityCount",
       // "c_globalData.c_headerLinks1",
       // "c_globalData.c_footerLinks",
       // "c_globalData.facebookPageUrl",
@@ -258,7 +258,7 @@ const Root: Template<TemplateRenderProps> = ({
                       key={child.slug}
                       className="store-css"
                     >
-                      {child.name} {child.dm_directoryChildrenCount}
+                      {child.name} {child.dm_baseEntityCount}
                     </a>
                   </div>
                 </>
